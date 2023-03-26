@@ -1,0 +1,47 @@
+.back-button {
+    margin-left: 50px;
+    margin-top: 50px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.profile-pic {
+    background-color: #D9D9D9;
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+}
+
+.profile-name {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.profile-setting {
+    display: flex;
+    width: 600px;
+    height: 75px;
+    background-color: #D9D9D9;
+    border-radius: 20px;
+}
+
+.setting-header {
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 30px;
+    margin-top: 22px;
+}
+
+.setting {
+    width: 50px;
+    height: 25px;
+    background-color: white;
+    border-radius: 20px;
+    margin-top: 22px;
+    margin-left: 350px;
+}
