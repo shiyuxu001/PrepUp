@@ -4,8 +4,10 @@ import './index.css';
 import App from './App';
 import Profile from './pages/Profile';
 import WorkingCollection from './pages/WorkingCollections';
+import SavedCollections from './pages/SavedCollections';
 import reportWebVitals from './reportWebVitals';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
