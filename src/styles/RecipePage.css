@@ -35,7 +35,6 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-
 }
 
 .rp-recipe-name {
@@ -45,6 +44,7 @@
 .recipe-img {
     border-radius: 20px;
     margin: 15px;
+    display: block;
 }
 
 .recipe-ingredients {

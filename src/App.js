@@ -3,6 +3,9 @@ import WorkingCollection from './pages/WorkingCollections';
 import Steps from './pages/Steps';
 import SavedCollections from './pages/SavedCollections';
 import Browse from './pages/Browse';
+import RecipePage from './pages/RecipePage'; 
+import LikedRecipes from './pages/LikedRecipes';
+
 
 function App() {
   return (
@@ -11,7 +14,10 @@ function App() {
         {/* <WorkingCollection /> */}
         {/* <Steps /> */}
         {/* <SavedCollections /> */}
-        < Browse />
+        {/* < Browse /> */}
+        {/* <RecipePage /> */}
+        <LikedRecipes />
+
 
       </header>
     </div>
