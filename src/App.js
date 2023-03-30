@@ -18,7 +18,7 @@ function App() {
 
         <Router>
           <Routes>
-            <Route path="/browse" element={<Browse />} />
+            <Route path="/" element={<Browse />} />
             <Route path="/workingCollection" element={<WorkingCollection />} />
             <Route path="/steps" element={<Steps />} />
             <Route path="/recipePage" element={<RecipePage />} />

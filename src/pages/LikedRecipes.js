@@ -1,18 +1,26 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
+
 import '../styles/LikedRecipes.css';
 
 function LikedRecipes() {
+    let navigate = useNavigate();
+
     const [collectionName, setCollectionName] = useState('');
 
     const handleNameChange = (e) => {
         setCollectionName(e.target.value);
     }
+
+    const handleBackButton = () => {
+        navigate("/");
+      }
     
     return (
         <div>
 
             <div className='app-header'>
-            <button className='back-btn'> &lt; Back </button>
+            <button className='back-btn' onClick={handleBackButton}> &lt; Back </button>
             <h1>PREP UP</h1>
             <button className='user-btn' >Profile</button>
             </div>

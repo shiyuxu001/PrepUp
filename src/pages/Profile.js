@@ -5,7 +5,7 @@ function Profile() {
     let navigate = useNavigate();
 
     const handleBackButton = () => {
-        navigate("/browse");
+        navigate("/");
     }
 
     return (

@@ -19,6 +19,10 @@ function Browse() {
     const navToRecipePage = () => {
         navigate("/recipePage");
     }
+
+    const navToLikedRecipes = () => {
+        navigate("/likedRecipe")
+    }
     
     return (
         <div>
@@ -58,7 +62,7 @@ function Browse() {
                         <div className="recipe-buttons">
                             <button>Queue</button>
                             <button>Add</button>
-                            <button>Like</button>
+                            <button onClick={navToLikedRecipes}>Like</button>
                         </div>
                     </div>
                 </button>       

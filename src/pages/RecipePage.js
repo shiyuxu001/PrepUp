@@ -12,7 +12,11 @@ function RecipePage() {
     }
 
     const handleBackButton = () => {
-      navigate("/browse");
+      navigate("/");
+    }
+
+    const navToLikedRecipes = () => {
+      navigate("/likedRecipes")
     }
 
     const [ingredients, setIngredients] = useState([
@@ -108,7 +112,7 @@ function RecipePage() {
           <div className="recipe-buttons">
             <button>Queue</button>
             <button onClick={handleAddToQueue}>Add</button>
-            <button>Like</button>
+            <button onClick={navToLikedRecipes}>Like</button>
           </div>
         </div>
       </div>
