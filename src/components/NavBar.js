@@ -11,7 +11,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 function NavBar(){
     return (
         <>
-      
+        
         <Navbar bg='light' expand='md' className="mb-3" style={{ height: '150px'}}>
           <Container fluid>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-md`} />
@@ -33,6 +33,7 @@ function NavBar(){
                   <Nav.Link href="#action1">Home</Nav.Link>
                   <Nav.Link href="#action2">Profile</Nav.Link>
                   <Nav.Link href="#action2">Settings</Nav.Link>
+                  
                   {/* <NavDropdown
                     title="Dropdown"
                     id={`offcanvasNavbarDropdown-expand-${expand}`}

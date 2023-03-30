@@ -2,6 +2,7 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import WorkingCollection from './pages/WorkingCollections';
 import Steps from './pages/Steps';
+
 import SavedCollections from './pages/SavedCollections';
 import Browse from './pages/Browse';
 import RecipePage from './pages/RecipePage'; 
@@ -13,6 +14,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+
         <Router>
           <Routes>
             <Route path="/browse" element={<Browse />} />
@@ -23,6 +25,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
           </Routes>
         </Router>
+
       </header>
     </div>
   );
