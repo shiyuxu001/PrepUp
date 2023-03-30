@@ -1,8 +1,19 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 import '../styles/RecipePage.css';
 
 
 function RecipePage() {
+
+    let navigate = useNavigate();
+
+    const handleAddToQueue = () => {
+      navigate("/workingCollection");
+    }
+
+    const handleBackButton = () => {
+      navigate("/browse");
+    }
 
     const [ingredients, setIngredients] = useState([
       { id: 1, name: 'Flour', checked: false },
@@ -71,7 +82,7 @@ function RecipePage() {
         </header>
   
         <div className='app-header'>
-          <button className='back-btn'> &lt; Back </button>
+          <button className='back-btn' onClick={handleBackButton}> &lt; Back </button>
           <h1>PREP UP</h1>
           <button className='user-btn' >Profile</button>
         </div>
@@ -92,6 +103,12 @@ function RecipePage() {
           <div className='recipe-steps'>
             <h2>Instructions</h2>
             {renderSteps()}
+          </div>
+
+          <div className="recipe-buttons">
+            <button>Queue</button>
+            <button onClick={handleAddToQueue}>Add</button>
+            <button>Like</button>
           </div>
         </div>
       </div>

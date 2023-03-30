@@ -1,9 +1,16 @@
+import { useNavigate } from 'react-router-dom'
 import '../styles/Profile.css';
 
 function Profile() {
+    let navigate = useNavigate();
+
+    const handleBackButton = () => {
+        navigate("/browse");
+    }
+
     return (
         <div>
-            <button className="back-button">Back</button>
+            <button className="back-button" onClick={handleBackButton}>Back</button>
             <div className="container">
                 <div className="profile-pic">
 

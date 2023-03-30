@@ -1,11 +1,18 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 import '../styles/WorkingCollection.css';
 
 function WorkingCollection() {
     const [collectionName, setCollectionName] = useState('');
 
+    let navigate = useNavigate();
+
     const handleNameChange = (e) => {
         setCollectionName(e.target.value);
+    }
+
+    const generateSteps = () => {
+        navigate("/steps");
     }
     
     return (
@@ -17,12 +24,12 @@ function WorkingCollection() {
             </div>
             <div className="sub-header-container">
                 <button className="back-button">Back</button>
-                <button className="cook-button">Cook</button>
+                <button className="cook-button" onClick={generateSteps}>Cook</button>
             </div>
             <div className="input-container">
                 <input className="collection-name-input" type="text" placeholder="Collection Name" onChange={handleNameChange}/>
             </div>
-            <div className="recipes-container">
+            {/* <div className="recipes-container">
                 <div className="recipe">
                     <img className="chickpea-curry-img" src="https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_500,q_auto,w_1900/hellofresh_s3/image/vegan-chickpea-coconut-curry-d528b3ae.jpg" alt="Chickpea Curry" />
                     <div>
@@ -36,7 +43,7 @@ function WorkingCollection() {
                         </div>
                     </div>
                 </div>      
-            </div>
+            </div> */}
             <div className="recipes-container">
                 <div className="recipe">
                     <img className="chickpea-curry-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTalsT91fYd5yEucMTRc65oeAKBrFXrpbRQ1w&usqp=CAU" alt="Chocolate Cake" />
@@ -44,11 +51,11 @@ function WorkingCollection() {
                         <h2 className="recipe-name">Chocolate Cake</h2>
                         <p className="recipe-total-header">TOTAL</p>
                         <p className="recipe-total-time">45 min</p>
-                        <div className="recipe-buttons">
+                        {/* <div className="recipe-buttons">
                             <button>Queue</button>
                             <button>Add</button>
                             <button>Like</button>
-                        </div>
+                        </div> */}
                     </div>
                 </div>       
             </div>
