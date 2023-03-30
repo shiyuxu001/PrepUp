@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
 import StepsCard from "../components/StepsCard";
 import "../styles/Steps.css";
+import { useNavigate } from 'react-router-dom'
+import '../styles/Browse.css';
 
 // fake recipe
 import myInstr from "../static/fake_instructions.json";
@@ -16,6 +18,7 @@ function Steps() {
     const [checked, setChecked] = useState(0)
     const colors = ['danger', 'secondary', 'warning', 'info']
 
+    let navigate = useNavigate();
 
     let colorIndex = 0
     let stepIndex = 1
@@ -24,6 +27,10 @@ function Steps() {
         setChecked(checked+1)
         console.log('steps checked: ' + checked)
         
+    }
+
+    const navToSuccess = () => {
+        navigate("/success");
     }
 
     useEffect(() => {
@@ -120,7 +127,7 @@ function Steps() {
             {/* TODO: figure out how to click on card/checkbox, once all steps completed, ssend to success page? */}
             {/* TODO: figure out progress bar */}
             {/* TODO: add key for recipes and colors? */}
-            <button className="floating-button"> Done!</button>
+            <button className="floating-button" onClick={navToSuccess}> Done!</button>
         </div> : <>
         {console.log('loading in top of else is ' + loading)}
         loading...
