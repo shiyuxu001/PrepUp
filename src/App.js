@@ -8,6 +8,7 @@ import Browse from './pages/Browse';
 import RecipePage from './pages/RecipePage'; 
 import LikedRecipes from './pages/LikedRecipes';
 import Profile from './pages/Profile';
+import Success from './pages/Success';
 
 
 function App() {
@@ -23,8 +24,10 @@ function App() {
             <Route path="/recipePage" element={<RecipePage />} />
             <Route path="/likedRecipes" element={<LikedRecipes />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/success" element={<Success />} />
           </Routes>
         </Router>
+
 
       </header>
     </div>
