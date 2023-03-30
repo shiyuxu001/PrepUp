@@ -1,0 +1,90 @@
+.tab {
+    display: inline-block;
+    width: 20px; /* adjust this value as needed */
+  }
+
+.app-header {
+    margin: 15px;
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.app-header button {
+    flex-grow: 1;
+    margin: 20px;
+}
+
+.recipe-container {
+    margin: 0 20px;
+    /* width: calc(100% - 40px); */
+    align-items: center;
+    justify-content: center;
+    background-color: #D9D9D9;
+    border-radius: 20px;
+}
+
+.recipes-container div div{
+    background-color: transparent;
+    margin: 30px;
+}
+.recipe-header {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.rp-recipe-name {
+    margin-top:15px;
+    
+}
+.recipe-img {
+    border-radius: 20px;
+    margin: 15px;
+    display: block;
+}
+
+.recipe-ingredients {
+    margin: 20px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: flex-start; */
+}
+
+.recipe-steps {
+    margin: 20px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.recipe-steps ul {
+    list-style-type: decimal;
+    list-style-position: inside;
+
+}
+
+li::marker {
+    vertical-align: top;
+    margin-right: 0.5em;
+  }
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    /* display: flex; */
+    /* align-items: center; */
+    margin-bottom: 5px;
+  }
+  
+input[type="checkbox"] {
+    margin-right: 5px;
+}
