@@ -1,3 +1,16 @@
-.h2{
-    color:'white'
+.floating-button {
+    position: fixed;
+    bottom: 30px;
+    left:60%;
+    bottom:8%;
+    z-index: 1;
+    background-color: #DAFFDA;
+    border-radius: 3cm;
+    border-width: 5px;
+    border-color: #A7E4A5;
+    scale: 1.7;
+  }
+
+.all {
+    position: relative;
 }
