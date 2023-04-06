@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import '../styles/RecipePage.css';
 
 
-function RecipePage( {username} ) {
+function RecipePage( {username, recipeName} ) {
 
     let navigate = useNavigate();
 

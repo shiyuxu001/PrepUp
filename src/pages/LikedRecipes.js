@@ -21,7 +21,7 @@ function LikedRecipes( {username} ) {
 
             <div className='app-header'>
             <button className='back-btn' onClick={handleBackButton}> &lt; Back </button>
-            <h1>PREP UP</h1>
+            <h1><img src="public/Leaf Name.png" alt="PrepUp" /></h1>
             <button className='user-btn' >Profile</button>
             </div>
 

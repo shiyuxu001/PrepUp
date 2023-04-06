@@ -12,7 +12,9 @@ function RecipesCard(props){
     let navigate = useNavigate();
 
     const navToRecipePage = () => {
-        navigate(`/${props.username}/RecipePage`);
+        //             <Route path={`/${username}/browse`} element={<Browse name={name} username={username} />} />
+
+        navigate(`/${props.username}/RecipePage`, {username: props.username, recipeName: props.title});
     }
 
     return(
