@@ -1,11 +1,17 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import '../styles/Browse.css';
+import NavBar from "../components/NavBar";
+import axios from 'axios';
+import RecipesCard from '../components/RecipesCard';
+import CatCards from '../components/catCards';
 
 
 function Browse( {name, username} ) {
     const [recipeName, setRecipeName] = useState('');
-
+    const [cat, setCat] = useState([]);
+    const [initRec, setInitRec] = useState([])
+    const [loaded, setLoaded] = useState(false)
     let navigate = useNavigate();
 
     const handleNameChange = (e) => {
@@ -23,14 +29,59 @@ function Browse( {name, username} ) {
     const navToLikedRecipes = () => {
         navigate(`/${username}/likedRecipes`)
     }
+
+    // const catCards = cat.map((item) => (        
+    //     <CatCards title = {item['strCategory']} imgURL = {item['strCategoryThumb']} />
+
+    //   ));
+
+
     
+    useEffect(() => {
+        // initial load
+        
+        axios.get(`https://www.themealdb.com/api/json/v1/1/categories.php`)
+      .then(response => {
+        setCat(response.data.categories);
+      })
+      .catch(error => {
+        console.error('failed fetching categories from theMealDB');
+      });
+      //strCategory and strCategoryThumb is the one needed
+      console.log('categories:')
+      console.log(cat)
+
+      let newRecipes = []
+        for(let i = 0; i < 5; i +=1){
+            axios.get(`https://www.themealdb.com/api/json/v1/1/random.php`)
+            .then(response => {
+                newRecipes.push(response.data)
+            })
+            .catch(error => {
+                console.error('failed fetching categories from theMealDB');
+            });
+        }
+        setInitRec(newRecipes)
+        console.log('5 recipes:')
+        console.log(initRec)
+
+
+      setLoaded(true)
+
+      }, []);
+
+
+
+      
     return (
         <div>
-            <div className="header">
+            <NavBar />
+            {/* <div className="header">
                     <button className="header-item">Menu</button>
                     <h1 className="logo header-item">PrepUp</h1>
                     <button className="header-item" onClick={navToProfile}>Profile</button>
-            </div>
+                
+            </div> */}
 
             <p className="greeting-header">Hi, {name}!</p>
 
@@ -38,58 +89,37 @@ function Browse( {name, username} ) {
                 <input className="collection-name-input" type="text" placeholder="Search" onChange={handleNameChange}/>
                 {/* <FontAwesomeIcon icon="fa-solid fa-filter" /> */}
             </div>
-            <h3>Newest Recipes</h3>
-            <div className="recipes-container">
-                <button className="recipe">
-                    <img className="recipe-img" src="https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_500,q_auto,w_1900/hellofresh_s3/image/vegan-chickpea-coconut-curry-d528b3ae.jpg" alt="Chickpea Curry" />
+            {loaded?(
+                <div>
+                    <h3>Newest Recipes</h3>
+                    {console.log('loading recipes')}
+                    {console.log(initRec)}
                     <div>
-                        <h2 className="recipe-name">Chickpea Curry</h2>
-                        <p className="recipe-total-header">TOTAL</p>
-                        <p className="recipe-total-time">20 min</p>
-                        <div className="recipe-buttons">
-                            <button>Queue</button>
-                            <button>Add</button>
-                            <button>Like</button>
-                        </div>
+                        {
+                        initRec.map((item) => ( 
+                        <RecipesCard 
+                            title = {item['meals'][0]['strMeal']}  
+                            imgURL = {item['meals'][0]['strMealThumb']} />
+                        ))}
                     </div>
-                </button>      
-            </div>
-            <div className="recipes-container">
-                <button className="recipe" onClick={navToRecipePage}>
-                <img className="recipe-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTalsT91fYd5yEucMTRc65oeAKBrFXrpbRQ1w&usqp=CAU" alt="Chocolate Cake" />
-                    <div>
-                        <h2 className="recipe-name">Chocolate Cake</h2>
-                        <p className="recipe-total-header">TOTAL</p>
-                        <p className="recipe-total-time">50 min</p>
-                        <div className="recipe-buttons">
-                            <button>Queue</button>
-                            <button>Add</button>
-                            <button onClick={navToLikedRecipes}>Like</button>
-                        </div>
-                    </div>
-                </button>       
-            </div>
-            <h3>Top Categories</h3>
+                    <h3>Top Categories</h3>
+                    {console.log('loading categories')}
+                    {console.log(cat)}
+                    {
+                        cat.map((item) => (
+                            <CatCards 
+                                title={item['strCategory']}
+                                imgURL = {item['strCategoryThumb']} />
+                            ))
+                    }
 
-            <div className="category-container">
-                <button className="category">
-                    <div>
-                        <h2 className="category-name">30 Minute Meals</h2>
-                    </div>
-                    <img className="category-img" src="https://plantbasedonabudget.com/wp-content/uploads/2014/09/Vegan-French-Toast-Plant-Based-on-a-Budget-1-2.jpg" alt="30 Minute Meal" />
-                </button>       
-            </div>
-
-            <div className="category-container">
-                <button className="category">
-                    <h2 className="category-name">Desserts</h2>
-                    <img className="category-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTalsT91fYd5yEucMTRc65oeAKBrFXrpbRQ1w&usqp=CAU" alt="Chocolate Cake" />
-
-                </button>  
-                     
-            </div>
-            
-
+                </div>
+                    
+            ) : (
+                <div> loading...
+                    {console.log('currently loading')}
+                </div>
+            )}
         </div>
     )
 }

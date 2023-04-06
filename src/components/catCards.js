@@ -7,29 +7,26 @@ import { faAlignCenter } from "@fortawesome/free-solid-svg-icons";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-function RecipesCard(props){
-    
-
+function CatCards(props){
     return(
         <>
-            <Card className = 'recipe-card' onClick = {props.navTo}>
-                <Row className='p-4'>
-                    <Card.Title><h2>{props.title}</h2></Card.Title>
-                </Row>
-                <Row>
+            <Card  onClick = {props.navTo}>
+                <Card.Title><h2>{props.title}</h2></Card.Title>
+                
+                <Row noGutters>
                     <Col sm={4} md={4}>
-                        <img className = 'recipe-card-img' variant='left' src={props.imgURL} />
+                        <img className = 'recipe-card-img' variant='bottom' src={props.imgURL} />
                     </Col>
-                    <Col sm={8} md={8}>
+                    {/* <Col sm={8} md={8}>
                         <Card.Body>
-                            <Card.Text>{props.text}</Card.Text>
-                            <div className="d-flex justify-content-end" >
+                            <Card.Text>{props.text}Your text goes here.</Card.Text>
+                            {/* <div className="d-flex justify-content-end" >
                                 <Button variant='warning'>Add to Queue</Button>
                                 <Button variant='warning'>Add to collection</Button>
                                 <Button variant='warning'>Save</Button>
-                            </div>
-                        </Card.Body>
-                    </Col>
+                            </div> */}
+                        {/* </Card.Body> */}
+                    {/* </Col> */} 
                 </Row>
             </Card>
            
@@ -38,4 +35,4 @@ function RecipesCard(props){
     
     )
 };
-export default RecipesCard
+export default CatCards
