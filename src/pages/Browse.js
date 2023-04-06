@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import '../styles/Browse.css';
 
 
-function Browse() {
+function Browse( {name, username} ) {
     const [recipeName, setRecipeName] = useState('');
 
     let navigate = useNavigate();
@@ -13,15 +13,15 @@ function Browse() {
     }
 
     const navToProfile = () => {
-        navigate("/profile");
+        navigate(`/${username}/profile`);
     }
 
     const navToRecipePage = () => {
-        navigate("/recipePage");
+        navigate(`/${username}/recipePage`);
     }
 
     const navToLikedRecipes = () => {
-        navigate("/likedRecipe")
+        navigate(`/${username}/likedRecipes`)
     }
     
     return (
@@ -31,6 +31,8 @@ function Browse() {
                     <h1 className="logo header-item">PrepUp</h1>
                     <button className="header-item" onClick={navToProfile}>Profile</button>
             </div>
+
+            <p className="greeting-header">Hi, {name}!</p>
 
             <div className="input-container">
                 <input className="collection-name-input" type="text" placeholder="Search" onChange={handleNameChange}/>

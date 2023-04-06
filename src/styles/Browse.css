@@ -9,6 +9,14 @@
     margin-left: 15%;
 }
 
+.greeting-header {
+    font-size: 20px;
+    margin-top: 30px;
+    margin-bottom: 40px;
+    /* margin-left: 30%; */
+    /* text-align: left; */
+}
+
 .logo {
     text-align: center;
     font-size: 40px;
@@ -36,6 +44,7 @@
 }
 
 .collection-name-input {
+    margin-bottom: 40px;
     font-size: 18px;
     text-align: center;
     width: 350px;

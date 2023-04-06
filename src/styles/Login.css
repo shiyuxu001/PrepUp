@@ -1,0 +1,42 @@
+.input-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.input {
+    width: 250px;
+    height: 30px;
+    font-size: 15px;
+}
+
+.submit-button {
+    width: 100px;
+    height: 35px;
+    font-size: 15px;
+    border-radius: 20px;
+    border: 1px solid black;
+}
+
+.redirect {
+    background-color: white;
+    color: #ECA869;
+    border: none;
+    margin: 15px;
+    font-size: 15px;
+}
+
+.invalid-login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0px;
+    margin-bottom: -15px;
+}
+
+.invalid-login {
+    color: red;
+    font-style: italic;
+    font-size: 14px;
+}
