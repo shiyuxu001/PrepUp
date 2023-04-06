@@ -3,20 +3,20 @@ import { useNavigate } from 'react-router-dom'
 import '../styles/RecipePage.css';
 
 
-function RecipePage() {
+function RecipePage( {username} ) {
 
     let navigate = useNavigate();
 
     const handleAddToQueue = () => {
-      navigate("/workingCollection");
+      navigate(`/${username}/workingCollection`);
     }
 
     const handleBackButton = () => {
-      navigate("/");
+      navigate(`/${username}/browse`);
     }
 
     const navToLikedRecipes = () => {
-      navigate("/likedRecipes")
+      navigate(`/${username}/likedRecipes`)
     }
 
     const [ingredients, setIngredients] = useState([

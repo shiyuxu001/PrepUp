@@ -12,7 +12,7 @@ import myInstr from "../static/fake_instructions.json";
 
 
 
-function Steps() {
+function Steps( {username} ) {
     const [posts, setPosts] = useState([])
     const [loading, setLoading] = useState(false)
     const [checked, setChecked] = useState(0)
@@ -30,7 +30,7 @@ function Steps() {
     }
 
     const navToSuccess = () => {
-        navigate("/success");
+        navigate(`/${username}/success`);
     }
 
     useEffect(() => {

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 import '../styles/LikedRecipes.css';
 
-function LikedRecipes() {
+function LikedRecipes( {username} ) {
     let navigate = useNavigate();
 
     const [collectionName, setCollectionName] = useState('');
@@ -13,7 +13,7 @@ function LikedRecipes() {
     }
 
     const handleBackButton = () => {
-        navigate("/");
+        navigate(`/${username}/browse`);
       }
     
     return (

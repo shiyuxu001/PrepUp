@@ -33,12 +33,12 @@ function App() {
           <Routes>
             <Route path="/" element={<Login passUser={assignUsername} passName={assignName} />} />
             <Route path={`/${username}/browse`} element={<Browse name={name} username={username} />} />
-            <Route path={`/${username}/workingCollection`} element={<WorkingCollection />} />
-            <Route path={`/${username}/steps`} element={<Steps />} />
-            <Route path={`/${username}/recipePage`} element={<RecipePage />} />
-            <Route path={`/${username}/likedRecipes`} element={<LikedRecipes />} />
+            <Route path={`/${username}/workingCollection`} element={<WorkingCollection username={username} />} />
+            <Route path={`/${username}/steps`} element={<Steps username={username} />} />
+            <Route path={`/${username}/recipePage`} element={<RecipePage username={username} />} />
+            <Route path={`/${username}/likedRecipes`} element={<LikedRecipes username={username} />} />
             <Route path={`/${username}/profile`} element={<Profile />} />
-            <Route path={`${username}/success`} element={<Success />} />
+            <Route path={`/${username}/success`} element={<Success username={username} />} />
           </Routes>
         </Router>
 

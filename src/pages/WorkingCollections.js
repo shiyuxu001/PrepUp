@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import '../styles/WorkingCollection.css';
 
-function WorkingCollection() {
+function WorkingCollection( {username} ) {
     const [collectionName, setCollectionName] = useState('');
 
     let navigate = useNavigate();
@@ -12,7 +12,7 @@ function WorkingCollection() {
     }
 
     const generateSteps = () => {
-        navigate("/steps");
+        navigate(`/${username}/steps`);
     }
     
     return (
