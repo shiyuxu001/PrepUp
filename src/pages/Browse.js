@@ -8,15 +8,13 @@ import CatCards from '../components/catCards';
 
 
 function Browse( {name, username} ) {
-    const [recipeName, setRecipeName] = useState('');
+    const [recipes, setRecipes] = useState([]);
+    const [search,setSearch]=useState("");
     const [cat, setCat] = useState([]);
     const [initRec, setInitRec] = useState([])
     const [loaded, setLoaded] = useState(false)
     let navigate = useNavigate();
 
-    const handleNameChange = (e) => {
-        setRecipeName(e.target.value);
-    }
 
     const navToProfile = () => {
         navigate(`/${username}/profile`);
@@ -30,10 +28,13 @@ function Browse( {name, username} ) {
         navigate(`/${username}/likedRecipes`)
     }
 
-    // const catCards = cat.map((item) => (        
-    //     <CatCards title = {item['strCategory']} imgURL = {item['strCategoryThumb']} />
+    const searchMeal=(evt)=>{
+        if(evt.key=="Enter")
+        {
+            fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${search}`).then(res=>res.json()).then(data=> {setRecipes(data.meals);console.log(data.meals)})
+        }
+    }
 
-    //   ));
 
 
     
@@ -85,10 +86,13 @@ function Browse( {name, username} ) {
 
             <p className="greeting-header">Hi, {name}!</p>
 
-            <div className="input-container">
-                <input className="collection-name-input" type="text" placeholder="Search" onChange={handleNameChange}/>
+
+            <div className="searchBox">
+                <input type="search" className="collection-name-input" placeholder="Browse Recipes" onChange={(e)=>setSearch(e.target.value)} value={search} onKeyPress={searchMeal}/>
                 {/* <FontAwesomeIcon icon="fa-solid fa-filter" /> */}
+
             </div>
+
             {loaded?(
                 <div>
                     <h3>Newest Recipes</h3>
@@ -120,6 +124,16 @@ function Browse( {name, username} ) {
                     {console.log('currently loading')}
                 </div>
             )}
+
+            <h3>{search} Recipes</h3>
+                    <div>
+                        {
+                        recipes.map((item) => ( 
+                        <RecipesCard 
+                            title = {item['strMeal']}  
+                            imgURL = {item['strMealThumb']} />
+                        ))}
+                    </div>
         </div>
     )
 }
