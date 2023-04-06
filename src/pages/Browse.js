@@ -9,10 +9,11 @@ import CatCards from '../components/catCards';
 
 function Browse( {name, username} ) {
     const [recipes, setRecipes] = useState([]);
-    const [search,setSearch]=useState("");
+    const [search, setSearch] = useState("");
+    const [isActivelySearching, setIsActivelySearching] = useState(false);
     const [cat, setCat] = useState([]);
     const [initRec, setInitRec] = useState([])
-    const [loaded, setLoaded] = useState(false)
+    const [hasLoaded, setHasLoaded] = useState(false)
     let navigate = useNavigate();
 
 
@@ -29,10 +30,13 @@ function Browse( {name, username} ) {
     }
 
     const searchMeal=(evt)=>{
-        if(evt.key=="Enter")
+        if (evt.key == "Enter")
         {
             fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${search}`).then(res=>res.json()).then(data=> {setRecipes(data.meals);console.log(data.meals)})
         }
+
+        setIsActivelySearching(true);
+        setHasLoaded(true);
     }
 
 
@@ -48,12 +52,13 @@ function Browse( {name, username} ) {
       .catch(error => {
         console.error('failed fetching categories from theMealDB');
       });
+
       //strCategory and strCategoryThumb is the one needed
       console.log('categories:')
       console.log(cat)
 
-      let newRecipes = []
-        for(let i = 0; i < 5; i +=1){
+      let newRecipes = [];
+        for (let i = 0; i < 5; i +=1) {
             axios.get(`https://www.themealdb.com/api/json/v1/1/random.php`)
             .then(response => {
                 newRecipes.push(response.data)
@@ -62,12 +67,14 @@ function Browse( {name, username} ) {
                 console.error('failed fetching categories from theMealDB');
             });
         }
+
         setInitRec(newRecipes)
         console.log('5 recipes:')
         console.log(initRec)
+        console.log("New Recipes: " + newRecipes.length)
 
 
-      setLoaded(true)
+      setHasLoaded(true)
 
       }, []);
 
@@ -93,39 +100,42 @@ function Browse( {name, username} ) {
 
             </div>
 
-            {loaded?(
+            {hasLoaded && !isActivelySearching ? (
                 <div>
                     <h3>Newest Recipes</h3>
-                    {console.log('loading recipes')}
+                    {console.log('loading recipes in return()')}
                     {console.log(initRec)}
-                    <div>
-                        {
-                        initRec.map((item) => ( 
+                    {initRec.map((item) => ( 
                         <RecipesCard 
                             title = {item['meals'][0]['strMeal']}  
                             imgURL = {item['meals'][0]['strMealThumb']} />
-                        ))}
-                    </div>
+                    ))}
+
                     <h3>Top Categories</h3>
                     {console.log('loading categories')}
                     {console.log(cat)}
-                    {
-                        cat.map((item) => (
+                    {cat.map((item) => (
                             <CatCards 
                                 title={item['strCategory']}
                                 imgURL = {item['strCategoryThumb']} />
-                            ))
-                    }
+                    ))}
 
                 </div>
                     
-            ) : (
-                <div> loading...
-                    {console.log('currently loading')}
-                </div>
-            )}
+            ) : ''
+            }
 
-            <h3>{search} Recipes</h3>
+            {hasLoaded ? '' : 
+                (
+                    <div> loading...
+                        {console.log('currently loading')}
+                    </div>
+                )
+            }
+
+            {isActivelySearching ? 
+                (<div>
+                    <h3 className='results-header'>Results</h3>
                     <div>
                         {
                         recipes.map((item) => ( 
@@ -136,6 +146,9 @@ function Browse( {name, username} ) {
                             />
                         ))}
                     </div>
+                </div>)
+                : ''
+            }
         </div>
     )
 }
