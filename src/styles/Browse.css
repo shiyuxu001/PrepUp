@@ -10,11 +10,18 @@
 }
 
 .greeting-header {
-    font-size: 20px;
-    margin-top: 30px;
-    margin-bottom: 40px;
+    font-size: 35px;
+    margin-top: 50px;
+    margin-bottom: 50px;
     /* margin-left: 30%; */
     /* text-align: left; */
+}
+
+.section-header {
+    text-align: left;
+    margin-left: 10%;
+    margin-bottom: 15px;
+    color: #c9c9c9;
 }
 
 .logo {

@@ -30,12 +30,15 @@ function Browse( {name, username} ) {
     }
 
     const searchMeal=(evt)=>{
-        if (evt.key == "Enter")
-        {
-            fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${search}`).then(res=>res.json()).then(data=> {setRecipes(data.meals);console.log(data.meals)})
+        if (evt.key == "Enter") {
+            fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${search}`)
+            .then(res=>res.json())
+            .then(data => 
+                {setRecipes(data.meals);
+                console.log(data.meals)})
         }
 
-        setIsActivelySearching(true);
+        setIsActivelySearching(true)
         setHasLoaded(true);
     }
 
@@ -44,37 +47,45 @@ function Browse( {name, username} ) {
     
     useEffect(() => {
         // initial load
-        
         axios.get(`https://www.themealdb.com/api/json/v1/1/categories.php`)
-      .then(response => {
-        setCat(response.data.categories);
-      })
-      .catch(error => {
-        console.error('failed fetching categories from theMealDB');
-      });
+        .then(response => {
+            setCat(response.data.categories);
+        })
+        .catch(error => {
+            console.error('failed fetching categories from theMealDB');
+        });
 
-      //strCategory and strCategoryThumb is the one needed
-      console.log('categories:')
-      console.log(cat)
+       // strCategory and strCategoryThumb is the one needed
+        console.log('categories:')
+        console.log(cat)
 
-      let newRecipes = [];
-        for (let i = 0; i < 5; i +=1) {
-            axios.get(`https://www.themealdb.com/api/json/v1/1/random.php`)
-            .then(response => {
-                newRecipes.push(response.data)
-            })
-            .catch(error => {
-                console.error('failed fetching categories from theMealDB');
-            });
-        }
+        let newRecipes = [];
+        axios.get(`https://www.themealdb.com/api/json/v1/1/random.php`)
+        .then(response => {
+            newRecipes.push(response.data)
+        })
+        .catch(error => {
+            console.error('failed fetching categories from theMealDB');
+        });
+
+        // Doesn't work in the for-loop for some reason
+        //
+        // for (let i = 0; i < 5; i +=1) {
+        //     axios.get(`https://www.themealdb.com/api/json/v1/1/random.php`)
+        //     .then(response => {
+        //         newRecipes.push(response.data)
+        //     })
+        //     .catch(error => {
+        //         console.error('failed fetching categories from theMealDB');
+        //     });
+        // }
 
         setInitRec(newRecipes)
         console.log('5 recipes:')
         console.log(initRec)
         console.log("New Recipes: " + newRecipes.length)
 
-
-      setHasLoaded(true)
+        setHasLoaded(true)
 
       }, []);
 
@@ -95,14 +106,14 @@ function Browse( {name, username} ) {
 
 
             <div className="searchBox">
-                <input type="search" className="collection-name-input" placeholder="Browse Recipes" onChange={(e)=>setSearch(e.target.value)} value={search} onKeyPress={searchMeal}/>
+                <input type="search" className="collection-name-input" placeholder="Search for a recipe" onChange={(e)=>setSearch(e.target.value)} value={search} onKeyPress={searchMeal}/>
                 {/* <FontAwesomeIcon icon="fa-solid fa-filter" /> */}
 
             </div>
 
             {hasLoaded && !isActivelySearching ? (
                 <div>
-                    <h3>Newest Recipes</h3>
+                    <h3 className="section-header">Newest Recipes</h3>
                     {console.log('loading recipes in return()')}
                     {console.log(initRec)}
                     {initRec.map((item) => ( 
@@ -111,7 +122,7 @@ function Browse( {name, username} ) {
                             imgURL = {item['meals'][0]['strMealThumb']} />
                     ))}
 
-                    <h3>Top Categories</h3>
+                    <h3 className="section-header">Top Categories</h3>
                     {console.log('loading categories')}
                     {console.log(cat)}
                     {cat.map((item) => (
