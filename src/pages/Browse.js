@@ -131,7 +131,9 @@ function Browse( {name, username} ) {
                         recipes.map((item) => ( 
                         <RecipesCard 
                             title = {item['strMeal']}  
-                            imgURL = {item['strMealThumb']} />
+                            imgURL = {item['strMealThumb']}
+                            username = {username}
+                            />
                         ))}
                     </div>
         </div>

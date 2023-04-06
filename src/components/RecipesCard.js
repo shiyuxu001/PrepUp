@@ -7,8 +7,13 @@ import { faAlignCenter } from "@fortawesome/free-solid-svg-icons";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+
 function RecipesCard(props){
-    
+    let navigate = useNavigate();
+
+    const navToRecipePage = () => {
+        navigate(`/${props.username}/RecipePage`);
+    }
 
     return(
         <>
@@ -18,7 +23,7 @@ function RecipesCard(props){
                 </Row>
                 <Row>
                     <Col sm={4} md={4}>
-                        <img className = 'recipe-card-img' variant='left' src={props.imgURL} />
+                        <img className = 'recipe-card-img' variant='left' onClick={navToRecipePage} src={props.imgURL}  />
                     </Col>
                     <Col sm={8} md={8}>
                         <Card.Body>
@@ -32,7 +37,6 @@ function RecipesCard(props){
                     </Col>
                 </Row>
             </Card>
-           
         </>
    
     
