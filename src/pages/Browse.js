@@ -8,6 +8,7 @@ import CatCards from '../components/catCards';
 
 
 function Browse( {name, username} ) {
+
     const [recipes, setRecipes] = useState([]);
     const [search, setSearch] = useState("");
     const [isActivelySearching, setIsActivelySearching] = useState(false);
@@ -15,6 +16,8 @@ function Browse( {name, username} ) {
     const [initRec, setInitRec] = useState([])
     const [hasLoaded, setHasLoaded] = useState(false)
     let navigate = useNavigate();
+
+
 
 
     const navToProfile = () => {
@@ -32,7 +35,7 @@ function Browse( {name, username} ) {
     const searchMeal=(evt)=>{
         if (evt.key == "Enter")
         {
-            fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${search}`).then(res=>res.json()).then(data=> {setRecipes(data.meals);console.log(data.meals)})
+            fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${search}`).then(res=>res.json()).then(data=> {setRecipes(data.meals);})
         }
 
         setIsActivelySearching(true);
@@ -54,8 +57,8 @@ function Browse( {name, username} ) {
       });
 
       //strCategory and strCategoryThumb is the one needed
-      console.log('categories:')
-      console.log(cat)
+    //   console.log('categories:')
+    //   console.log(cat)
 
       let newRecipes = [];
         for (let i = 0; i < 5; i +=1) {
@@ -108,7 +111,9 @@ function Browse( {name, username} ) {
                     {initRec.map((item) => ( 
                         <RecipesCard 
                             title = {item['meals'][0]['strMeal']}  
-                            imgURL = {item['meals'][0]['strMealThumb']} />
+                            imgURL = {item['meals'][0]['strMealThumb']}
+                            username= {username} 
+                            mealId = {item['meals'][0]['idMeal']} />
                     ))}
 
                     <h3>Top Categories</h3>
@@ -140,9 +145,10 @@ function Browse( {name, username} ) {
                         {
                         recipes.map((item) => ( 
                         <RecipesCard 
-                            title = {item['strMeal']}  
+                            title = {item['strMeal']} 
                             imgURL = {item['strMealThumb']}
                             username = {username}
+                            mealId = {item['idMeal']}
                             />
                         ))}
                     </div>

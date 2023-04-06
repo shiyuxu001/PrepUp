@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import '../styles/SavedCollection.css';
 
-function SavedCollections() {
+function SavedCollections({username}) {
     const [collectionName, setCollectionName] = useState('');
 
     const handleNameChange = (e) => {
