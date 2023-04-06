@@ -1,0 +1,13 @@
+.recipe-card{
+    margin: 5%;
+}
+
+.recipe-card-img{
+    max-width: 50%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.category-card{
+    max-width: 43%;
+}
