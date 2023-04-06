@@ -6,15 +6,44 @@ import { Button } from "react-bootstrap";
 import { faAlignCenter } from "@fortawesome/free-solid-svg-icons";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { useState } from 'react';
+import axios from 'axios';
+
+
 
 
 function RecipesCard(props){
     let navigate = useNavigate();
 
-    const navToRecipePage = () => {
-        //             <Route path={`/${username}/browse`} element={<Browse name={name} username={username} />} />
+    const[recipe,setRecipe]=useState();
+    const getRecipe= ()=>{
+        setRecipe()
+        axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${props.mealId}`)
+        .then(response => {
+            console.log(response.data.meals)
+            setRecipe(response.data.meals);
+        })
 
-        navigate(`/${props.username}/RecipePage`, {username: props.username, recipeName: props.title});
+    }
+
+    const navToRecipePage = async() => {
+        await getRecipe()
+        navigate(`/${props.username}/RecipePage`, {username: props.username, recipe: recipe});
+    }
+
+    const navToWorkingCollections = async() => {
+        await getRecipe()
+        navigate(`/${props.username}/WorkingCollections`, {username: props.username});
+    }
+
+    const navToSavedCollections = async() => {
+        await getRecipe()
+        navigate(`/${props.username}/SavedCollections`, {username: props.username});
+    }
+
+    const navToLikedRecipes = async() => {
+        await getRecipe()
+        navigate(`/${props.username}/LikedRecipes`, {username: props.username});
     }
 
     return(
@@ -31,9 +60,9 @@ function RecipesCard(props){
                         <Card.Body>
                             <Card.Text>{props.text}</Card.Text>
                             <div className="d-flex justify-content-end" >
-                                <Button variant='warning'>Add to Queue</Button>
-                                <Button variant='warning'>Add to collection</Button>
-                                <Button variant='warning'>Save</Button>
+                                <Button onClick={navToWorkingCollections} variant='warning'>Add to Queue</Button>
+                                <Button onClick={navToSavedCollections} variant='warning'>Add to collection</Button>
+                                <Button onClick={navToLikedRecipes} variant='warning'>Add to Liked Recipes</Button>
                             </div>
                         </Card.Body>
                     </Col>

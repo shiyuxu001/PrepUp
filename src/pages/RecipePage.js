@@ -3,7 +3,10 @@ import { useNavigate } from 'react-router-dom'
 import '../styles/RecipePage.css';
 
 
-function RecipePage( {username, recipeName} ) {
+function RecipePage( {username, recipe} ) {
+    console.log(recipe)
+    // let instructions = recipe.instructions?.split('\r\n');
+    // instructions = instructions.filter(instruction => instruction.length > 1);
 
     let navigate = useNavigate();
 
@@ -18,6 +21,7 @@ function RecipePage( {username, recipeName} ) {
     const navToLikedRecipes = () => {
       navigate(`/${username}/likedRecipes`)
     }
+
 
     const [ingredients, setIngredients] = useState([
       { id: 1, name: 'Flour', checked: false },
