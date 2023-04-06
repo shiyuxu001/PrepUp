@@ -6,6 +6,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import logo from './LeafName.png'; 
 
 
 function NavBar(){
@@ -15,14 +16,22 @@ function NavBar(){
         <Navbar bg='light' expand='md' className="mb-3" style={{ height: '150px'}}>
           <Container fluid>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-md`} />
-            <Navbar.Brand className = 'mx-auto'  href="#"  >Prep Up</Navbar.Brand>
+            {/* <Navbar.Brand className = 'mx-auto'  href="#"  >Prep Up</Navbar.Brand> */}
+            <Navbar.Brand className='mx-auto' href="#">
+              <img
+                src={logo}
+                height="80"
+                // className="d-inline-block align-top"
+                alt="Logo"
+              />
+            </Navbar.Brand>
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-md`}
               aria-labelledby={`offcanvasNavbarLabel-expand-md`}
               placement='start'
               width='10px'
-              
             >
+
               <Offcanvas.Header closeButton>
                 <Offcanvas.Title id={`offcanvasNavbarLabel-expand-md`}>
                   Menu
