@@ -24,10 +24,10 @@ function StepsCard(props) {
         <Row >
           <Col>
             {/* <Card.Text>{props.num}</Card.Text> */}
-            <Card.Text className="text-start" style={{ fontSize: "1.5rem", fontWeight:"bolder"}}>Step {props.stepNum}</Card.Text>
+            <Card.Text className="text-start" style={{ fontSize: "1.5rem", fontWeight:"bolder"}}>Step {props.stepNum}: {props.name}</Card.Text>
           </Col>
           <Col xs="auto">
-            <Form.Check type="checkbox" style={{scale:'1.7'}} aria-label="completed step checkbox" onClick={handleClick}/>
+            <Form.Check type="checkbox" style={{scale:'1.7'}} aria-label="completed step checkbox" />
           </Col>
         </Row>
         <Row>
