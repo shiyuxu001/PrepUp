@@ -31,7 +31,7 @@ function App() {
 
         <Router>
           <Routes>
-            <Route path="/" element={<Login passUser={assignUsername} passName={assignName} />} />
+            <Route exact path="/" element={<Login passUser={assignUsername} passName={assignName} />} />
             <Route path={`/${username}/browse`} element={<Browse name={name} username={username} />} />
             <Route path={`/${username}/workingCollection`} element={<WorkingCollection username={username} />} />
             <Route path={`/${username}/steps`} element={<Steps username={username} />} />
