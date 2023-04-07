@@ -11,15 +11,15 @@ function RecipePage( {username, recipe} ) {
     let navigate = useNavigate();
 
     const handleAddToQueue = () => {
-      navigate(`/${username}/workingCollection`);
+      navigate(`/PrepUp/${username}/workingCollection`);
     }
 
     const handleBackButton = () => {
-      navigate(`/${username}/browse`);
+      navigate(`/PrepUp/${username}/browse`);
     }
 
     const navToLikedRecipes = () => {
-      navigate(`/${username}/likedRecipes`)
+      navigate(`/PrepUp/${username}/likedRecipes`)
     }
 
 

@@ -39,7 +39,7 @@ function Login( {passUser, passName} ) {
         sendSignUpData();
         passName(name);
         passUser(newUser);
-        navigate(`/${newUser}/browse`)
+        navigate(`/PrepUp/${newUser}/browse`)
     }
 
     // login credentials
@@ -112,7 +112,7 @@ function Login( {passUser, passName} ) {
                     setName(fetchedName);
                     passUser(username);
                     passName(fetchedName);
-                    navigate(`/${username}/browse`);
+                    navigate(`/PrepUp/${username}/browse`);
                 } else {
                     setLoginSuccess(false);
                 }

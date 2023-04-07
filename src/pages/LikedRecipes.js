@@ -13,7 +13,7 @@ function LikedRecipes( {username} ) {
     }
 
     const handleBackButton = () => {
-        navigate(`/${username}/browse`);
+        navigate(`/PrepUp/${username}/browse`);
       }
     
     return (

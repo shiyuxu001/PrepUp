@@ -8,7 +8,7 @@ function Success( {username} ){
     const navigate = useNavigate();
 
     const handleBackToHome = () => {
-        navigate(`/${username}/browse`);
+        navigate(`/PrepUp/${username}/browse`);
     }
 
     return (

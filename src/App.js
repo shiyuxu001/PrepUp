@@ -31,14 +31,14 @@ function App() {
 
         <Router>
           <Routes>
-            <Route exact path="/" element={<Login passUser={assignUsername} passName={assignName} />} />
-            <Route path={`/${username}/browse`} element={<Browse name={name} username={username} />} />
-            <Route path={`/${username}/workingCollection`} element={<WorkingCollection username={username} />} />
-            <Route path={`/${username}/steps`} element={<Steps username={username} />} />
-            <Route path={`/${username}/recipePage`} element={<RecipePage username={username} />} />
-            <Route path={`/${username}/likedRecipes`} element={<LikedRecipes username={username} />} />
-            <Route path={`/${username}/profile`} element={<Profile />} />
-            <Route path={`/${username}/success`} element={<Success username={username} />} />
+            <Route exact path="/PrepUp" element={<Login passUser={assignUsername} passName={assignName} />} />
+            <Route path={`/PrepUp/${username}/browse`} element={<Browse name={name} username={username} />} />
+            <Route path={`/PrepUp/${username}/workingCollection`} element={<WorkingCollection username={username} />} />
+            <Route path={`/PrepUp/${username}/steps`} element={<Steps username={username} />} />
+            <Route path={`/PrepUp/${username}/recipePage`} element={<RecipePage username={username} />} />
+            <Route path={`/PrepUp/${username}/likedRecipes`} element={<LikedRecipes username={username} />} />
+            <Route path={`/PrepUp/${username}/profile`} element={<Profile />} />
+            <Route path={`/PrepUp/${username}/success`} element={<Success username={username} />} />
           </Routes>
         </Router>
 

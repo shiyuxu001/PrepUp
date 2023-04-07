@@ -12,7 +12,7 @@ function WorkingCollection( {username} ) {
     }
 
     const generateSteps = () => {
-        navigate(`/${username}/steps`);
+        navigate(`/PrepUp/${username}/steps`);
     }
     
     return (

@@ -31,7 +31,7 @@ function Steps( {username}) {
     }
 
     const navToSuccess = () => {
-        navigate(`/${username}/success`);
+        navigate(`/PrepUp/${username}/success`);
     }
 
     useEffect(() => {

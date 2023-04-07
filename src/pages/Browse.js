@@ -22,15 +22,15 @@ function Browse( {name, username} ) {
 
 
     const navToProfile = () => {
-        navigate(`/${username}/profile`);
+        navigate(`/PrepUp/${username}/profile`);
     }
 
     const navToRecipePage = () => {
-        navigate(`/${username}/recipePage`);
+        navigate(`/PrepUp/${username}/recipePage`);
     }
 
     const navToLikedRecipes = () => {
-        navigate(`/${username}/likedRecipes`)
+        navigate(`/PrepUp/${username}/likedRecipes`)
     }
 
     const searchMeal=(evt)=>{
