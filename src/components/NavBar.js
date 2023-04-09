@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom'
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
@@ -9,7 +10,22 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import logo from './LeafName.png'; 
 
 
-function NavBar(){
+function NavBar( {username} ) {
+  let navigate = useNavigate();
+
+  const navToBrowse = () => {
+    navigate(`/PrepUp/${username}/browse`);
+  }
+
+  const navToLikedRecipes = () => {
+      navigate(`/PrepUp/${username}/likedRecipes`);
+  }
+
+  const navToSavedCollections = () => {
+      navigate(`/PrepUp/${username}/savedCollections`)
+  }
+
+
     return (
         <>
         
@@ -39,9 +55,8 @@ function NavBar(){
               </Offcanvas.Header>
               <Offcanvas.Body >
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Nav.Link href="#action1">Home</Nav.Link>
-                  <Nav.Link href="#action2">Profile</Nav.Link>
-                  <Nav.Link href="#action2">Settings</Nav.Link>
+                  <Nav.Link onClick={navToLikedRecipes}>My Recipes</Nav.Link>
+                  <Nav.Link onClick={navToSavedCollections}>My Collections</Nav.Link>
                   
                   {/* <NavDropdown
                     title="Dropdown"

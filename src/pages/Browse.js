@@ -21,17 +21,17 @@ function Browse( {name, username} ) {
 
 
 
-    const navToProfile = () => {
-        navigate(`/PrepUp/${username}/profile`);
-    }
+    // const navToProfile = () => {
+    //     navigate(`/PrepUp/${username}/profile`);
+    // }
 
-    const navToRecipePage = () => {
-        navigate(`/PrepUp/${username}/recipePage`);
-    }
+    // const navToRecipePage = () => {
+    //     navigate(`/PrepUp/${username}/recipePage`);
+    // }
 
-    const navToLikedRecipes = () => {
-        navigate(`/PrepUp/${username}/likedRecipes`)
-    }
+    // const navToLikedRecipes = () => {
+    //     navigate(`/PrepUp/${username}/likedRecipes`)
+    // }
 
     const searchMeal=(evt)=>{
         if (evt.key == "Enter")
@@ -77,20 +77,6 @@ function Browse( {name, username} ) {
             .catch((error) => {
               console.error('failed fetching recipes from theMealDB', error);
             });
-
-        // // Doesn't work in the for-loop for some reason
-        // //
-        // setRecipesLoaded(false)
-        
-        // axios.get(`https://www.themealdb.com/api/json/v1/1/random.php`)
-        // .then(response => {
-        //     newRecipes.push(response.data)
-        //     setRecipesLoaded(true) //this sucks lol
-            
-        // })
-        // .catch(error => {
-        //     console.error('failed fetching categories from theMealDB');
-        // });
             
         setInitRec(newRecipes)
         console.log('5 recipes:')
@@ -106,13 +92,7 @@ function Browse( {name, username} ) {
       
     return (
         <div>
-            <NavBar />
-            {/* <div className="header">
-                    <button className="header-item">Menu</button>
-                    <h1 className="logo header-item">PrepUp</h1>
-                    <button className="header-item" onClick={navToProfile}>Profile</button>
-                
-            </div> */}
+            <NavBar username={username} />
 
             <p className="greeting-header">Hi, {name}!</p>
 
