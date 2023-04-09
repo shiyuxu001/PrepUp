@@ -19,8 +19,6 @@ function Browse( {name, username} ) {
     let navigate = useNavigate();
 
 
-
-
     // const navToProfile = () => {
     //     navigate(`/PrepUp/${username}/profile`);
     // }
@@ -33,6 +31,7 @@ function Browse( {name, username} ) {
     //     navigate(`/PrepUp/${username}/likedRecipes`)
     // }
 
+
     const searchMeal=(evt)=>{
         if (evt.key == "Enter")
         {
@@ -42,9 +41,6 @@ function Browse( {name, username} ) {
         setIsActivelySearching(true)
         setHasLoaded(true);
     }
-
-
-
     
     useEffect(() => {
         // initial load
@@ -92,15 +88,14 @@ function Browse( {name, username} ) {
       
     return (
         <div>
-            <NavBar username={username} />
+            <NavBar username={username} setMyRecipes={false} setMyCollections={false} />
 
             <p className="greeting-header">Hi, {name}!</p>
 
 
-            <div className="searchBox">
+            <div className="search-box">
                 <input type="search" className="collection-name-input" placeholder="Search for a recipe" onChange={(e)=>setSearch(e.target.value)} value={search} onKeyPress={searchMeal}/>
                 {/* <FontAwesomeIcon icon="fa-solid fa-filter" /> */}
-
             </div>
 
             {hasLoaded && !isActivelySearching ? (
@@ -109,27 +104,42 @@ function Browse( {name, username} ) {
                     {console.log('loading recipes in return()')}
                     {console.log(initRec)}
                     {console.log(recipesLoaded)}
-                    <div>
-                    {recipesLoaded? (
-                        
-                        initRec.map((item) => ( 
-                        <RecipesCard 
-                            title = {item['meals'][0]['strMeal']}  
-                            imgURL = {item['meals'][0]['strMealThumb']}
-                            username= {username} 
-                            mealId = {item['meals'][0]['idMeal']} 
-                            />
-                        )) ): (<div>loading</div>)}   
+
+                    {/* Make this into a carousel */}
+                    <div className="new-recipe-cards-container">
+                        <div className="new-recipe-cards">
+                            {recipesLoaded ? 
+                                (
+                                    initRec.map((item) => ( 
+                                    <RecipesCard 
+                                        title = {item['meals'][0]['strMeal']}  
+                                        imgURL = {item['meals'][0]['strMealThumb']}
+                                        username= {username} 
+                                        mealId = {item['meals'][0]['idMeal']} 
+                                        />
+                                    )) 
+                                ) 
+                                : 
+                                (
+                                    <div className="loading-text">
+                                        <p>loading...</p>
+                                    </div>
+                                )
+                            }   
+                        </div>
                     </div>
 
                     <h3 className="section-header">Top Categories</h3>
                     {console.log('loading categories')}
                     {console.log(cat)}
-                    {cat.map((item) => (
+
+                    {
+                        cat.map((item) => (
                             <CatCards 
                                 title={item['strCategory']}
                                 imgURL = {item['strCategoryThumb']} />
-                    ))}
+                        ))
+                    }
 
                 </div>
                     

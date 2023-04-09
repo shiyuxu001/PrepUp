@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
+import NavBar from "../components/NavBar";
 
 import '../styles/LikedRecipes.css';
 
@@ -14,18 +15,13 @@ function LikedRecipes( {username} ) {
 
     const handleBackButton = () => {
         navigate(`/PrepUp/${username}/browse`);
-      }
+    }
     
     return (
         <div>
+            <NavBar username={username} setMyRecipes={true} setMyCollections={false} />
 
-            <div className='app-header'>
-            <button className='back-btn' onClick={handleBackButton}> &lt; Back </button>
-            <h1><img src="public/Leaf Name.png" alt="PrepUp" /></h1>
-            <button className='user-btn' >Profile</button>
-            </div>
-
-            <h2>Saved Recipes</h2>
+            <h2>My Recipes</h2>
 
             <div className="input-container">
                 <input className="saved-recipe-input" type="text" placeholder="Search" onChange={handleNameChange}/>

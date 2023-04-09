@@ -24,6 +24,23 @@
     color: #c9c9c9;
 }
 
+.new-recipe-cards-container {
+    margin-left: 8%;
+    margin-right: 8%;
+}
+
+.new-recipe-cards {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.loading-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .logo {
     text-align: center;
     font-size: 40px;
@@ -50,11 +67,17 @@
     margin-top: 30px;
 }
 
+/* .search-box {
+    display: flex;
+    justify-content: right;
+    align-items: right;
+    margin-right: 150px;
+} */
+
 .collection-name-input {
     margin-bottom: 40px;
     font-size: 18px;
-    text-align: center;
-    width: 350px;
+    width: 200px;
 }
 
 .recipes-container {

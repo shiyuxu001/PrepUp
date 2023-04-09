@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom'
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
@@ -10,7 +10,9 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import logo from './LeafName.png'; 
 
 
-function NavBar( {username} ) {
+function NavBar( {username, setMyRecipes, setMyCollections} ) {
+  const [buttonColors, setButtonColors] = useState(['#838383', '#c9c9c9'])
+  
   let navigate = useNavigate();
 
   const navToBrowse = () => {
@@ -29,16 +31,18 @@ function NavBar( {username} ) {
     return (
         <>
         
-        <Navbar bg='light' expand='md' className="mb-3" style={{ height: '150px'}}>
+        <Navbar bg='white' expand='sm' className="mb-3" style={{ height: '150px'}}>
           <Container fluid>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-md`} />
             {/* <Navbar.Brand className = 'mx-auto'  href="#"  >Prep Up</Navbar.Brand> */}
             <Navbar.Brand className='mx-auto' href="#">
               <img
                 src={logo}
+                style={{ 'margin-left' : '50px'}}
                 height="80"
                 // className="d-inline-block align-top"
                 alt="Logo"
+                onClick={navToBrowse}
               />
             </Navbar.Brand>
             <Navbar.Offcanvas
@@ -54,9 +58,26 @@ function NavBar( {username} ) {
                 </Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body >
-                <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Nav.Link onClick={navToLikedRecipes}>My Recipes</Nav.Link>
-                  <Nav.Link onClick={navToSavedCollections}>My Collections</Nav.Link>
+
+              <Nav className="justify-content-end flex-grow-1 pe-3">
+                  {setMyRecipes ? 
+                    (
+                    <Nav.Link onClick={navToLikedRecipes} style={{ 'color': buttonColors[0]}}>My Recipes</Nav.Link>
+                    ) :
+                    (
+                    <Nav.Link onClick={navToLikedRecipes} style={{ 'color': buttonColors[1]}}>My Recipes</Nav.Link>
+                    )
+                  }
+
+                  {setMyCollections ? 
+                    (
+                    <Nav.Link onClick={navToSavedCollections} style={{ 'color': buttonColors[0]}}>My Collections</Nav.Link>
+                    ) :
+                    (
+                    <Nav.Link onClick={navToSavedCollections} style={{ 'color': buttonColors[1]}}>My Collections</Nav.Link>
+                    )
+                  }
+              </Nav>
                   
                   {/* <NavDropdown
                     title="Dropdown"
@@ -71,7 +92,7 @@ function NavBar( {username} ) {
                       Something else here
                     </NavDropdown.Item>
                   </NavDropdown> */}
-                </Nav>
+
                 {/* <Form className="d-flex">
                   <Form.Control
                     type="search"

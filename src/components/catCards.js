@@ -7,15 +7,16 @@ import { faAlignCenter } from "@fortawesome/free-solid-svg-icons";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-function CatCards(props){
-    return(
-        <>
-            <Card  onClick = {props.navTo}>
-                <Card.Title><h2>{props.title}</h2></Card.Title>
-                
+function CatCards(props) {
+    return (
+        <div className="category-card-container">
+            <Card className="category-card" onClick = {props.navTo}>                
                 <Row noGutters>
                     <Col sm={4} md={4}>
-                        <img className = 'recipe-card-img' variant='bottom' src={props.imgURL} />
+                        <img className='recipe-card-img' variant='bottom' src={props.imgURL} />
+                    </Col>
+                    <Col className="category-title" sm={8} md={8}>
+                        <h2>{props.title}</h2>
                     </Col>
                     {/* <Col sm={8} md={8}>
                         <Card.Body>
@@ -30,7 +31,7 @@ function CatCards(props){
                 </Row>
             </Card>
            
-        </>
+        </div>
    
     
     )

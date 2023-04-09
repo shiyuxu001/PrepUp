@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import NavBar from "../components/NavBar";
 import '../styles/SavedCollection.css';
 
 function SavedCollections( {username} ) {
@@ -10,13 +11,11 @@ function SavedCollections( {username} ) {
     
     return (
         <div>
-            <div className="header">
-                    <button className="header-item">Menu</button>
-                    <h1 className="logo header-item">PrepUp</h1>
-                    <button className="header-item">Profile</button>
-            </div>
+
+            <NavBar username={username} setMyRecipes={false} setMyCollections={true} />
+
             <div className="sub-header-container">
-                <h2 className="collection-page-title">Collections</h2>
+                <h2 className="collection-page-title">My Collections</h2>
 
             </div>
             <div className="input-container">
