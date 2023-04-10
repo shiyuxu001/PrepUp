@@ -30,6 +30,7 @@ function RecipePage(username) {
     }
 
     const handleBackButton = () => {
+      console.log('username: ', username)
       navigate(`/PrepUp/${username}/browse`);
     }
 
@@ -53,7 +54,7 @@ function RecipePage(username) {
         const ingList = []
 
         for(let i=1; i <= 20; i++ ) {
-          if(recipe[0][`strMeasure${i}`]) {
+          if(recipe[0][`strMeasure${i}`] && recipe[0][`strIngredient${i}`]) {
               const ingredient = {id: i, name: recipe[0][`strMeasure${i}`] + " " + recipe[0][`strIngredient${i}`], checked: false }
               // console.log('single ing: ', ingredient)
               ingList.push(ingredient)
