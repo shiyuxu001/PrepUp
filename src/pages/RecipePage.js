@@ -5,24 +5,19 @@ import '../styles/RecipePage.css';
 
 
 function RecipePage(username) {
-  console.log('username: ', username)
   let {mealId}= useParams()
-  console.log('mealId: ', {mealId})
-    // let instructions = recipe.instructions?.split('\r\n');
-    // instructions = instructions.filter(instruction => instruction.length > 1);
 
-    let navigate = useNavigate();
-    const[recipe,setRecipe]=useState();
+  let navigate = useNavigate();
+  const[recipe,setRecipe]=useState();
+  const[ingredients, setIngredients] = useState();
 
 
     const getRecipe= ()=>{
-      // console.log(mealId)
-      // axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${props.mealId}`)
-      // .then(response => {
-      //     console.log(response.data.meals)
-      //     setRecipe(response.data.meals);
-      // })
-
+      axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`)
+      .then(response => {
+          console.log(response.data.meals)
+          setRecipe(response.data.meals);
+      })
   }
 
     const handleAddToQueue = () => {
@@ -38,23 +33,21 @@ function RecipePage(username) {
     }
 
     useEffect(() => {
-      getRecipe()
+      getRecipe() 
       } 
       ,[])
 
-    const [ingredients, setIngredients] = useState([
-      { id: 1, name: 'Flour', checked: false },
-      { id: 2, name: 'Sugar', checked: false },
-      { id: 3, name: 'Eggs', checked: false },
-      // add more ingredients as needed
-    ])
-  
-    const [steps, setSteps] = useState([
-      { id: 1, name: 'Preheat oven to 350º F. Prepare two 9-inch cake pans.' },
-      { id: 2, name: 'Add flour, sugar, cocoa, baking powder, baking soda, salt and espresso powder to a large bowl.' },
-      { id: 3, name: 'Add milk, vegetable oil, eggs, and vanilla to flour mixture and mix together on medium speed until well combined.' },
-      // add more steps as needed
-    ])
+    const parseIngredients = () => {
+      for(let i=1; i <= 20; i++ ) {
+        if(recipe[0][`strMeasure${i}`]) {
+            const ingredient = {id: i, name: recipe[0][`strMeasure${i}`] + " " + recipe[0][`strIngredient${i}}`], checked: false }
+            setIngredients(oldIngredients => [...oldIngredients, ingredient]);
+        }
+      }
+      console.log('ingredients: ', ingredients)
+    }
+
+
   
     function handleCheckboxChange(id) {
         const updatedIngredients = ingredients.map(ingredient => {
@@ -68,6 +61,7 @@ function RecipePage(username) {
       }
   
       function renderIngredients(){
+        parseIngredients();
         return (
           <ul>
             {ingredients.map(ingredient => (
@@ -85,20 +79,27 @@ function RecipePage(username) {
           </ul>
         )
       }
-  
-      function renderSteps(){
+
+      function renderImage(){
         return (
-          <ol>
-        {steps.map(step => (
-          <li key={step.id}>
-            <label>
-              <span>{step.name}</span>
-            </label>
-          </li>
-        ))}
-      </ol>
+          <img className="recipe-img" src={recipe[0]['strMealThumb']} alt={recipe[0]['strMeal']} />
         )
       }
+
+      function renderTitle() {
+        return(
+          <h1 className='rp-recipe-name'> {recipe[0]['strMeal']}</h1>
+        )
+      }
+
+      function renderInstructions(){
+        return(
+          <p> {recipe[0]['strInstructions']}</p>
+        )
+      }
+
+
+      
   
     return (
       <div className="App">
@@ -117,9 +118,9 @@ function RecipePage(username) {
   
         <div className='recipe-container'>
           <div className='recipe-header'>
-            <h1 className='rp-recipe-name'> Chocolate Cake</h1>
+            {renderTitle()}
             <p> Total Time: 50 min</p>
-            <img className="recipe-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTalsT91fYd5yEucMTRc65oeAKBrFXrpbRQ1w&usqp=CAU" alt="Chocolate Cake" />
+            {renderImage()}
           </div>
   
           <div className='recipe-ingredients'>
@@ -129,7 +130,7 @@ function RecipePage(username) {
   
           <div className='recipe-steps'>
             <h2>Instructions</h2>
-            {renderSteps()}
+            {renderInstructions()}
           </div>
 
           <div className="recipe-buttons">
