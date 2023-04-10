@@ -9,14 +9,13 @@ function RecipePage(username) {
 
   let navigate = useNavigate();
   const[recipe,setRecipe]=useState();
-  const[ingredients, setIngredients] = useState();
   const [recipeLoaded, setRecipeLoaded] = useState(false)
 
 
     const getRecipe= ()=>{
       axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`)
       .then(response => {
-          console.log(response.data.meals)
+          console.log('recipe: ', response.data.meals)
           setRecipe(response.data.meals);
           setRecipeLoaded(true)
       })
@@ -38,40 +37,38 @@ function RecipePage(username) {
       navigate(`/PrepUp/${username}/likedRecipes`)
     }
 
-    const parseIngredients = () => {
-      for(let i=1; i <= 20; i++ ) {
-        if(recipe[0][`strMeasure${i}`]) {
-            const ingredient = {id: i, name: recipe[0][`strMeasure${i}`] + " " + recipe[0][`strIngredient${i}}`], checked: false }
-            setIngredients(oldIngredients => [...oldIngredients, ingredient]);
-        }
-      }
-      console.log('ingredients: ', ingredients)
-    }
-
-
-  
-    function handleCheckboxChange(id) {
-        const updatedIngredients = ingredients.map(ingredient => {
-          if (ingredient.id === id) {
-            return { ...ingredient, checked: !ingredient.checked };
-          } else {
-            return ingredient;
-          }
-        });
-        setIngredients(updatedIngredients);
-      }
+    // function handleCheckboxChange(id) {
+    //     const updatedIngredients = ingredients.map(ingredient => {
+    //       if (ingredient.id === id) {
+    //         return { ...ingredient, checked: !ingredient.checked };
+    //       } else {
+    //         return ingredient;
+    //       }
+    //     });
+    //     setIngredients(updatedIngredients);
+    //   }
   
       function renderIngredients(){
-        parseIngredients();
+        // parse ingridents 
+        const ingList = []
+
+        for(let i=1; i <= 20; i++ ) {
+          if(recipe[0][`strMeasure${i}`]) {
+              const ingredient = {id: i, name: recipe[0][`strMeasure${i}`] + " " + recipe[0][`strIngredient${i}`], checked: false }
+              // console.log('single ing: ', ingredient)
+              ingList.push(ingredient)
+              // setIngredients(oldIngredients => [...oldIngredients, ingredient]);
+          }
+        }
+        console.log('ingredients: ', ingList)
         return (
           <ul>
-            {ingredients.map(ingredient => (
+            {ingList.map(ingredient => (
               <li key={ingredient.id}>
                 <label>
                   <input
                     type="checkbox"
                     checked={ingredient.checked}
-                    onChange={() => handleCheckboxChange(ingredient.id)}
                   />
                   <span style={{ textDecoration: ingredient.checked ? 'line-through' : 'none' }}>{ingredient.name}</span>
                 </label>
@@ -118,7 +115,7 @@ function RecipePage(username) {
           <button className='user-btn' >Profile</button>
         </div>
   
-       {recipeLoaded && 
+       {recipeLoaded && recipe.length > 0 &&
         <div className='recipe-container'>
           <div className='recipe-header'>
           <h1 className='rp-recipe-name'> {recipe[0]['strMeal']}</h1>
