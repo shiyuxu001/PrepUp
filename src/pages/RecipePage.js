@@ -1,14 +1,29 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom'
+import axios from 'axios';
 import '../styles/RecipePage.css';
 
 
-function RecipePage( {username, recipe} ) {
-    console.log(recipe)
+function RecipePage(username) {
+  console.log('username: ', username)
+  let {mealId}= useParams()
+  console.log('mealId: ', {mealId})
     // let instructions = recipe.instructions?.split('\r\n');
     // instructions = instructions.filter(instruction => instruction.length > 1);
 
     let navigate = useNavigate();
+    const[recipe,setRecipe]=useState();
+
+
+    const getRecipe= ()=>{
+      // console.log(mealId)
+      // axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${props.mealId}`)
+      // .then(response => {
+      //     console.log(response.data.meals)
+      //     setRecipe(response.data.meals);
+      // })
+
+  }
 
     const handleAddToQueue = () => {
       navigate(`/PrepUp/${username}/workingCollection`);
@@ -22,6 +37,10 @@ function RecipePage( {username, recipe} ) {
       navigate(`/PrepUp/${username}/likedRecipes`)
     }
 
+    useEffect(() => {
+      getRecipe()
+      } 
+      ,[])
 
     const [ingredients, setIngredients] = useState([
       { id: 1, name: 'Flour', checked: false },

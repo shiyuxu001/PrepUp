@@ -35,7 +35,7 @@ function App() {
             <Route path={`/PrepUp/${username}/browse`} element={<Browse name={name} username={username} />} />
             <Route path={`/PrepUp/${username}/workingCollection`} element={<WorkingCollection username={username} />} />
             <Route path={`/PrepUp/${username}/steps`} element={<Steps username={username} />} />
-            <Route path={`/PrepUp/${username}/recipePage`} element={<RecipePage username={username} />} />
+            <Route path={`/PrepUp/${username}/recipePage/:mealId`} element={<RecipePage username={username} />} />
             <Route path={`/PrepUp/${username}/likedRecipes`} element={<LikedRecipes username={username} />} />
             <Route path={`/PrepUp/${username}/profile`} element={<Profile />} />
             <Route path={`/PrepUp/${username}/success`} element={<Success username={username} />} />

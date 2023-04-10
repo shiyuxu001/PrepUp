@@ -4,10 +4,12 @@ import '../styles/SavedCollection.css';
 
 function SavedCollections( {username} ) {
     const [collectionName, setCollectionName] = useState('');
+    const[recipe,setRecipe]=useState();
 
     const handleNameChange = (e) => {
         setCollectionName(e.target.value);
     }
+
     
     return (
         <div>
