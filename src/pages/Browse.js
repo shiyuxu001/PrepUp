@@ -23,9 +23,6 @@ function Browse( {name, username} ) {
     //     navigate(`/PrepUp/${username}/profile`);
     // }
 
-    // const navToRecipePage = () => {
-    //     navigate(`/PrepUp/${username}/recipePage`);
-    // }
 
     // const navToLikedRecipes = () => {
     //     navigate(`/PrepUp/${username}/likedRecipes`)

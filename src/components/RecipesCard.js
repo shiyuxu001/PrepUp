@@ -15,7 +15,7 @@ function RecipesCard( {title, imgURL, username, mealId}) {
 
 
     const navToRecipePage = () => {
-        navigate(`/PrepUp/${username}/RecipePage/${mealId}`, {username: username, mealId: mealId});
+        navigate(`/PrepUp/${username}/recipePage/${mealId}`, {username: username, mealId: mealId});
     }
 
     const navToWorkingCollections = () => {

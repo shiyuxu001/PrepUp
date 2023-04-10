@@ -10,6 +10,7 @@ function RecipePage(username) {
   let navigate = useNavigate();
   const[recipe,setRecipe]=useState();
   const[ingredients, setIngredients] = useState();
+  const [recipeLoaded, setRecipeLoaded] = useState(false)
 
 
     const getRecipe= ()=>{
@@ -17,11 +18,16 @@ function RecipePage(username) {
       .then(response => {
           console.log(response.data.meals)
           setRecipe(response.data.meals);
+          setRecipeLoaded(true)
       })
   }
 
     const handleAddToQueue = () => {
       navigate(`/PrepUp/${username}/workingCollection`);
+    }
+
+    const handleAddToSavedCollection = () => {
+      navigate(`/PrepUp/${username}/savedCollections`);
     }
 
     const handleBackButton = () => {
@@ -31,11 +37,6 @@ function RecipePage(username) {
     const navToLikedRecipes = () => {
       navigate(`/PrepUp/${username}/likedRecipes`)
     }
-
-    useEffect(() => {
-      getRecipe() 
-      } 
-      ,[])
 
     const parseIngredients = () => {
       for(let i=1; i <= 20; i++ ) {
@@ -99,7 +100,9 @@ function RecipePage(username) {
       }
 
 
-      
+      useEffect(() => {    
+        getRecipe()
+      }, []);
   
     return (
       <div className="App">
@@ -115,12 +118,12 @@ function RecipePage(username) {
           <button className='user-btn' >Profile</button>
         </div>
   
-  
+       {recipeLoaded && 
         <div className='recipe-container'>
           <div className='recipe-header'>
-            {renderTitle()}
+          <h1 className='rp-recipe-name'> {recipe[0]['strMeal']}</h1>
             <p> Total Time: 50 min</p>
-            {renderImage()}
+            <img className="recipe-img" src={recipe[0]['strMealThumb']} alt={recipe[0]['strMeal']} />
           </div>
   
           <div className='recipe-ingredients'>
@@ -130,15 +133,16 @@ function RecipePage(username) {
   
           <div className='recipe-steps'>
             <h2>Instructions</h2>
-            {renderInstructions()}
+            <p> {recipe[0]['strInstructions']}</p>
           </div>
 
           <div className="recipe-buttons">
-            <button>Queue</button>
-            <button onClick={handleAddToQueue}>Add</button>
+            <button onClick={handleAddToQueue}>Queue</button>
+            <button onClick={handleAddToSavedCollection}>Add</button>
             <button onClick={navToLikedRecipes}>Like</button>
           </div>
         </div>
+        }
       </div>
     );
 }
