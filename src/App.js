@@ -11,6 +11,7 @@ import LikedRecipes from './pages/LikedRecipes';
 import Profile from './pages/Profile';
 import Success from './pages/Success';
 import Login from './pages/Login';
+import CategoryPage from './pages/CategoryPage';
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
             <Route path={`/PrepUp/${username}/workingCollection`} element={<WorkingCollection username={username} />} />
             <Route path={`/PrepUp/${username}/steps`} element={<Steps username={username} />} />
             <Route path={`/PrepUp/${username}/recipePage/:mealId`} element={<RecipePage username={username} />} />
+            <Route path={`/PrepUp/${username}/categoryPage/:categoryName`} element={<CategoryPage username={username} />} />
             <Route path={`/PrepUp/${username}/likedRecipes`} element={<LikedRecipes username={username} />} />
             <Route path={`/PrepUp/${username}/profile`} element={<Profile />} />
             <Route path={`/PrepUp/${username}/success`} element={<Success username={username} />} />

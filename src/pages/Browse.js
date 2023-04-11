@@ -133,7 +133,7 @@ function Browse( {name, username} ) {
                     {
                         cat.map((item) => (
                             <CatCards 
-                                title={item['strCategory']}
+                                categoryName={item['strCategory']}
                                 imgURL = {item['strCategoryThumb']} />
                         ))
                     }
