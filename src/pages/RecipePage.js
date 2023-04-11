@@ -56,7 +56,7 @@ function RecipePage({username}) {
       let totalTime = 0
       const instructions = recipe[0]['strInstructions'].split(" ")
       for (let i = 0; i < instructions.length; i++) {
-        if (instructions[i] === 'hr' || instructions[i] === 'hour' || instructions[i] === 'hours' || instructions[i] === 'hrs') {
+        if (instructions[i] === 'hr' || instructions[i].includes('hour') || instructions[i] === 'hrs') {
           let intFound = instructions[i - 1]
           if (intFound.includes("-")) {
             intFound = intFound.split("-")
