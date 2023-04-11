@@ -10,6 +10,7 @@ function RecipePage(username) {
   let navigate = useNavigate();
   const[recipe,setRecipe]=useState();
   const [recipeLoaded, setRecipeLoaded] = useState(false)
+  const [totalTime, setTotalTime] = useState(20)
 
 
     const getRecipe= ()=>{
@@ -48,8 +49,26 @@ function RecipePage(username) {
     //     });
     //     setIngredients(updatedIngredients);
     //   }
+
+    function computeTotalTime() {
+      let totalTime = 0
+      const instructions = recipe[0]['strInstructions'].split(" ")
+      for (let i = 0; i < instructions.length; i++) {
+        if (instructions[i].includes("min")) {
+          let intFound = instructions[i - 1]
+          if (intFound.includes("-")) {
+            intFound = intFound.split("-")[2]
+          }
+          console.log('integers found: ', intFound)
+          totalTime += parseInt(intFound)
+        }
+      }
+      console.log('total time: ', totalTime)
+      // setTotalTime(totalTime)
+    }
   
       function renderIngredients(){
+        computeTotalTime()
         // parse ingridents 
         const ingList = []
 
@@ -61,7 +80,7 @@ function RecipePage(username) {
               // setIngredients(oldIngredients => [...oldIngredients, ingredient]);
           }
         }
-        console.log('ingredients: ', ingList)
+        // console.log('ingredients: ', ingList)
         return (
           <ul>
             {ingList.map(ingredient => (
@@ -103,7 +122,7 @@ function RecipePage(username) {
         <div className='recipe-container'>
           <div className='recipe-header'>
           <h1 className='rp-recipe-name'> {recipe[0]['strMeal']}</h1>
-            <p> Total Time: 50 min</p>
+            <p> Total Time: ~ {totalTime} minutes</p>
             <img className="recipe-img" src={recipe[0]['strMealThumb']} alt={recipe[0]['strMeal']} />
           </div>
   
