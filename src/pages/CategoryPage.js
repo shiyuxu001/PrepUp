@@ -6,7 +6,7 @@ import RecipesCard from '../components/RecipesCard';
 
 
 
-function CategoryPage(username) {
+function CategoryPage({username}) {
   let {categoryName}= useParams()
 
   let navigate = useNavigate();

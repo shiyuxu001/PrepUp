@@ -4,13 +4,12 @@ import axios from 'axios';
 import '../styles/RecipePage.css';
 
 
-function RecipePage(username) {
+function RecipePage({username}) {
   let {mealId}= useParams()
 
   let navigate = useNavigate();
   const[recipe,setRecipe]=useState();
   const [recipeLoaded, setRecipeLoaded] = useState(false)
-  const [totalTime, setTotalTime] = useState(20)
 
 
     const getRecipe= ()=>{
@@ -18,9 +17,13 @@ function RecipePage(username) {
       .then(response => {
           console.log('recipe: ', response.data.meals)
           setRecipe(response.data.meals);
-          setRecipeLoaded(true)
+          setRecipeLoaded(true);
       })
   }
+
+    const handleProfile = () => {
+      navigate(`/PrepUp/${username}/profile`);
+    }
 
     const handleAddToQueue = () => {
       navigate(`/PrepUp/${username}/workingCollection`);
@@ -31,7 +34,6 @@ function RecipePage(username) {
     }
 
     const handleBackButton = () => {
-      console.log('username: ', username)
       navigate(`/PrepUp/${username}/browse`);
     }
 
@@ -54,21 +56,43 @@ function RecipePage(username) {
       let totalTime = 0
       const instructions = recipe[0]['strInstructions'].split(" ")
       for (let i = 0; i < instructions.length; i++) {
+        if (instructions[i] === 'hr' || instructions[i] === 'hour' || instructions[i] === 'hours' || instructions[i] === 'hrs') {
+          let intFound = instructions[i - 1]
+          if (intFound.includes("-")) {
+            intFound = intFound.split("-")
+            intFound = intFound[1]
+          }
+          console.log('hour found: ', intFound)
+          let int = parseInt(intFound)
+          if (!isNaN(int)) {
+            int = int * 60
+            totalTime += int
+          }
+        }
         if (instructions[i].includes("min")) {
           let intFound = instructions[i - 1]
           if (intFound.includes("-")) {
-            intFound = intFound.split("-")[2]
+            intFound = intFound.split("-")
+            intFound = intFound[1]
           }
-          console.log('integers found: ', intFound)
-          totalTime += parseInt(intFound)
+          console.log('integer found: ', intFound)
+          let int = parseInt(intFound)
+          if (!isNaN(int)) {
+            totalTime += int
+          }
+          
         }
       }
       console.log('total time: ', totalTime)
-      // setTotalTime(totalTime)
+      if (totalTime == 0) {
+        totalTime = 20
+      }
+      return (
+        <p> Total Time: ~ {totalTime} minutes</p>
+      )
     }
   
       function renderIngredients(){
-        computeTotalTime()
         // parse ingridents 
         const ingList = []
 
@@ -101,7 +125,7 @@ function RecipePage(username) {
 
 
       useEffect(() => {    
-        getRecipe()
+        getRecipe();
       }, []);
   
     return (
@@ -115,14 +139,14 @@ function RecipePage(username) {
         <div className='app-header'>
           <button className='back-btn' onClick={handleBackButton}> &lt; Back </button>
           <h1>PREP UP</h1>
-          <button className='user-btn' >Profile</button>
+          <button className='user-btn' onClick={handleProfile}>Profile</button>
         </div>
   
        {recipeLoaded && recipe.length > 0 &&
         <div className='recipe-container'>
           <div className='recipe-header'>
           <h1 className='rp-recipe-name'> {recipe[0]['strMeal']}</h1>
-            <p> Total Time: ~ {totalTime} minutes</p>
+            {computeTotalTime()}
             <img className="recipe-img" src={recipe[0]['strMealThumb']} alt={recipe[0]['strMeal']} />
           </div>
   

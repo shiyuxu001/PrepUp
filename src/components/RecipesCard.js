@@ -19,15 +19,15 @@ function RecipesCard( {title, imgURL, username, mealId}) {
     }
 
     const navToWorkingCollections = () => {
-        navigate(`/PrepUp/${username}/WorkingCollections`, {username: username});
+        navigate(`/PrepUp/${username}/workingCollection`, {username: username});
     }
 
     const navToSavedCollections = () => {
-        navigate(`/PrepUp/${username}/SavedCollections`, {username: username});
+        navigate(`/PrepUp/${username}/savedCollections`, {username: username});
     }
 
     const navToLikedRecipes = () => {
-        navigate(`/PrepUp/${username}/LikedRecipes`, {username: username});
+        navigate(`/PrepUp/${username}/likedRecipes`, {username: username});
     }
 
     return(
