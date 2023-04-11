@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import '../styles/Profile.css';
 
-function Profile() {
+function Profile({username}) {
     let navigate = useNavigate();
 
     const handleBackButton = () => {
