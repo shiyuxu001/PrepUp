@@ -2,22 +2,24 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios';
 import '../styles/RecipePage.css';
+import RecipesCard from '../components/RecipesCard';
+
 
 
 function CategoryPage(username) {
   let {categoryName}= useParams()
 
   let navigate = useNavigate();
-  const[recipe,setRecipe]=useState();
-  const [recipeLoaded, setRecipeLoaded] = useState(false)
+  const[recipes,setRecipes]=useState();
+  const [recipesLoaded, setRecipesLoaded] = useState(false)
 
 
-    const getRecipe= ()=>{
-      axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?c=${categoryName}`)
+    const getRecipes= ()=>{
+      axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${categoryName}`)
       .then(response => {
-          console.log('recipe: ', response.data.meals)
-          setRecipe(response.data.meals);
-          setRecipeLoaded(true)
+          console.log('recipes: ', response.data.meals)
+          setRecipes(response.data.meals);
+          setRecipesLoaded(true)
       })
   }
 
@@ -38,68 +40,9 @@ function CategoryPage(username) {
       navigate(`/PrepUp/${username}/likedRecipes`)
     }
 
-    // function handleCheckboxChange(id) {
-    //     const updatedIngredients = ingredients.map(ingredient => {
-    //       if (ingredient.id === id) {
-    //         return { ...ingredient, checked: !ingredient.checked };
-    //       } else {
-    //         return ingredient;
-    //       }
-    //     });
-    //     setIngredients(updatedIngredients);
-    //   }
-  
-      function renderIngredients(){
-        // parse ingridents 
-        const ingList = []
-
-        for(let i=1; i <= 20; i++ ) {
-          if(recipe[0][`strMeasure${i}`] && recipe[0][`strIngredient${i}`]) {
-              const ingredient = {id: i, name: recipe[0][`strMeasure${i}`] + " " + recipe[0][`strIngredient${i}`], checked: false }
-              // console.log('single ing: ', ingredient)
-              ingList.push(ingredient)
-              // setIngredients(oldIngredients => [...oldIngredients, ingredient]);
-          }
-        }
-        console.log('ingredients: ', ingList)
-        return (
-          <ul>
-            {ingList.map(ingredient => (
-              <li key={ingredient.id}>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={ingredient.checked}
-                  />
-                  <span style={{ textDecoration: ingredient.checked ? 'line-through' : 'none' }}>{ingredient.name}</span>
-                </label>
-              </li>
-            ))}
-          </ul>
-        )
-      }
-
-      function renderImage(){
-        return (
-          <img className="recipe-img" src={recipe[0]['strMealThumb']} alt={recipe[0]['strMeal']} />
-        )
-      }
-
-      function renderTitle() {
-        return(
-          <h1 className='rp-recipe-name'> {recipe[0]['strMeal']}</h1>
-        )
-      }
-
-      function renderInstructions(){
-        return(
-          <p> {recipe[0]['strInstructions']}</p>
-        )
-      }
-
 
       useEffect(() => {    
-        getRecipe()
+        getRecipes()
       }, []);
   
     return (
@@ -111,12 +54,27 @@ function CategoryPage(username) {
         </header>
   
         <div className='app-header'>
-          <button className='back-btn' onClick={handleBackButton}> &lt; Back </button>
-          <h1>PREP UP</h1>
+            <button className='back-btn' onClick={handleBackButton}> &lt; Back to Browse </button>
+          <h1>{categoryName} Recipes</h1>
           <button className='user-btn' >Profile</button>
         </div>
+
+        <div className="new-recipe-cards-container">
+            <div className="new-recipe-cards">
+                {recipesLoaded && recipes.length > 0 && 
+                        recipes.map((item) => ( 
+                        <RecipesCard 
+                            title = {item['strMeal']}  
+                            imgURL = {item['strMealThumb']}
+                            username= {username} 
+                            mealId = {item['idMeal']} 
+                            />
+                        )) 
+                }  
+            </div>
+        </div>
   
-       {recipeLoaded && recipe.length > 0 &&
+       {/* {recipeLoaded && recipes.length > 0 &&
         <div className='recipe-container'>
           <div className='recipe-header'>
           <h1 className='rp-recipe-name'> {recipe[0]['strMeal']}</h1>
@@ -140,7 +98,7 @@ function CategoryPage(username) {
             <button onClick={navToLikedRecipes}>Like</button>
           </div>
         </div>
-        }
+        } */}
       </div>
     );
 }

@@ -79,23 +79,6 @@ function RecipePage(username) {
         )
       }
 
-      function renderImage(){
-        return (
-          <img className="recipe-img" src={recipe[0]['strMealThumb']} alt={recipe[0]['strMeal']} />
-        )
-      }
-
-      function renderTitle() {
-        return(
-          <h1 className='rp-recipe-name'> {recipe[0]['strMeal']}</h1>
-        )
-      }
-
-      function renderInstructions(){
-        return(
-          <p> {recipe[0]['strInstructions']}</p>
-        )
-      }
 
 
       useEffect(() => {    
