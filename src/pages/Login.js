@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import "../styles/Login.css";
+import logo from "../components/LeafName.png"
 
 function Login( {passUser, passName} ) {
     const [signup, setSignUp] = useState(true);
@@ -129,52 +130,71 @@ function Login( {passUser, passName} ) {
         setUsername('');
         setPassword('');
     }
+    
+    
 
     return (
-        <div>
-
-            {signup ? 
-                <div>
-                    <h1>Sign Up</h1>
-                    <div className="input-container">
-                        <button className="redirect" onClick={handleRedirect}>Already have an account?</button>
-                    </div>
-                    <div className="input-container">
-                        <input className="input" type="text" placeholder="Name" onChange={handleNameChange}/>
-                    </div>
-                    <div className="input-container">
-                        <input className="input" type="text" placeholder="Create username" onChange={handleSignUpUserChange}/>
-                    </div>
-                    <div className="input-container">
-                        <input className="input" type="text" placeholder="Create password" onChange={handleSignUpPassChange}/>
-                    </div>
-                    <div className="input-container">
-                        <input className="submit-button" type="submit" onClick={handleSignUpSubmit} />
-                    </div>
-                </div>
-            :   <div>
-                    <h1>Login</h1>
-                    <div className="input-container">
-                        <button className="redirect" onClick={handleRedirect}>Don't have an account yet? Let's sign you up!</button>
-                    </div>
-                    {loginSuccess ? ''
-                    :
-                        <div className="invalid-login-container">
-                            <p className="invalid-login">Username or password is invalid</p>
+        <div className="login-body w-full h-full">
+           <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script> 
+            <div className="wrapper">
+                <div className="form-box login-signup">
+                    
+                     {signup ? 
+                        <div>
+                            <img className='logo' src={logo} alt="PrepUp" />
+                            <h3>Sign Up</h3>
+                            
+                            <div className="input-container">
+                                <span className='icon'><ion-icon name="person-outline"></ion-icon></span>
+                                <input className="input" type="text" placeholder="Name" onChange={handleNameChange}/>
+                            </div>
+                            <div className="input-container">
+                                <span className='icon'><ion-icon name="mail-outline"></ion-icon></span>
+                                <input className="input" type="text" placeholder="Create username" onChange={handleSignUpUserChange}/>
+                            </div>
+                            <div className="input-container">
+                                <span className='icon'><ion-icon name="lock-closed-outline"></ion-icon></span>
+                                <input className="input" type="password" placeholder="Create password" onChange={handleSignUpPassChange}/>
+                            </div>
+                            <div className="login-signup">
+                                <p>Already have an Account? <button className="link-button" onClick={handleRedirect}>Log in</button></p>
+                            </div>
+                            <div className="button-container">
+                                <input className="submit-button" type="submit" onClick={handleSignUpSubmit} />
+                            </div>
+                        </div>
+                    :   <div>
+                            <img className='logo' src={logo} alt="PrepUp" />
+                            <h3>Log In</h3>
+                            
+                            {loginSuccess ? ''
+                            :
+                                <div className="invalid-login-container">
+                                    <p className="invalid-login">Username or password is invalid</p>
+                                </div>
+                            }
+                            <div className="input-container">
+                                <span className='icon'><ion-icon name="mail-outline"></ion-icon></span>
+                                <input className="input" type="text" placeholder="Username" onChange={handleUserChange}/>
+                            </div>
+                            <div className="input-container">
+                                <span className='icon'><ion-icon name="lock-closed-outline"></ion-icon></span>
+                                <input className="input" type="password" placeholder="Password" onChange={handlePassChange}/>
+                            </div>
+                            <div className="login-signup">
+                                <p>Don't have an Account? <button className="link-button" onClick={handleRedirect}>Sign Up!</button></p>
+                            </div>
+                            <div className="button-container">
+                                <input className="submit-button" type="submit" onClick={() => checkLoginData()}/>
+                            </div>
                         </div>
                     }
-                    <div className="input-container">
-                        <input className="input" type="text" placeholder="Username" onChange={handleUserChange}/>
-                    </div>
-                    <div className="input-container">
-                        <input className="input" type="text" placeholder="Password" onChange={handlePassChange}/>
-                    </div>
-                    <div className="input-container">
-                        <input className="submit-button" type="submit" onClick={() => checkLoginData()}/>
                     </div>
                 </div>
-            }
         </div>
+        
+        
     )
 }
 

@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import WorkingCollection from './pages/WorkingCollections';
 import Steps from './pages/Steps';
@@ -18,6 +18,18 @@ function App() {
   const [username, setUsername] = useState('');
   const [name, setName] = useState('');
 
+  useEffect(() => {
+    const ioniconsScript = document.createElement('script');
+    ioniconsScript.setAttribute('type', 'module');
+    ioniconsScript.setAttribute('src', 'https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js');
+    document.head.appendChild(ioniconsScript);
+
+    const ioniconsScriptNoModule = document.createElement('script');
+    ioniconsScriptNoModule.setAttribute('nomodule', '');
+    ioniconsScriptNoModule.setAttribute('src', 'https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js');
+    document.head.appendChild(ioniconsScriptNoModule);
+  }, []);
+
   const assignUsername = (user) => {
       setUsername(user);
   }
@@ -25,10 +37,11 @@ function App() {
   const assignName = (name) => {
       setName(name);
   }
-
   return (
     <div className="App">
-      <header className="App-header">
+      <header className="App-header">      
+      </header>
+
 
         <Router>
           <Routes>
@@ -46,7 +59,7 @@ function App() {
         </Router>
 
 
-      </header>
+      {/* </header> */}
     </div>
   );
 }
