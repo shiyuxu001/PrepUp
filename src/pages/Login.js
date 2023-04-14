@@ -72,7 +72,8 @@ function Login( {passUser, passName} ) {
         }).then((response) => {
             if (response.status !== 200) {
                 setPostResult("Oops! Something unexpected happened: " + response.statusText);
-            } else {
+            } 
+            else {
                 setPostResult(null);
                 return;
             }
