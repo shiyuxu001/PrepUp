@@ -11,7 +11,8 @@
 .wrapper {
     /* margin-top: 50%; */
     position: relative;
-    width: 400px;
+    /* width: 400px; */
+    width: 85%;
     height: 440px;
     background: transparent;
     backdrop-filter: blur(20px);
@@ -30,6 +31,13 @@
     font-size: 1.5em;
     color: #162938;
 }
+
+@media screen and (min-width: 768px) { /* Adjust the breakpoint as needed */
+    .wrapper {
+      width: 400px;
+      height: 440px;
+    }
+  }
 
 .logo {
     margin: 5px
