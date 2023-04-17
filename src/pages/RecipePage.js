@@ -10,6 +10,10 @@ function RecipePage({username}) {
   let navigate = useNavigate();
   const[recipe,setRecipe]=useState();
   const [recipeLoaded, setRecipeLoaded] = useState(false)
+  const [liked, setLiked] = useState()
+  const [key, setKey] = useState('')
+
+  const databaseURL = "https://prepup-41491-default-rtdb.firebaseio.com/";
 
 
     const getRecipe= ()=>{
@@ -38,8 +42,58 @@ function RecipePage({username}) {
     }
 
     const navToLikedRecipes = () => {
-      navigate(`/PrepUp/${username}/likedRecipes`)
-    }
+      console.log('liked button clicked')
+      addToLiked();
+      navigate(`/PrepUp/${username}/likedRecipes`, {username: username});
+  }
+
+  const getLiked = () => {
+      fetch(`${databaseURL}/${username}/.json`)
+      .then((response) => {
+          if (response.status == 200) {
+              return response.json();
+          } else {
+              console.log(' status flop')
+          }
+      })
+      .then((response) => {
+          if (response) {
+              const keys = Object.keys(response);
+              setKey(keys);
+              const dataPoints = keys
+                  .map((k) => response[k]);
+              const fetchedLiked = dataPoints[0]['likedRecipes'];
+              console.log('fetched liked recipes: ', fetchedLiked)
+              setLiked(fetchedLiked)
+          } else {
+              console.log('response :' , response)
+              console.log('response null flop')
+          }
+      }) 
+  }
+
+  const addToLiked = () => {
+      const likedRep = liked + ' ' + mealId
+      console.log('adding to liked')
+      const dict = {
+          likedRecipes: likedRep
+      }
+      fetch(`${databaseURL}/${username}/${key}/.json`, {
+          method: "PATCH",
+          body: JSON.stringify(dict)
+      }).then((response) => {
+          if (response.status !== 200) {
+              console.log(' status flop in upload')
+          } 
+          else {
+              console.log('updated Liked Recipes: ', likedRep)
+              return;
+          }
+      })
+  }
+  useEffect(() => {    
+      getLiked();
+  }, []);
 
     // function handleCheckboxChange(id) {
     //     const updatedIngredients = ingredients.map(ingredient => {

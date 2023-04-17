@@ -12,7 +12,7 @@ function Profile({username}) {
 
 
     const handleBackButton = () => {
-        navigate("/PrepUp");
+        navigate(`/PrepUp/${username}/browse`);
     }
     const databaseURL = "https://prepup-41491-default-rtdb.firebaseio.com/";
 
