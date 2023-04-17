@@ -36,7 +36,7 @@ function RecipesCard( {title, imgURL, username, mealId}) {
     const navToLikedRecipes = () => {
         console.log('liked button clicked')
         addToLiked();
-        navigate(`/PrepUp/${username}/likedRecipes`, {username: username});
+        // navigate(`/PrepUp/${username}/likedRecipes`, {username: username});
     }
 
     const getLiked = () => {
@@ -74,13 +74,19 @@ function RecipesCard( {title, imgURL, username, mealId}) {
             method: "PATCH",
             body: JSON.stringify(dict)
         }).then((response) => {
-            if (response.status !== 200) {
-                console.log(' status flop in upload')
-            } 
-            else {
-                console.log('updated Liked Recipes: ', likedRep)
-                return;
+            if (response) {
+                if (response.status !== 200) {
+                    console.log(' status flop in upload')
+                    alert("Unable to add recipe to liked reciped!")
+                } 
+                else {
+                    console.log('updated Liked Recipes: ', likedRep)
+                    return;
+                }
+            } else {
+                alert("Unable to add recipe to liked reciped!")
             }
+
         })
     }
     useEffect(() => {    

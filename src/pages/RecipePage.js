@@ -11,6 +11,7 @@ function RecipePage({username}) {
   const[recipe,setRecipe]=useState();
   const [recipeLoaded, setRecipeLoaded] = useState(false)
   const [liked, setLiked] = useState()
+  const [patch, setPatchComplete] = useState()
   const [key, setKey] = useState('')
 
   const databaseURL = "https://prepup-41491-default-rtdb.firebaseio.com/";
@@ -40,12 +41,6 @@ function RecipePage({username}) {
     const handleBackButton = () => {
       navigate(`/PrepUp/${username}/browse`);
     }
-
-    const navToLikedRecipes = () => {
-      console.log('liked button clicked')
-      addToLiked();
-      navigate(`/PrepUp/${username}/likedRecipes`, {username: username});
-  }
 
   const getLiked = () => {
       fetch(`${databaseURL}/${username}/.json`)
@@ -82,18 +77,26 @@ function RecipePage({username}) {
           method: "PATCH",
           body: JSON.stringify(dict)
       }).then((response) => {
-          if (response.status !== 200) {
+          if (response) {
+            if (response.status !== 200) {
+              alert("Unable to add recipe to liked reciped!")
               console.log(' status flop in upload')
           } 
           else {
               console.log('updated Liked Recipes: ', likedRep)
+              setPatchComplete(true)
               return;
+            }
+          } else {
+            alert("Unable to add recipe to liked reciped!")
           }
+
       })
   }
   useEffect(() => {    
       getLiked();
   }, []);
+
 
     // function handleCheckboxChange(id) {
     //     const updatedIngredients = ingredients.map(ingredient => {
@@ -110,7 +113,8 @@ function RecipePage({username}) {
       let totalTime = 0
       const instructions = recipe[0]['strInstructions'].split(" ")
       for (let i = 0; i < instructions.length; i++) {
-        if (instructions[i] === 'hr' || instructions[i].includes('hour') || instructions[i] === 'hrs') {
+        if (instructions[i] === 'hr' || instructions[i].includes('hour') || instructions[i] === 'hrs' 
+        || instructions[i] === 'hrs.' || instructions[i] === 'hr.') {
           let intFound = instructions[i - 1]
           if (intFound.includes("-")) {
             intFound = intFound.split("-")
@@ -217,7 +221,7 @@ function RecipePage({username}) {
           <div className="recipe-buttons">
             <button onClick={handleAddToQueue}>Queue</button>
             <button onClick={handleAddToSavedCollection}>Add</button>
-            <button onClick={navToLikedRecipes}>Like</button>
+            <button onClick={addToLiked}>Like</button>
           </div>
         </div>
         }

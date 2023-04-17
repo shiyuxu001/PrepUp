@@ -11,7 +11,7 @@ import RecipesCard from '../components/RecipesCard';
 function LikedRecipes( {username} ) {
     let navigate = useNavigate();
 
-    const [collectionName, setCollectionName] = useState('');
+    const [recipenName, setRecipeName] = useState('');
     const [liked , setLiked] = useState('')
     const [list , setList] = useState([])
 
@@ -23,7 +23,7 @@ function LikedRecipes( {username} ) {
     const databaseURL = "https://prepup-41491-default-rtdb.firebaseio.com/";
 
     const handleNameChange = (e) => {
-        setCollectionName(e.target.value);
+        setRecipeName(e.target.value);
     }
 
     // const removeLiked = () => {
@@ -125,7 +125,12 @@ function LikedRecipes( {username} ) {
                             ) 
                         }   
                     </div>
-            // {/* <div className='liked-recipe-container'>
+            }
+
+                {recipesLoaded && liked.length == 0 &&
+                    <h1>No Liked Recipes</h1>
+                }
+             {/* <div className='liked-recipe-container'>
             //     <div className='recipe-img-container'>
             //     <img className="liked-recipe-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkMfn_L7UIPDX1rlx_J_f0ypeTtnuZSd73CQ&usqp=CAU" alt="Chicken Katsu" />
             //     </div>     
@@ -152,7 +157,7 @@ function LikedRecipes( {username} ) {
             //         </div>
             //     </div> 
             // </div> */}
-            }
+            
 
             <div className="add-button-container">
                 <button className="add-button" onClick={navToBrowse}>Add Recipe</button>

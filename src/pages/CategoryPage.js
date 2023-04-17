@@ -36,9 +36,9 @@ function CategoryPage({username}) {
       navigate(`/PrepUp/${username}/browse`);
     }
 
-    const navToLikedRecipes = () => {
-      navigate(`/PrepUp/${username}/likedRecipes`)
-    }
+    // const navToLikedRecipes = () => {
+    //   navigate(`/PrepUp/${username}/likedRecipes`)
+    // }
 
 
       useEffect(() => {    
