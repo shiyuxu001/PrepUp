@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import "../styles/Login.css";
 import logo from "../components/LeafName.png"
-import LikedRecipes from './LikedRecipes';
 
 function Login( {passUser, passName} ) {
     const [signup, setSignUp] = useState(true);
@@ -67,7 +66,8 @@ function Login( {passUser, passName} ) {
             pass: newPass,
             exp: '---',
             pfp: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNf6W5dEJPZgmwcADVOhWIou-2xCrRbjHWSg&usqp=CAU',
-            likedRecipes: ''
+            likedRecipes: '',
+            savedCollections: ''
         }
 
         return fetch(`${databaseURL}/${newUser}/.json`, {
