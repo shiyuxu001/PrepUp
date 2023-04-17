@@ -84,6 +84,7 @@ function RecipePage({username}) {
           } 
           else {
               console.log('updated Liked Recipes: ', likedRep)
+              alert(recipe[0]['strMeal'] + 'added to your liked recipes!')
               setPatchComplete(true)
               return;
             }
