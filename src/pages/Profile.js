@@ -41,7 +41,7 @@ function Profile({username}) {
     }
 
     const putExp = (level) => {
-        console.log('exp level clicked: ', level)
+        console.log('key value: ', key)
         const dict = {
             exp: level
         }
@@ -54,7 +54,7 @@ function Profile({username}) {
             } 
             else {
                 setExp(level)
-                console.log('experience level:  ', exp)
+                console.log('experience level:  ', level)
                 return;
             }
         })
@@ -104,7 +104,6 @@ function Profile({username}) {
         .then((response) => {
             if (response) {
                 const keys = Object.keys(response);
-                setKey(keys);
                 const dataPoints = keys
                     .map((k) => response[k]);
 
@@ -131,12 +130,8 @@ function Profile({username}) {
         .then((response) => {
             if (response) {
                 const keys = Object.keys(response);
-                setKey(keys)
                 const dataPoints = keys
                     .map((k) => response[k]);
-                console.log('response : ', response)
-                console.log('datapoints : ', dataPoints)
-                console.log('keys : ', keys)
 
                 const fetchedPfp = dataPoints[0]['pfp'];
                 console.log('fetched pfp: ', fetchedPfp)
