@@ -39,6 +39,7 @@ function RecipesCard( {title, imgURL, username, mealId}) {
         // navigate(`/PrepUp/${username}/likedRecipes`, {username: username});
     }
 
+    
     const getLiked = () => {
         fetch(`${databaseURL}/${username}/.json`)
         .then((response) => {
@@ -89,6 +90,11 @@ function RecipesCard( {title, imgURL, username, mealId}) {
 
         })
     }
+
+    // const removeLiked = () => {
+
+    // }
+
     useEffect(() => {    
         getLiked();
     }, []);

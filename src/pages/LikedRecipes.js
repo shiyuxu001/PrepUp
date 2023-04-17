@@ -11,7 +11,6 @@ import RecipesCard from '../components/RecipesCard';
 function LikedRecipes( {username} ) {
     let navigate = useNavigate();
 
-    const [recipenName, setRecipeName] = useState('');
     const [liked , setLiked] = useState('')
     const [list , setList] = useState([])
 
@@ -21,10 +20,6 @@ function LikedRecipes( {username} ) {
 
 
     const databaseURL = "https://prepup-41491-default-rtdb.firebaseio.com/";
-
-    const handleNameChange = (e) => {
-        setRecipeName(e.target.value);
-    }
 
     // const removeLiked = () => {
 
@@ -106,9 +101,9 @@ function LikedRecipes( {username} ) {
 
             <h2>My Recipes</h2>
 
-            <div className="input-container">
+            {/* <div className="input-container">
                 <input className="saved-recipe-input" type="text" placeholder="Search" onChange={handleNameChange}/>
-            </div>
+            </div> */}
 
             {recipesLoaded && liked.length > 0 &&
                     <div className="new-recipe-cards">
