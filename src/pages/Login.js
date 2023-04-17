@@ -63,7 +63,9 @@ function Login( {passUser, passName} ) {
         const dict = {
             name: name,
             user: newUser,
-            pass: newPass
+            pass: newPass,
+            exp: '---',
+            pfp: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNf6W5dEJPZgmwcADVOhWIou-2xCrRbjHWSg&usqp=CAU'
         }
 
         return fetch(`${databaseURL}/${newUser}/.json`, {
