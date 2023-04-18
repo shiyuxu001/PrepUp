@@ -7,6 +7,9 @@ import { Button } from "react-bootstrap";
 import { faAlignCenter } from "@fortawesome/free-solid-svg-icons";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import QueueIcon from '../components/queue-svgrepo-com.svg';
+import CollectionIcon from '../components/collection-tag-svgrepo-com.svg';
+import LikeIcon from '../components/like-svgrepo-com.svg';
 
 
 
@@ -26,19 +29,22 @@ function RecipesCard( {title, imgURL, username, mealId}) {
         navigate(`/PrepUp/${username}/recipePage/${mealId}`, {username: username, mealId: mealId});
     }
 
-    const navToWorkingCollections = () => {
+    const navToWorkingCollections = (e) => {
+        e.stopPropagation();
         navigate(`/PrepUp/${username}/workingCollection`, {username: username});
     }
 
-    const navToSavedCollections = () => {
+    const navToSavedCollections = (e) => {
+        e.stopPropagation();
         navigate(`/PrepUp/${username}/savedCollections`, {username: username});
     }
 
-    const navToLikedRecipes = () => {
+    const navToLikedRecipes = (e) => {
+        e.stopPropagation();
         console.log('liked button clicked')
         addToLiked();
-        alert(title + 'added to your liked recipes!')
-        // navigate(`/PrepUp/${username}/likedRecipes`, {username: username});
+        // alert(title + 'added to your liked recipes!')
+        navigate(`/PrepUp/${username}/likedRecipes`, {username: username});
     }
 
     
@@ -103,17 +109,22 @@ function RecipesCard( {title, imgURL, username, mealId}) {
 
     return(
         <>
- 
             <Card className='recipe-card' onClick={navToRecipePage}>
                 <Row>
-                    <img className="recipe-card-img" variant='left' src={imgURL}  />
+                    <img className="new-recipe-card-img" variant='left' src={imgURL}  />
                     <p className="recipe-card-title">{title}</p>
-                    <Col sm={8} md={8}>
+                    <Col>
                         <Row>
                             <div className="recipe-card-button-container">
-                                <Button className="recipe-card-button" onClick={navToWorkingCollections} variant='warning'>Add to Queue</Button>
-                                <Button className="recipe-card-button" onClick={navToSavedCollections} variant='warning'>Add to collection</Button>
-                                <Button className="recipe-card-button" onClick={navToLikedRecipes} variant='warning'>Add to Liked Recipes</Button>
+                                <Button className="recipe-card-button" onClick={navToWorkingCollections} variant='outline-light'>
+                                    <img className="recipe-icon" src={QueueIcon} onClick={navToWorkingCollections}/>
+                                </Button>
+                                <Button className="recipe-card-button" onClick={navToSavedCollections} variant='outline-light'>
+                                    <img className="recipe-icon" src={CollectionIcon} />
+                                </Button>
+                                <Button className="recipe-card-button" onClick={navToLikedRecipes} variant='outline-light'>
+                                    <img className="recipe-icon" src={LikeIcon} />
+                                </Button>
                             </div>
                         </Row>
                     </Col>

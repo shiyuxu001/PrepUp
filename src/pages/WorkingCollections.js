@@ -2,15 +2,17 @@ import { useState, useEffect } from 'react';
 import { useNavigate , useLocation } from 'react-router-dom'
 import '../styles/WorkingCollection.css';
 import NavBar from '../components/NavBar';
-import QueueCard from '../components/QueueCard';
+
+import RecipesCard from '../components/RecipesCard';
 import axios from 'axios';
-import { Row, Col } from 'react-bootstrap';
 
 
 function WorkingCollection({username}  ) {
     const [collectionName, setCollectionName] = useState('');
     const [key, setKey] = useState('')
-    const [wc, setWC] = useState([]) //list of meal ids
+
+    const [wc, setWC] = useState([])
+
     const [loaded, setLoaded] = useState(false)
     const [infos, setInfos] = useState([])
     const [infosloaded, setInfosLoaded] = useState(false)
@@ -20,11 +22,15 @@ function WorkingCollection({username}  ) {
     
     let navigate = useNavigate();
 
+    const navToBrowse = () => {
+        navigate(`/PrepUp/${username}/browse`);
+    }
+
     const getWC = () => {
         fetch(`${databaseURL}/${username}/.json`)
           .then((response) => {
               if (response.status == 200) {
-                  return response.json();
+                return response.json();
               } else {
                   console.log(' status flop')
               }
@@ -37,7 +43,10 @@ function WorkingCollection({username}  ) {
                       .map((k) => response[k]);
                   const fetched = dataPoints[0]['wc'];
                   console.log('fetched working collection: ', fetched)
-                  setWC(fetched.split(';'))
+
+                  const current_wc = fetched.split(";")
+                  setWC(current_wc)
+
               } else {
                   console.log('response :' , response)
                   console.log('response null flop')
@@ -71,6 +80,32 @@ function WorkingCollection({username}  ) {
         });
     }
 
+    const getMealInfo = () => {
+        for (let i = 0; i < wc.length; i++) {
+            fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${wc[i]}`)
+            .then((response) => {
+                if (response.status == 200) {
+                    return response.json()
+                } else {
+                    console.log('Status flop')
+                }
+            })
+            .then((response) => {
+                const meal = response["meals"]
+                console.log("Meal: " + response["meals"])
+                const title = meal['strMeal']
+                const imgURL = meal['strMealThumb']
+
+                return (
+                    <RecipesCard title={title} imgURL={imgURL} mealId={wc[i]} username={username}/>
+                )
+            })
+            .catch(err => {
+                console.error("Failed to find meal: " + err)
+            })
+        }
+    }
+
     useEffect(() => {
         // initial load
         getWC();
@@ -84,88 +119,58 @@ function WorkingCollection({username}  ) {
     return (
         <div>
             <NavBar username={username} setMyRecipes={false} setMyCollections={false} />
-            <div className="sub-header-container">
-                <button className="back-button">Back</button>
-                <button className="cook-button" onClick={generateSteps}>Cook</button>
-            </div>
+
+
 
             <div className="input-container">
-                <input className="collection-name-input" type="text" placeholder="Collection Name" onChange={handleNameChange}/>
+                <p className="header">My Working Collection</p>
             </div>
 
-            <Col>
-                {console.log(loaded)}
-                {console.log('info inside div',infos)}
 
+            {/* {getMealInfo()} */}
 
-                {(loaded && infosloaded) ? 
-                    (
-                    // <div>
+            {/* {
+                wc.map((mealId) => {
+                    if (mealId) {
+                        axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`)
+                        .then((response) => {
+                            if (response.status == 200) {
+                                console.log("MealID: " + mealId)
+                                const meal = response.data['meals'][0]
+                                console.log("Meal: " + meal)
+                                const title = meal['strMeal']
+                                const imgURL = meal['strMealThumb']
 
-                          infos.map((info, index) => ( 
-                            <Row key={index}>
-                                {/* <QueueCard  
-                                title='hello' 
-                                imgURL='fake-img-url' 
-                                />  */}
-                                <p>hi</p>
-                            </Row>
-                            
-                          ))
-                        // <p>hi</p>
+                                return (
+                                    <div className="working-collection-recipes">
+                                        <RecipesCard title={title} imgURL={imgURL} username={username} mealId={mealId}/>
+                                    </div>
+                                )
 
-                    ) : (
-                        <div>Loadinng ...</div>
-                    )
-                }
-            </Col>
+                            } else {
+                                console.log('Status flop')
+                            }
+                        })
+                    }
+                })
+            } */}
 
-
-            {/* <div className="header">
-                <NavBar username={username} setMyRecipes={false} setMyCollections={false} />
-                  
+            <div className="working-collection-recipes">
+                <RecipesCard title={"Minced Beef Pie"} imgURL={"https:\/\/www.themealdb.com\/images\/media\/meals\/xwutvy1511555540.jpg"} username={username} mealId={52876}/> 
+                <RecipesCard title={"French Onion Chicken with Roasted Carrots & Mashed Potatoes"} imgURL={"https:\/\/www.themealdb.com\/images\/media\/meals\/b5ft861583188991.jpg"} username={username} mealId={52996}/> 
+                <RecipesCard title={"Christmas Pudding Trifle"} imgURL={"https:\/\/www.themealdb.com\/images\/media\/meals\/r33cud1576791081.jpg"} username={username} mealId={52989}/> 
+                <RecipesCard title={"Osso Buco alla Milanese"} imgURL={"https:\/\/www.themealdb.com\/images\/media\/meals\/wwuqvt1487345467.jpg"} username={username} mealId={52810}/> 
             </div>
-            <div className="sub-header-container">
-                <button className="back-button">Back</button>
-                <button className="cook-button" onClick={generateSteps}>Cook</button>
+
+            <div className="bottom-buttons">
+                <div className="add-button-container">
+                    <button className="back-to-browse-button" onClick={navToBrowse}>Back to Browse</button>
+                </div>
+                <div className="sub-header-container">
+                    <button className="cook-button" onClick={generateSteps}>Cook</button>
+                </div>
             </div>
-            <div className="input-container">
-                <input className="collection-name-input" type="text" placeholder="Collection Name" onChange={handleNameChange}/>
-            </div>
-            
-             <div>
 
-                { loaded? 
-                    (
-                        infos.map((info) => (
-                    
-                        // console.log('info inside map is:',info)
-                        // return(
-                        //     <div>
-                        //     {console.log("info inside map here is:",info)}
-                         <QueueCard title='hello' imgURL='fake-img-url'}/> 
-                            // 'hi'
-                            // <button>hi</button>
-                        //     </div>
-
-                        // )
-                        
-                            
-                   
-                        ))
-                    ) : ( 
-                        <div className="loading-text">
-                            <p>loading...</p>
-                        </div>
-                    )
-
-                }
-              
-            </div> 
-            
-            <div className="add-button-container">
-                <button className="add-button">Add Recipe</button>
-            </div> */}
         </div>
     )
 }

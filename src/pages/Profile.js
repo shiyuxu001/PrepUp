@@ -156,10 +156,11 @@ function Profile({username}) {
             <button className="back-button" onClick={handleBackButton}>Back</button>
             <div className="container">
                 <div className="profile-pic" >
+                    <div>
+                    <img class="pic-resize" src={image} alt={name} Profile picture/>
+                    </div>
                 </div>
-                <div>
-                    <img src={image} alt={name} Profile picture/>
-                 </div>
+
             </div>
 
             <input type='file' onChange={(e) => setImage(URL.createObjectURL(e.target.files[0]))}></input>

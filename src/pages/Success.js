@@ -16,7 +16,7 @@ function Success( {username} ){
             <NavBar />
             <div className="page-container" style={{display: 'flex', backgroundColor: '#A7E4A5',justifyContent:'center',alignItems:'center', justifyContent: 'center', height:'70vh'}}>
                 <div className="centered-div" style={{alignItems: 'center', justifyContent: 'center',top: '50%'}} >
-                    <p style={{fontSize:'30px',fontFamily:'sans-serif', fontWeight:'bold'}}> Sucess! You've completed the recipes!</p>
+                    <p style={{fontSize:'30px',fontFamily:'sans-serif', fontWeight:'bold'}}> Success! You've completed the recipes!</p>
                 </div>
                 
                 <div>
@@ -25,7 +25,7 @@ function Success( {username} ){
                 
             </div>
             <div style={{justifyContent:'center',alignItems:'center', justifyContent: 'center'}}>
-                <button style={{marginTop: '40px', borderRadius:'3cm', scale:'1.4'}} onClick={handleBackToHome}>Back to Home</button>
+                <button style={{marginTop: '40px', borderRadius:'3cm', scale:'1.4'}} onClick={handleBackToHome}>Back to Browse</button>
             </div>
             
         </>

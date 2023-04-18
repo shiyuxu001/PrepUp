@@ -99,14 +99,18 @@ function LikedRecipes( {username} ) {
         <div>
             <NavBar username={username} setMyRecipes={true} setMyCollections={false} />
 
-            <h2>My Recipes</h2>
+            <h2 className="header-title">My Recipes</h2>
 
             {/* <div className="input-container">
                 <input className="saved-recipe-input" type="text" placeholder="Search" onChange={handleNameChange}/>
             </div> */}
 
+            <div className="add-button-container">
+                <button className="add-button" onClick={navToBrowse}>Browse more recipes!</button>
+            </div>
+
             {recipesLoaded && liked.length > 0 &&
-                    <div className="new-recipe-cards">
+                    <div className="my-liked-recipe-cards">
                         {listLoaded && list.length > 0 &&
                             (
                                 list.map((item) => ( 
@@ -122,12 +126,39 @@ function LikedRecipes( {username} ) {
                     </div>
             }
 
-            {recipesLoaded && liked.length == 0 &&
-                <h1>No Liked Recipes</h1>
-            }
-            <div className="add-button-container">
-                <button className="add-button" onClick={navToBrowse}>Add Recipe</button>
-            </div>
+
+                {recipesLoaded && liked.length == 0 &&
+                    <h1>No Liked Recipes</h1>
+                }
+             {/* <div className='liked-recipe-container'>
+            //     <div className='recipe-img-container'>
+            //     <img className="liked-recipe-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkMfn_L7UIPDX1rlx_J_f0ypeTtnuZSd73CQ&usqp=CAU" alt="Chicken Katsu" />
+            //     </div>     
+
+            //     <div className='recipe-info'>
+            //         <h4 className='rp-recipe-name'> Chicken Katsu</h4>
+            //         <p> Total Time: 50 min</p>
+            //         <div className="recipe-info-footer">
+            //             <button className='like-btn'>Liked</button>
+            //         </div>
+            //     </div> 
+            // </div>
+
+            // <div className='liked-recipe-container'>
+            //     <div className='recipe-img-container'>
+            //     <img className="liked-recipe-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTalsT91fYd5yEucMTRc65oeAKBrFXrpbRQ1w&usqp=CAU" alt="Chocolate Cake" />
+            //     </div>     
+
+            //     <div className='recipe-info'>
+            //         <h4 className='rp-recipe-name'> Chocolate Cake</h4>
+            //         <p> Total Time: 50 min</p>
+            //         <div className="recipe-info-footer">
+            //             <button className='like-btn'>Liked</button>
+            //         </div>
+            //     </div> 
+            // </div> */}
+        
+
         </div>
     )
 }

@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios';
 import '../styles/RecipePage.css';
 import RecipesCard from '../components/RecipesCard';
+import NavBar from "../components/NavBar";
 
 
 
@@ -46,21 +47,15 @@ function CategoryPage({username}) {
       }, []);
   
     return (
-      <div className="App">
-        <header className="App-header">
-          {/* <WorkingCollection /> */}
-          {/* <Steps /> */}
-          
-        </header>
+      <div>
+        <NavBar username={username} setMyRecipes={false} setMyCollections={false} />
   
         <div className='app-header'>
-            <button className='back-btn' onClick={handleBackButton}> &lt; Back to Browse </button>
           <h1>{categoryName} Recipes</h1>
-          <button className='user-btn' >Profile</button>
         </div>
 
-        <div className="new-recipe-cards-container">
-            <div className="new-recipe-cards">
+        <div className="cat-recipe-cards-container">
+            <div className="cat-recipe-cards">
                 {recipesLoaded && recipes.length > 0 && 
                         recipes.map((item) => ( 
                         <RecipesCard 

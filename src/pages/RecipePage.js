@@ -1,8 +1,12 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, useParams , useLocation } from 'react-router-dom'
+import { useNavigate, useParams , useLocation } from 'react-router-dom';
+import { Button } from "react-bootstrap";
 import axios from 'axios';
 import '../styles/RecipePage.css';
 import NavBar from '../components/NavBar';
+import QueueIcon from '../components/queue-svgrepo-com.svg';
+import CollectionIcon from '../components/collection-tag-svgrepo-com.svg';
+import LikeIcon from '../components/like-svgrepo-com.svg';
 
 function RecipePage({username}) {
   let {mealId}= useParams()
@@ -17,6 +21,22 @@ function RecipePage({username}) {
   const [wc, setWC] = useState('')
 
   const location = useLocation();
+
+  const navToWorkingCollections = (e) => {
+    e.stopPropagation();
+    navigate(`/PrepUp/${username}/workingCollection`, {username: username});
+  }
+
+  const navToSavedCollections = () => {
+      navigate(`/PrepUp/${username}/savedCollections`, {username: username});
+  }
+
+  const navToLikedRecipes = () => {
+      console.log('liked button clicked')
+      addToLiked();
+      alert(recipe[0]['strMeal'] + 'added to your liked recipes!')
+      // navigate(`/PrepUp/${username}/likedRecipes`, {username: username});
+  }
 
 
   const databaseURL = "https://prepup-41491-default-rtdb.firebaseio.com/";
@@ -33,10 +53,6 @@ function RecipePage({username}) {
 
     const handleProfile = () => {
       navigate(`/PrepUp/${username}/profile`);
-    }
-
-    const addtoWC = () => {
-
     }
 
     const getWC = () => {
@@ -229,7 +245,9 @@ function RecipePage({username}) {
       }
       time = totalTime
       return (
-        <p> Total Time: ~ {totalTime} minutes</p>
+        <div className="recipe-total-time-container">
+          <p className="recipe-total-time"> Total Time: ~ {totalTime} minutes</p>
+        </div>
       )
     }
   
@@ -251,11 +269,7 @@ function RecipePage({username}) {
             {ingList.map(ingredient => (
               <li key={ingredient.id}>
                 <label>
-                  <input
-                    type="checkbox"
-                    checked={ingredient.checked}
-                  />
-                  <span style={{ textDecoration: ingredient.checked ? 'line-through' : 'none' }}>{ingredient.name}</span>
+                  <span>{ingredient.name}</span>
                 </label>
               </li>
             ))}
@@ -271,41 +285,39 @@ function RecipePage({username}) {
   
     return (
       <div className="App">
-        <header className="App-header">
-          {/* <WorkingCollection /> */}
-          {/* <Steps /> */}
-          <NavBar username={username} setMyRecipes={false} setMyCollections={false} />
-          
-        </header>
-  
-        <div className='app-header'>
-          <button className='back-btn' onClick={handleBackButton}> &lt; Back </button>
-          <h1>PREP UP</h1>
-          <button className='user-btn' onClick={handleProfile}>Profile</button>
-        </div>
+
+        <NavBar username={username} setMyRecipes={false} setMyCollections={false} />
   
        {recipeLoaded && recipe.length > 0 &&
         <div className='recipe-container'>
           <div className='recipe-header'>
-          <h1 className='rp-recipe-name'> {recipe[0]['strMeal']}</h1>
-            {computeTotalTime()}
             <img className="recipe-img" src={recipe[0]['strMealThumb']} alt={recipe[0]['strMeal']} />
+          </div>
+
+          <div className='recipe-sub-header'>
+              <h1 className='rp-recipe-name'> {recipe[0]['strMeal']}</h1>
+              {computeTotalTime()}
+              <div className="recipe-card-button-container">
+                  <Button className="recipe-card-button" onClick={navToWorkingCollections} variant='outline-light'>
+                      <img className="recipe-icon" src={QueueIcon} onClick={navToWorkingCollections}/>
+                  </Button>
+                  <Button className="recipe-card-button" onClick={navToSavedCollections} variant='outline-light'>
+                      <img className="recipe-icon" src={CollectionIcon} />
+                  </Button>
+                  <Button className="recipe-card-button" onClick={navToLikedRecipes} variant='outline-light'>
+                      <img className="recipe-icon" src={LikeIcon} />
+                  </Button>
+              </div>
           </div>
   
           <div className='recipe-ingredients'>
-            <h2>Ingredients</h2>
+            <h2 className='page-sub-header'>Ingredients</h2>
             {renderIngredients()}
           </div>
   
           <div className='recipe-steps'>
-            <h2>Instructions</h2>
+            <h2 className='page-sub-header'>Instructions</h2>
             <p> {recipe[0]['strInstructions']}</p>
-          </div>
-
-          <div className="recipe-buttons">
-            <button onClick={handleAddToQueue}>Queue</button>
-            <button onClick={handleAddToSavedCollection}>Add</button>
-            <button onClick={addToLiked}>Like</button>
           </div>
         </div>
         }

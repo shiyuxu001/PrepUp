@@ -22,7 +22,7 @@
     /* width: calc(100% - 40px); */
     align-items: center;
     justify-content: center;
-    background-color: #D9D9D9;
+    /* background-color: #F8F0E3; */
     border-radius: 20px;
 }
 
@@ -30,44 +30,77 @@
     background-color: transparent;
     margin: 30px;
 }
+
 .recipe-header {
-    margin: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    height: 50%;
+    position: relative;
+    overflow: hidden;
+}
+
+.recipe-sub-header {
+    width: 40vw;
+    height: 15vw;
+    position: absolute;
+    top: 25vw;
+    bottom: 0;
+    left: 55vw;
+    right: 0;
+    padding: 1.5vw;
+    background: transparent;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.872);
+    border-radius: 20px;
 }
 
 .rp-recipe-name {
-    margin-top:15px;
-    
+    font-size: 3vw;
+    color: white;
 }
+
 .recipe-img {
-    border-radius: 20px;
-    margin: 15px;
-    display: block;
+    object-fit: cover;
+    width: 100%;
+    height: 20vw;
+}
+
+.recipe-total-time {
+    font-size: 0.9vw;
+    padding: 1vw;
+    color: grey;
 }
 
 .recipe-ingredients {
-    margin: 20px;
+    margin: 5vw;
     text-align: left;
     display: flex;
     flex-direction: column;
-    /* justify-content: flex-start; */
+    border: 1px solid black;
+    width: 30vw;
+    padding: 1vw;
 }
 
 .recipe-steps {
-    margin: 20px;
+    margin: 5vw;
     text-align: left;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    border: 1px solid black;
+    width: 80vw;
+    padding: 1vw;
 }
 
 .recipe-steps ul {
     list-style-type: decimal;
     list-style-position: inside;
 
+}
+
+.page-sub-header {
+    font-size: 2vw;
+    margin-bottom: 1vw;
 }
 
 li::marker {
@@ -87,4 +120,17 @@ li {
   
 input[type="checkbox"] {
     margin-right: 5px;
+}
+
+.cat-recipe-cards-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 4vw;
+    margin-left: 4vw;
+}
+
+.cat-recipe-cards {
+    display: flex;
+    flex-wrap: wrap;
 }
