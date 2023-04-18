@@ -18,17 +18,6 @@ function Browse( {name, username} ) {
     const [recipesLoaded, setRecipesLoaded] = useState(false)
     let navigate = useNavigate();
 
-
-    // const navToProfile = () => {
-    //     navigate(`/PrepUp/${username}/profile`);
-    // }
-
-
-    // const navToLikedRecipes = () => {
-    //     navigate(`/PrepUp/${username}/likedRecipes`)
-    // }
-
-
     const searchMeal=(evt)=>{
         if (evt.key == "Enter")
         {
