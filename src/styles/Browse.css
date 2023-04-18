@@ -30,6 +30,8 @@
     margin-bottom: 15px;
     color: #45C126;
     font-family: Arbutus Slab;
+    font-weight: 650;
+    border-bottom: 1.7px solid #adb1b4;
 }
 
 .new-recipe-cards-container {
