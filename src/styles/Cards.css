@@ -3,6 +3,11 @@
     height: 400px;
     padding: 1vw;
     margin: 20px;
+    background: transparent;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.872);
+    border-radius: 20px;
 }
 
 .recipe-card-title {
@@ -51,6 +56,11 @@
     height: 250px;
     max-height: 30%;
     margin: 20px;
+    background: transparent;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.872);
+    border-radius: 20px;
 }
 
 .category-title {
