@@ -78,13 +78,16 @@ function Browse( {name, username} ) {
             <NavBar username={username} setMyRecipes={false} setMyCollections={false} />
 
             <img src={ChefImg} alt="Chef" className="chef-image" />
-            <p className="greeting-header">What are we cooking up today, Chef?</p>
+            <p className="greeting-header">What are we cooking up today, Chef {username}?</p>
 
 
-            <div className="search-box">
+            <div className="search-box-browse">
                 <input type="search" className="collection-name-input" placeholder="Search for a recipe" onChange={(e)=>setSearch(e.target.value)} value={search} onKeyPress={searchMeal}/>
                 {/* <FontAwesomeIcon icon="fa-solid fa-filter" /> */}
-            </div>
+            </div> 
+            {/* <div className="search-box" style={{width: '80%', backgroundColor: '#f2f2f2'}}>
+                <input type="search" className="collection-name-input" placeholder="Search for a recipe" onChange={(e)=>setSearch(e.target.value)} value={search} onKeyPress={searchMeal}/>
+            </div> */}
 
             {hasLoaded && !isActivelySearching ? (
                 <div>

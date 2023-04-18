@@ -44,7 +44,7 @@ function RecipesCard( {title, imgURL, username, mealId}) {
         console.log('liked button clicked')
         addToLiked();
         // alert(title + 'added to your liked recipes!')
-        navigate(`/PrepUp/${username}/likedRecipes`, {username: username});
+        // navigate(`/PrepUp/${username}/likedRecipes`, {username: username});
     }
 
     
