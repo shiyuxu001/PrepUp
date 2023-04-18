@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import '../styles/Browse.css';
 import NavBar from "../components/NavBar";
+import ChefImg from "../components/chef.png";
 import axios from 'axios';
 import RecipesCard from '../components/RecipesCard';
 import CatCards from '../components/catCards';
@@ -76,7 +77,8 @@ function Browse( {name, username} ) {
         <div>
             <NavBar username={username} setMyRecipes={false} setMyCollections={false} />
 
-            <p className="greeting-header">Hi, {name}!</p>
+            <img src={ChefImg} alt="Chef" className="chef-image" />
+            <p className="greeting-header">What are we cooking up today, Chef?</p>
 
 
             <div className="search-box">
@@ -98,6 +100,7 @@ function Browse( {name, username} ) {
                                 (
                                     initRec.map((item) => ( 
                                     <RecipesCard 
+                                        className="individual-recipe-card"
                                         title = {item['meals'][0]['strMeal']}  
                                         imgURL = {item['meals'][0]['strMealThumb']}
                                         username= {username} 

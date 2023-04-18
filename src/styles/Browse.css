@@ -9,19 +9,27 @@
     margin-left: 15%;
 }
 
+.chef-image {
+    text-align: center
+}
+
 .greeting-header {
-    font-size: 3vw;
+    font-size: 2vw;
     margin-top: 50px;
     margin-bottom: 50px;
-    margin-left: 10%;
-    text-align: left;
+    /* margin-left: 10%; */
+    text-align: center;
+    font-family: Arbutus Slab;
+    color: #45C126;
+
 }
 
 .section-header {
     text-align: left;
     margin-left: 10%;
     margin-bottom: 15px;
-    color: #c9c9c9;
+    color: #45C126;
+    font-family: Arbutus Slab;
 }
 
 .new-recipe-cards-container {
@@ -35,6 +43,7 @@
     overflow-x: auto;
     overflow-y: hidden;
 }
+
 
 .loading-text {
     display: flex;
@@ -68,12 +77,13 @@
     margin-top: 30px;
 }
 
-/* .search-box {
+.search-box {
     display: flex;
-    justify-content: right;
-    align-items: right;
-    margin-right: 150px;
-} */
+    justify-content: center;
+    border-radius: 40px !important;
+    /* align-items: right; */
+    /* margin-right: 150px; */
+}
 
 .collection-name-input {
     margin-bottom: 40px;
@@ -85,6 +95,8 @@
     align-items: center;
     justify-content: center;
     margin: 50px;
+
+
 }
 
 .recipe {
@@ -93,6 +105,8 @@
     height: 200px;
     border-radius: 15px;
     display: flex;
+    /* background-color:#c9c9c9 ; */
+
 }
 
 .recipe-name {
