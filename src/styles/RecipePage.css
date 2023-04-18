@@ -88,3 +88,16 @@ li {
 input[type="checkbox"] {
     margin-right: 5px;
 }
+
+.cat-recipe-cards-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 4vw;
+    margin-left: 4vw;
+}
+
+.cat-recipe-cards {
+    display: flex;
+    flex-wrap: wrap;
+}
