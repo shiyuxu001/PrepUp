@@ -13,20 +13,31 @@ import axios from "axios";
 
 
 function Steps( {username}) {
-    const [posts, setPosts] = useState([])
+    const [posts, setPosts] = useState({}) //list of posts, 
+    //each post is recipe obj with list of name, instrs, and time dicts
     const [loading, setLoading] = useState(true)
     const [checked, setChecked] = useState(0)
     const colors = ['danger', 'secondary', 'warning', 'info']
+    const [wc, setWC] = useState([]) //list of meal ids
+    const [arr, setArr] = useState([])
+    const [postsLoaded, setPostsLoaded] = useState(false)
+
+    const [key, setKey] = useState('')
+
+    const databaseURL = "https://prepup-41491-default-rtdb.firebaseio.com/";
+
 
     let navigate = useNavigate();
 
-    let ids=[52959, 52944]
     let colorIndex = 0
     let stepIndex = 1
+    let numRecipes = 0
 
     const handleClick = () => {
         setChecked(checked+1)
         console.log('steps checked: ' + checked)
+
+       
         
     }
 
@@ -34,85 +45,148 @@ function Steps( {username}) {
         navigate(`/PrepUp/${username}/success`);
     }
 
-    useEffect(() => {
-        console.log(posts[0])
-        // This effect runs on mount and whenever count changes
-        if(checked !== 0 && posts !== [] && checked === posts[0].size + posts[1].size-1){
-            console.log('all checked, total = '+ checked) //this is so not right
-            // nav to success page
+    const getWC = () => {
+        fetch(`${databaseURL}/${username}/.json`)
+          .then((response) => {
+              if (response.status == 200) {
+                  return response.json();
+              } else {
+                  console.log(' status flop')
+              }
+          })
+          .then((response) => {
+              if (response) {
+                  const keys = Object.keys(response);
+                  setKey(keys);
+                  const dataPoints = keys
+                      .map((k) => response[k]);
+                  const fetched = dataPoints[0]['wc'];
+                  console.log('fetched working collection: ', fetched)
+                  setWC(fetched.split(';'))
+              } else {
+                  console.log('response :' , response)
+                  console.log('response null flop')
+              }
+          }) 
+      }
+
+
+    const handlePosts = ()=>{
+        console.log('inside handlePosts', posts)
+
+        const maxNum = Object.keys(posts).length
+        console.log('maxNum',maxNum)
+
+        console.log("posts again",posts)
+        for(let j in posts){
+            // let temp = posts[curRec][indices[curRec]]
+            // indices[curRec] ++
+            // finalOrder.push(temp)
+            // curRec = (curRec + 1 ) % maxNum
+            // console.log('added step: ', temp)
+            console.log('j:', j)
+            console.log('hi hi hi')
+            console.log('post at j', posts[j])
+            posts[j].map((index, post) => (
+                <StepsCard key={index} mins = {post.time} text = {post['instr']} name={post['insName']} color={colors[j]} />
+                // <div>hi</div>
+            ))
+            console.log('mapped', j)
         }
-        
-      }, [checked]);
-   
+    }
 
     useEffect(() => {
         // setLoading(true)
-        
-        let myInstr={meals:[]}
+        console.log('hiiiii in stepss rn')
+        getWC()
 
-        ids.forEach(function(id) {
+        
+    },[]);
+
+
+    useEffect(() => {
+        let all_ins = {}
+        let newArr = []
+
+        wc.forEach(function(id) {
             console.log('id:' + id)
             axios.get('https://www.themealdb.com/api/json/v1/1/lookup.php?i='+ id)
                 .then(response =>{
-                    // console.log(response.data)
-                    myInstr['meals'].push(response.data['meals'][0])
+
+                    if (response.status == 200) {
+                        console.log(response.data)
+                        newArr.push(response.data['meals'][0])  
+                        // console.log('here 1',newArr[3])
+                        let inName = response.data['meals'][0]['strMeal']
+                        let insSplit = response.data['meals'][0]['strInstructions']
+                                        .split('\r\n')
+                  
+                        const regex = /\d+\s*minutes\b/; // fix so it returns just the number
+                        let stepsList = [];
+                        for(let k of insSplit){
+                            if(k != ''){
+                                // console.log(i)
+                                const match = regex.exec(k);
+                                let num = 0;
+                                if (match) {
+                                    const new_regex = /\d+\b/
+                                    // Returns the first match (i.e., the number)
+                                    // 0 indicates no minute measurement
+                                    num = new_regex.exec(match[0])[0]; 
+                                }
+                                console.log(num)
+                                const dict = {
+                                    time: Number(num), 
+                                    instr: k,
+                                    insName: inName
+                                }
+                                stepsList.push(dict)
+
+                            }
+                        }
+                        all_ins[numRecipes] = stepsList
+                        numRecipes++
+                        console.log('all_ins so far: ', all_ins)
+
+
+                    } else {
+                        console.log('status flop')
+                    }
                 }
-                    
                 )
-            })
-
-            console.log('myinstr so fa:')
-            console.log(myInstr)
-        
-
-        console.log('in useEffect, end')
-        
-        
-
-        let instrs = [];
-        console.log(myInstr['meals'])
-        myInstr['meals'].forEach(function(i){
-            console.log('i:')
-
-            console.log(i)
-            // console.log(ins)
-            let inName = i['strMeal']
-            let insSplit = i['strInstructions'].split('\r\n')
-            // console.log(insSplit)
-            const regex = /\d+\s*minutes\b/; // fix so it returns just the number
-            let stepsList = [];
-            for(let i of insSplit){
-                if(i != ''){
-                    // console.log(i)
-                    const match = regex.exec(i);
-                    let num = 0;
-                    if (match) {
-                        const new_regex = /\d+\b/
-                        // Returns the first match (i.e., the number)
-                        // 0 indicates no minute measurement
-                        num = new_regex.exec(match[0])[0]; 
-                    }
-                    console.log(num)
-                    const dict = {
-                        time: Number(num), 
-                        instr: i,
-                        insName: inName
-                    }
-                    stepsList.push(dict)
-
-                }
+                .catch(err => {
+                    console.log(err, "failed get")
+                })
             }
-            instrs.push(stepsList) //instrs: list of 2 list, eachh inner list: list of entries w instruction and time
-            console.log(instrs)
             
-        })
-        setPosts(instrs)
-        console.log(posts)
+        )
+
+        setPosts(all_ins)
+        console.log('posts inside useEffect:',posts)
         console.log('setting loading in useEffect: original loading is ' + loading)
         setLoading(false)
         console.log('loading in useEffect is now '+ loading.toString())
         
-    },[]);
+        
+    }, []);
+
+
+    //only after posts updated
+    useEffect (()=>{
+        if(!loading){
+            console.log('callback func')
+            console.log('rip',posts)
+            console.log('ummm', posts['0'])
+            setPostsLoaded(true)
+        }
+        
+        
+    }, [posts])
+
+    
+   
+
+    
 
     // myInstr.meals[0]['strInstructions']
     return(!loading ?
@@ -121,31 +195,16 @@ function Steps( {username}) {
             <NavBar />
             <h2 style={{ color: "#545454", alignContent:'left' }}>Steps</h2>
             <br/>
-            {console.log('hii')}
-            {console.log(posts)}
-            {console.log(posts[0])}
-            {/* {setLoading(true)} */}
-            {posts && posts[0] && posts[0].map((post) =>
-                <StepsCard 
-                    stepNum = {stepIndex++}  
-                    mins = {post['time']} 
-                    text={post['instr']} 
-                    color={colors[(colorIndex+=1)%4]}
-                    // onClick = {handleClick}
-                />
-            )}
             
-            {posts && posts[1] && posts[1].map((post) =>
+            {posts && console.log('checking 1',posts) &&
+                console.log('checking 2', posts[0])
+            }
+           
+            {!loading && postsLoaded && posts != {} && wc.length != 0 ? handlePosts() : <></>}
+            
+            {/* {posts && posts[1] && posts[1].map((post) =>
                 
-                <StepsCard 
-                    stepNum = {stepIndex++}  
-                    mins = {post['time']} 
-                    text={post['instr']} 
-                    name={post['insName']}
-                    color={colors[(colorIndex+=1)%4]}
-                    // onClick = {handleClick}
-                 />
-            )}
+            )} */}
             {/* TODO: figure out how to click on card/checkbox, once all steps completed, ssend to success page? */}
             {/* TODO: figure out progress bar */}
             {/* TODO: add key for recipes and colors? */}
@@ -155,9 +214,7 @@ function Steps( {username}) {
         loading...
         </>
         
-        //make scrollable
-        // map elementts in json to steps component
-        //
+        
     )
 }
 

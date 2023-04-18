@@ -2,32 +2,25 @@ import { useState, useEffect } from 'react';
 import { useNavigate , useLocation } from 'react-router-dom'
 import '../styles/WorkingCollection.css';
 import NavBar from '../components/NavBar';
+import QueueCard from '../components/QueueCard';
+import axios from 'axios';
+import { Row, Col } from 'react-bootstrap';
+
 
 function WorkingCollection({username}  ) {
     const [collectionName, setCollectionName] = useState('');
     const [key, setKey] = useState('')
-    const [wc, setWC] = useState('')
+    const [wc, setWC] = useState([]) //list of meal ids
     const [loaded, setLoaded] = useState(false)
+    const [infos, setInfos] = useState([])
+    const [infosloaded, setInfosLoaded] = useState(false)
 
-    
-    const location = useLocation();
-    // const username = location.state.username
-    // const mealID = location.state.mealId
-    // const mealName = location.state.mealName
-    // const mealTime = location.state.mealTime
-    // const mealImg = location.state.mealImg
     const databaseURL = "https://prepup-41491-default-rtdb.firebaseio.com/";
 
-
-    //get from firebase
-    // console.log(wc)
-
-    // console.log(username+ ',' + mealID + ',' + mealName + ',' + mealTime + ',' + mealImg)
     
     let navigate = useNavigate();
 
     const getWC = () => {
-
         fetch(`${databaseURL}/${username}/.json`)
           .then((response) => {
               if (response.status == 200) {
@@ -44,12 +37,29 @@ function WorkingCollection({username}  ) {
                       .map((k) => response[k]);
                   const fetched = dataPoints[0]['wc'];
                   console.log('fetched working collection: ', fetched)
-                  setWC(fetched)
+                  setWC(fetched.split(';'))
               } else {
                   console.log('response :' , response)
                   console.log('response null flop')
               }
           }) 
+      }
+
+
+       const fetchMealInfo = () => {
+        let infos = []
+        console.log('wc in fetchMealInfo:', wc)
+        for(let i = 0; i < wc.length-1; i++){ //-1 for the empty string at the end
+            console.log('i:',i)
+            if(wc[i] != ''){
+                axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${wc[i]}`)
+                .then(response => {
+                    infos.push(response['data']['meals']['0'])
+                })
+            }
+        }
+       setInfos(infos)
+       setInfosLoaded(true)
       }
 
     const handleNameChange = (e) => {
@@ -64,16 +74,56 @@ function WorkingCollection({username}  ) {
     useEffect(() => {
         // initial load
         getWC();
-        setLoaded(true)
       }, []);
+
+    useEffect(() =>{
+        fetchMealInfo()
+        setLoaded(true)
+    }, [wc])
     
     return (
         <div>
-            <div className="header">
+            <NavBar username={username} setMyRecipes={false} setMyCollections={false} />
+            <div className="sub-header-container">
+                <button className="back-button">Back</button>
+                <button className="cook-button" onClick={generateSteps}>Cook</button>
+            </div>
+
+            <div className="input-container">
+                <input className="collection-name-input" type="text" placeholder="Collection Name" onChange={handleNameChange}/>
+            </div>
+
+            <Col>
+                {console.log(loaded)}
+                {console.log('info inside div',infos)}
+
+
+                {(loaded && infosloaded) ? 
+                    (
+                    // <div>
+
+                          infos.map((info, index) => ( 
+                            <Row key={index}>
+                                {/* <QueueCard  
+                                title='hello' 
+                                imgURL='fake-img-url' 
+                                />  */}
+                                <p>hi</p>
+                            </Row>
+                            
+                          ))
+                        // <p>hi</p>
+
+                    ) : (
+                        <div>Loadinng ...</div>
+                    )
+                }
+            </Col>
+
+
+            {/* <div className="header">
                 <NavBar username={username} setMyRecipes={false} setMyCollections={false} />
-                    {/* <button className="header-item">Menu</button>*/}
-                    <h1 className="logo header-item">PrepUp</h1>
-                   {/* <button className="header-item">Profile</button> */}
+                  
             </div>
             <div className="sub-header-container">
                 <button className="back-button">Back</button>
@@ -82,35 +132,40 @@ function WorkingCollection({username}  ) {
             <div className="input-container">
                 <input className="collection-name-input" type="text" placeholder="Collection Name" onChange={handleNameChange}/>
             </div>
-            {/* <div className="recipes-container">
-                <div className="recipe">
-                    <img className="chickpea-curry-img" src="https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_500,q_auto,w_1900/hellofresh_s3/image/vegan-chickpea-coconut-curry-d528b3ae.jpg" alt="Chickpea Curry" />
-                    <div>
-                        <h2 className="recipe-name">Chickpea Curry</h2>
-                        <p className="recipe-total-header">TOTAL</p>
-                        <p className="recipe-total-time">20 min</p>
-                        <div className="recipe-buttons">
-                            <button>Queue</button>
-                            <button>Add</button>
-                            <button>Like</button>
-                        </div>
-                    </div>
-                </div>      
-            </div> */}
-            <div className="recipes-container">
-                <div className="recipe">
-                    {/* <img className="chickpea-curry-img" src={mealImg} alt={mealName} /> */}
-                    {/* <div>
-                        <h2 className="recipe-name">{mealName}</h2>
-                        <p className="recipe-total-header">TOTAL</p>
-                        <p className="recipe-total-time">{mealTime} mins</p>
+            
+             <div>
+
+                { loaded? 
+                    (
+                        infos.map((info) => (
+                    
+                        // console.log('info inside map is:',info)
+                        // return(
+                        //     <div>
+                        //     {console.log("info inside map here is:",info)}
+                         <QueueCard title='hello' imgURL='fake-img-url'}/> 
+                            // 'hi'
+                            // <button>hi</button>
+                        //     </div>
+
+                        // )
                         
-                    </div> */}
-                </div>       
-            </div>
+                            
+                   
+                        ))
+                    ) : ( 
+                        <div className="loading-text">
+                            <p>loading...</p>
+                        </div>
+                    )
+
+                }
+              
+            </div> 
+            
             <div className="add-button-container">
                 <button className="add-button">Add Recipe</button>
-            </div>
+            </div> */}
         </div>
     )
 }
