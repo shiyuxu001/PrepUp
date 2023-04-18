@@ -69,12 +69,8 @@ function WorkingCollection({username}  ) {
     
     return (
         <div>
-            <div className="header">
-                <NavBar username={username} setMyRecipes={false} setMyCollections={false} />
-                    {/* <button className="header-item">Menu</button>*/}
-                    <h1 className="logo header-item">PrepUp</h1>
-                   {/* <button className="header-item">Profile</button> */}
-            </div>
+            <NavBar username={username} setMyRecipes={false} setMyCollections={false} />
+
             <div className="sub-header-container">
                 <button className="back-button">Back</button>
                 <button className="cook-button" onClick={generateSteps}>Cook</button>
