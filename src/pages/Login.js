@@ -67,8 +67,11 @@ function Login( {passUser, passName} ) {
             exp: '---',
             pfp: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNf6W5dEJPZgmwcADVOhWIou-2xCrRbjHWSg&usqp=CAU',
             likedRecipes: '',
-            savedCollections: ''
+            wc: ''
+            
         }
+
+
 
         return fetch(`${databaseURL}/${newUser}/.json`, {
             method: "POST",

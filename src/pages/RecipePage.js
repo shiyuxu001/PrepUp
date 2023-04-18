@@ -1,18 +1,23 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams , useLocation } from 'react-router-dom'
 import axios from 'axios';
 import '../styles/RecipePage.css';
-
+import NavBar from '../components/NavBar';
 
 function RecipePage({username}) {
   let {mealId}= useParams()
 
   let navigate = useNavigate();
+  let time = 0
   const[recipe,setRecipe]=useState();
   const [recipeLoaded, setRecipeLoaded] = useState(false)
   const [liked, setLiked] = useState()
   const [patch, setPatchComplete] = useState()
   const [key, setKey] = useState('')
+  const [wc, setWC] = useState('')
+
+  const location = useLocation();
+
 
   const databaseURL = "https://prepup-41491-default-rtdb.firebaseio.com/";
 
@@ -30,10 +35,76 @@ function RecipePage({username}) {
       navigate(`/PrepUp/${username}/profile`);
     }
 
-    const handleAddToQueue = () => {
-      navigate(`/PrepUp/${username}/workingCollection`);
+    const addtoWC = () => {
+
     }
 
+    const getWC = () => {
+
+      fetch(`${databaseURL}/${username}/.json`)
+        .then((response) => {
+            if (response.status == 200) {
+                return response.json();
+            } else {
+                console.log(' status flop')
+            }
+        })
+        .then((response) => {
+            if (response) {
+                const keys = Object.keys(response);
+                setKey(keys);
+                const dataPoints = keys
+                    .map((k) => response[k]);
+                const fetched = dataPoints[0]['wc'];
+                console.log('fetched working collection: ', fetched)
+                setWC(fetched)
+            } else {
+                console.log('response :' , response)
+                console.log('response null flop')
+            }
+        }) 
+    }
+
+    const handleAddToQueue = () => {
+      console.log('sending recipe;')
+      console.log(recipe[0]['strMealThumb'])
+      //add new entry into wc
+      if(wc.includes(mealId.toString())){
+        console.log('wc already contaains recipe')
+      }else{
+        const newWc = mealId + ';' + wc
+        const dict = {
+          wc: newWc
+        }
+
+        fetch(`${databaseURL}/${username}/${key}/.json`, {
+          method: "PATCH",
+          body: JSON.stringify(dict)
+        }).then((response) => {
+          if (response) {
+              if (response.status !== 200) {
+                  console.log(' status flop in upload')
+                  alert("Unable to add recipe to working collection!")
+              } 
+              else {
+                  console.log('updated working collection: ', dict)
+                  return;
+              }
+          } else {
+              alert("Unable to add recipe to working collection!")
+          }
+        })
+      }
+
+      
+      
+    
+      navigate(`/PrepUp/${username}/workingCollection`,{
+       
+      });
+    }
+
+    
     const handleAddToSavedCollection = () => {
       navigate(`/PrepUp/${username}/savedCollections`);
     }
@@ -68,8 +139,14 @@ function RecipePage({username}) {
   }
 
   const addToLiked = () => {
+    console.log(typeof(liked))
+
+    if(liked.includes(mealId.toString())){
+      console.log('id already in working collection')
+    }else{
+
       const likedRep = liked + ' ' + mealId
-      console.log('adding to liked')
+      console.log('adding new recipe to wc')
       const dict = {
           likedRecipes: likedRep
       }
@@ -93,9 +170,13 @@ function RecipePage({username}) {
           }
 
       })
+
+    }
+      
   }
   useEffect(() => {    
       getLiked();
+      getWC();
   }, []);
 
 
@@ -146,6 +227,7 @@ function RecipePage({username}) {
       if (totalTime == 0) {
         totalTime = 20
       }
+      time = totalTime
       return (
         <p> Total Time: ~ {totalTime} minutes</p>
       )
@@ -192,6 +274,7 @@ function RecipePage({username}) {
         <header className="App-header">
           {/* <WorkingCollection /> */}
           {/* <Steps /> */}
+          <NavBar username={username} setMyRecipes={false} setMyCollections={false} />
           
         </header>
   

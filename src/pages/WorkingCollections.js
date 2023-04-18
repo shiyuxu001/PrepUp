@@ -1,26 +1,79 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react';
+import { useNavigate , useLocation } from 'react-router-dom'
 import '../styles/WorkingCollection.css';
+import NavBar from '../components/NavBar';
 
-function WorkingCollection( {username} ) {
+function WorkingCollection({username}  ) {
     const [collectionName, setCollectionName] = useState('');
+    const [key, setKey] = useState('')
+    const [wc, setWC] = useState('')
+    const [loaded, setLoaded] = useState(false)
 
+    
+    const location = useLocation();
+    // const username = location.state.username
+    // const mealID = location.state.mealId
+    // const mealName = location.state.mealName
+    // const mealTime = location.state.mealTime
+    // const mealImg = location.state.mealImg
+    const databaseURL = "https://prepup-41491-default-rtdb.firebaseio.com/";
+
+
+    //get from firebase
+    // console.log(wc)
+
+    // console.log(username+ ',' + mealID + ',' + mealName + ',' + mealTime + ',' + mealImg)
+    
     let navigate = useNavigate();
+
+    const getWC = () => {
+
+        fetch(`${databaseURL}/${username}/.json`)
+          .then((response) => {
+              if (response.status == 200) {
+                  return response.json();
+              } else {
+                  console.log(' status flop')
+              }
+          })
+          .then((response) => {
+              if (response) {
+                  const keys = Object.keys(response);
+                  setKey(keys);
+                  const dataPoints = keys
+                      .map((k) => response[k]);
+                  const fetched = dataPoints[0]['wc'];
+                  console.log('fetched working collection: ', fetched)
+                  setWC(fetched)
+              } else {
+                  console.log('response :' , response)
+                  console.log('response null flop')
+              }
+          }) 
+      }
 
     const handleNameChange = (e) => {
         setCollectionName(e.target.value);
     }
 
     const generateSteps = () => {
-        navigate(`/PrepUp/${username}/steps`);
+        navigate(`/PrepUp/${username}/steps`, {
+        });
     }
+
+    useEffect(() => {
+        // initial load
+        getWC();
+        setLoaded(true)
+      }, []);
     
     return (
         <div>
             <div className="header">
-                    <button className="header-item">Menu</button>
+                <NavBar username={username} setMyRecipes={false} setMyCollections={false} />
+                    {/* <button className="header-item">Menu</button>*/}
                     <h1 className="logo header-item">PrepUp</h1>
-                    <button className="header-item">Profile</button>
+                   {/* <button className="header-item">Profile</button> */}
             </div>
             <div className="sub-header-container">
                 <button className="back-button">Back</button>
@@ -46,17 +99,13 @@ function WorkingCollection( {username} ) {
             </div> */}
             <div className="recipes-container">
                 <div className="recipe">
-                    <img className="chickpea-curry-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTalsT91fYd5yEucMTRc65oeAKBrFXrpbRQ1w&usqp=CAU" alt="Chocolate Cake" />
-                    <div>
-                        <h2 className="recipe-name">Chocolate Cake</h2>
+                    {/* <img className="chickpea-curry-img" src={mealImg} alt={mealName} /> */}
+                    {/* <div>
+                        <h2 className="recipe-name">{mealName}</h2>
                         <p className="recipe-total-header">TOTAL</p>
-                        <p className="recipe-total-time">45 min</p>
-                        {/* <div className="recipe-buttons">
-                            <button>Queue</button>
-                            <button>Add</button>
-                            <button>Like</button>
-                        </div> */}
-                    </div>
+                        <p className="recipe-total-time">{mealTime} mins</p>
+                        
+                    </div> */}
                 </div>       
             </div>
             <div className="add-button-container">
