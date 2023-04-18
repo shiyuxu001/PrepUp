@@ -67,7 +67,7 @@
 .recipe-total-time {
     font-size: 0.9vw;
     padding: 1vw;
-    color: grey;
+    color: white;
 }
 
 .recipe-ingredients {
@@ -134,3 +134,13 @@ input[type="checkbox"] {
     display: flex;
     flex-wrap: wrap;
 }
+
+.recipe-card-button-container .recipe-card-button {
+    border-color: green;
+}
+
+.recipe-card-button-container .recipe-card-button:hover {
+    background-color: #45C126; /* Change this to the desired hover color */
+    color: #FFF; /* Change this to the desired hover text color */
+    /* Add any other styles you want to apply when the button is hovered over */
+  }

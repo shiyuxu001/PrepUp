@@ -10,7 +10,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import logo from './LeafName.png'; 
 
 
-function NavBar( {username, setMyRecipes, setMyCollections} ) {
+function NavBar( {username, setMyRecipes, setMyCollections, setUserProfile} ) {
   const [buttonColors, setButtonColors] = useState(['#838383', '#c9c9c9'])
   
   let navigate = useNavigate();
@@ -26,6 +26,10 @@ function NavBar( {username, setMyRecipes, setMyCollections} ) {
   const navToSavedCollections = () => {
       navigate(`/PrepUp/${username}/savedCollections`)
   }
+
+  const navToUserProfile = () => {
+    navigate(`/PrepUp/${username}/Profile`)
+}
 
 
     return (
@@ -77,6 +81,15 @@ function NavBar( {username, setMyRecipes, setMyCollections} ) {
                     <Nav.Link onClick={navToSavedCollections} style={{ 'color': buttonColors[1]}}>My Collections</Nav.Link>
                     )
                   }
+
+                  {setUserProfile ? 
+                      (
+                      <Nav.Link onClick={navToUserProfile} style={{ 'color': buttonColors[0]}}>Profile</Nav.Link>
+                      ) :
+                      (
+                      <Nav.Link onClick={navToUserProfile} style={{ 'color': buttonColors[1]}}>Profile</Nav.Link>
+                      )
+                    }
               </Nav>
                   
                   {/* <NavDropdown
