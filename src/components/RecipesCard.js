@@ -33,15 +33,17 @@ function RecipesCard( {title, imgURL, username, mealId}) {
         navigate(`/PrepUp/${username}/workingCollection`, {username: username});
     }
 
-    const navToSavedCollections = () => {
+    const navToSavedCollections = (e) => {
+        e.stopPropagation();
         navigate(`/PrepUp/${username}/savedCollections`, {username: username});
     }
 
-    const navToLikedRecipes = () => {
+    const navToLikedRecipes = (e) => {
+        e.stopPropagation();
         console.log('liked button clicked')
         addToLiked();
-        alert(title + 'added to your liked recipes!')
-        // navigate(`/PrepUp/${username}/likedRecipes`, {username: username});
+        // alert(title + 'added to your liked recipes!')
+        navigate(`/PrepUp/${username}/likedRecipes`, {username: username});
     }
 
     

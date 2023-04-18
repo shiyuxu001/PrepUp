@@ -12,6 +12,10 @@
 
 }
 
+.header-title {
+    font-size: 3vw;
+}
+
 .app-header button {
     flex-grow: 1;
     margin: 20px;
@@ -69,4 +73,16 @@
 
 .like-btn {
     width: 60px;
+}
+
+.my-liked-recipe-cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.add-button-container {
+    margin: 2vw;
+    margin-top: 3vw;
 }

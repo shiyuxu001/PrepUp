@@ -19,10 +19,10 @@ function SavedCollections( {username} ) {
             <div className="sub-header-container">
                 <h2 className="collection-page-title">My Collections</h2>
             </div>
-
+{/* 
             <div className="input-container">
                 <input className="collection-name-input" type="text" placeholder="Search" onChange={handleNameChange}/>
-            </div>
+            </div> */}
 
             <div className="all-collections">
                 <div className="collection-container">

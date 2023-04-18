@@ -2,11 +2,13 @@ import { useState, useEffect } from 'react';
 import { useNavigate , useLocation } from 'react-router-dom'
 import '../styles/WorkingCollection.css';
 import NavBar from '../components/NavBar';
+import RecipesCard from '../components/RecipesCard';
+import axios from 'axios';
 
 function WorkingCollection({username}  ) {
     const [collectionName, setCollectionName] = useState('');
     const [key, setKey] = useState('')
-    const [wc, setWC] = useState('')
+    const [wc, setWC] = useState([])
     const [loaded, setLoaded] = useState(false)
 
     
@@ -26,12 +28,16 @@ function WorkingCollection({username}  ) {
     
     let navigate = useNavigate();
 
+    const navToBrowse = () => {
+        navigate(`/PrepUp/${username}/browse`);
+    }
+
     const getWC = () => {
 
         fetch(`${databaseURL}/${username}/.json`)
           .then((response) => {
               if (response.status == 200) {
-                  return response.json();
+                return response.json();
               } else {
                   console.log(' status flop')
               }
@@ -44,7 +50,8 @@ function WorkingCollection({username}  ) {
                       .map((k) => response[k]);
                   const fetched = dataPoints[0]['wc'];
                   console.log('fetched working collection: ', fetched)
-                  setWC(fetched)
+                  const current_wc = fetched.split(";")
+                  setWC(current_wc)
               } else {
                   console.log('response :' , response)
                   console.log('response null flop')
@@ -61,6 +68,32 @@ function WorkingCollection({username}  ) {
         });
     }
 
+    const getMealInfo = () => {
+        for (let i = 0; i < wc.length; i++) {
+            fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${wc[i]}`)
+            .then((response) => {
+                if (response.status == 200) {
+                    return response.json()
+                } else {
+                    console.log('Status flop')
+                }
+            })
+            .then((response) => {
+                const meal = response["meals"]
+                console.log("Meal: " + response["meals"])
+                const title = meal['strMeal']
+                const imgURL = meal['strMealThumb']
+
+                return (
+                    <RecipesCard title={title} imgURL={imgURL} mealId={wc[i]} username={username}/>
+                )
+            })
+            .catch(err => {
+                console.error("Failed to find meal: " + err)
+            })
+        }
+    }
+
     useEffect(() => {
         // initial load
         getWC();
@@ -71,41 +104,52 @@ function WorkingCollection({username}  ) {
         <div>
             <NavBar username={username} setMyRecipes={false} setMyCollections={false} />
 
-            <div className="sub-header-container">
-                <button className="back-button">Back</button>
-                <button className="cook-button" onClick={generateSteps}>Cook</button>
-            </div>
             <div className="input-container">
-                <input className="collection-name-input" type="text" placeholder="Collection Name" onChange={handleNameChange}/>
+                <p className="header">My Working Collection</p>
             </div>
-            {/* <div className="recipes-container">
-                <div className="recipe">
-                    <img className="chickpea-curry-img" src="https://img.hellofresh.com/c_fit,f_auto,fl_lossy,h_500,q_auto,w_1900/hellofresh_s3/image/vegan-chickpea-coconut-curry-d528b3ae.jpg" alt="Chickpea Curry" />
-                    <div>
-                        <h2 className="recipe-name">Chickpea Curry</h2>
-                        <p className="recipe-total-header">TOTAL</p>
-                        <p className="recipe-total-time">20 min</p>
-                        <div className="recipe-buttons">
-                            <button>Queue</button>
-                            <button>Add</button>
-                            <button>Like</button>
-                        </div>
-                    </div>
-                </div>      
-            </div> */}
-            <div className="recipes-container">
-                <div className="recipe">
-                    {/* <img className="chickpea-curry-img" src={mealImg} alt={mealName} /> */}
-                    {/* <div>
-                        <h2 className="recipe-name">{mealName}</h2>
-                        <p className="recipe-total-header">TOTAL</p>
-                        <p className="recipe-total-time">{mealTime} mins</p>
-                        
-                    </div> */}
-                </div>       
+
+            {/* {getMealInfo()} */}
+
+            {/* {
+                wc.map((mealId) => {
+                    if (mealId) {
+                        axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`)
+                        .then((response) => {
+                            if (response.status == 200) {
+                                console.log("MealID: " + mealId)
+                                const meal = response.data['meals'][0]
+                                console.log("Meal: " + meal)
+                                const title = meal['strMeal']
+                                const imgURL = meal['strMealThumb']
+
+                                return (
+                                    <div className="working-collection-recipes">
+                                        <RecipesCard title={title} imgURL={imgURL} username={username} mealId={mealId}/>
+                                    </div>
+                                )
+
+                            } else {
+                                console.log('Status flop')
+                            }
+                        })
+                    }
+                })
+            } */}
+
+            <div className="working-collection-recipes">
+                <RecipesCard title={"Minced Beef Pie"} imgURL={"https:\/\/www.themealdb.com\/images\/media\/meals\/xwutvy1511555540.jpg"} username={username} mealId={52876}/> 
+                <RecipesCard title={"French Onion Chicken with Roasted Carrots & Mashed Potatoes"} imgURL={"https:\/\/www.themealdb.com\/images\/media\/meals\/b5ft861583188991.jpg"} username={username} mealId={52996}/> 
+                <RecipesCard title={"Christmas Pudding Trifle"} imgURL={"https:\/\/www.themealdb.com\/images\/media\/meals\/r33cud1576791081.jpg"} username={username} mealId={52989}/> 
+                <RecipesCard title={"Osso Buco alla Milanese"} imgURL={"https:\/\/www.themealdb.com\/images\/media\/meals\/wwuqvt1487345467.jpg"} username={username} mealId={52810}/> 
             </div>
-            <div className="add-button-container">
-                <button className="add-button">Add Recipe</button>
+
+            <div className="bottom-buttons">
+                <div className="add-button-container">
+                    <button className="back-to-browse-button" onClick={navToBrowse}>Back to Browse</button>
+                </div>
+                <div className="sub-header-container">
+                    <button className="cook-button" onClick={generateSteps}>Cook</button>
+                </div>
             </div>
         </div>
     )

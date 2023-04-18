@@ -99,14 +99,18 @@ function LikedRecipes( {username} ) {
         <div>
             <NavBar username={username} setMyRecipes={true} setMyCollections={false} />
 
-            <h2>My Recipes</h2>
+            <h2 className="header-title">My Recipes</h2>
 
             {/* <div className="input-container">
                 <input className="saved-recipe-input" type="text" placeholder="Search" onChange={handleNameChange}/>
             </div> */}
 
+            <div className="add-button-container">
+                <button className="add-button" onClick={navToBrowse}>Browse more recipes!</button>
+            </div>
+
             {recipesLoaded && liked.length > 0 &&
-                    <div className="new-recipe-cards">
+                    <div className="my-liked-recipe-cards">
                         {listLoaded && list.length > 0 &&
                             (
                                 list.map((item) => ( 
@@ -152,11 +156,7 @@ function LikedRecipes( {username} ) {
             //         </div>
             //     </div> 
             // </div> */}
-            
-
-            <div className="add-button-container">
-                <button className="add-button" onClick={navToBrowse}>Add Recipe</button>
-            </div>
+        
         </div>
     )
 }
