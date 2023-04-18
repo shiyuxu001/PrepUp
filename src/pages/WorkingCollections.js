@@ -2,29 +2,23 @@ import { useState, useEffect } from 'react';
 import { useNavigate , useLocation } from 'react-router-dom'
 import '../styles/WorkingCollection.css';
 import NavBar from '../components/NavBar';
+
 import RecipesCard from '../components/RecipesCard';
 import axios from 'axios';
+
 
 function WorkingCollection({username}  ) {
     const [collectionName, setCollectionName] = useState('');
     const [key, setKey] = useState('')
-    const [wc, setWC] = useState([])
-    const [loaded, setLoaded] = useState(false)
 
-    
-    const location = useLocation();
-    // const username = location.state.username
-    // const mealID = location.state.mealId
-    // const mealName = location.state.mealName
-    // const mealTime = location.state.mealTime
-    // const mealImg = location.state.mealImg
+    const [wc, setWC] = useState([])
+
+    const [loaded, setLoaded] = useState(false)
+    const [infos, setInfos] = useState([])
+    const [infosloaded, setInfosLoaded] = useState(false)
+
     const databaseURL = "https://prepup-41491-default-rtdb.firebaseio.com/";
 
-
-    //get from firebase
-    // console.log(wc)
-
-    // console.log(username+ ',' + mealID + ',' + mealName + ',' + mealTime + ',' + mealImg)
     
     let navigate = useNavigate();
 
@@ -33,7 +27,6 @@ function WorkingCollection({username}  ) {
     }
 
     const getWC = () => {
-
         fetch(`${databaseURL}/${username}/.json`)
           .then((response) => {
               if (response.status == 200) {
@@ -50,13 +43,32 @@ function WorkingCollection({username}  ) {
                       .map((k) => response[k]);
                   const fetched = dataPoints[0]['wc'];
                   console.log('fetched working collection: ', fetched)
+
                   const current_wc = fetched.split(";")
                   setWC(current_wc)
+
               } else {
                   console.log('response :' , response)
                   console.log('response null flop')
               }
           }) 
+      }
+
+
+       const fetchMealInfo = () => {
+        let infos = []
+        console.log('wc in fetchMealInfo:', wc)
+        for(let i = 0; i < wc.length-1; i++){ //-1 for the empty string at the end
+            console.log('i:',i)
+            if(wc[i] != ''){
+                axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${wc[i]}`)
+                .then(response => {
+                    infos.push(response['data']['meals']['0'])
+                })
+            }
+        }
+       setInfos(infos)
+       setInfosLoaded(true)
       }
 
     const handleNameChange = (e) => {
@@ -97,16 +109,23 @@ function WorkingCollection({username}  ) {
     useEffect(() => {
         // initial load
         getWC();
-        setLoaded(true)
       }, []);
+
+    useEffect(() =>{
+        fetchMealInfo()
+        setLoaded(true)
+    }, [wc])
     
     return (
         <div>
             <NavBar username={username} setMyRecipes={false} setMyCollections={false} />
 
+
+
             <div className="input-container">
                 <p className="header">My Working Collection</p>
             </div>
+
 
             {/* {getMealInfo()} */}
 
@@ -151,6 +170,7 @@ function WorkingCollection({username}  ) {
                     <button className="cook-button" onClick={generateSteps}>Cook</button>
                 </div>
             </div>
+
         </div>
     )
 }

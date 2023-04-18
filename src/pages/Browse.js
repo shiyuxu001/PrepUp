@@ -105,9 +105,7 @@ function Browse( {name, username} ) {
                                
                                         />
                                     )) 
-                                ) 
-                                : 
-                                (
+                                ) : (
                                     <div className="loading-text">
                                         <p>loading...</p>
                                     </div>
