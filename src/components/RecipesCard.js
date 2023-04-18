@@ -15,6 +15,7 @@ function RecipesCard( {title, imgURL, username, mealId}) {
     let navigate = useNavigate();
     const [liked, setLiked] = useState()
     const [key, setKey] = useState('')
+    
 
     console.log('recipe name :', title)
 
