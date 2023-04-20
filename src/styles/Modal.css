@@ -79,4 +79,11 @@
     height: 25px;
 }
 
+#icon-card ion-icon{
+    display: block;
+    margin: 7px auto;
+    width: 25px;
+    height: 25px;
+}
+
 

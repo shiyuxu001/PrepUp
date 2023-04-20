@@ -291,7 +291,7 @@ function Login( {passUser, passName} ) {
                             }
                             <div className="input-container">
                                 <span className='icon'><ion-icon name="mail-outline"></ion-icon></span>
-                                <input className="input" type="text" placeholder="Email/Username" onChange={handleUserChange}/>
+                                <input className="input" type="text" placeholder="Username" onChange={handleUserChange}/>
                             </div>
                             <div className="input-container">
                                 <span className='icon'><ion-icon name="lock-closed-outline"></ion-icon></span>

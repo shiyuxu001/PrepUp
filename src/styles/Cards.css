@@ -17,7 +17,10 @@
 
 .recipe-card-title {
     text-align: center;
-    font-size: 1.2vw;
+    font-size: 1.3vw;
+    font-weight: 520;
+    font-family:  "wild_mango","Baskerville","Hoefler Text",Times,serif;
+
 }
 
 .new-recipe-card-img {
@@ -45,11 +48,30 @@
 }
 
 .recipe-card-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 3vw;
     height: 3vw;
-    margin-right: 0.5vw;
-    margin-left: 0.5vw;
+    /* margin-right: 0.5vw;
+    margin-left: 0.5vw; */
+    margin-right: 4px;
+    margin-left: 4px;
+    padding: 0% !important;
 }
+.recipe-icon-heart {
+    height: 62%;
+}
+.recipe-card-button ion-icon {
+    /* margin: auto;
+    justify-content: center;
+    align-items: center; */
+    border: 1px;
+    padding-top: 4px !important;
+    width: 1.7vw;
+    height: 1.7vw;
+    color: #000000;
+  }
 
 .category-card-container {
     display: flex;
@@ -73,6 +95,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family:  "wild_mango","Baskerville","Hoefler Text",Times,serif;
+    font-weight: 500 !important;
 }
 
 .queue-card{

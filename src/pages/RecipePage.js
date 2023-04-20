@@ -272,7 +272,7 @@ function RecipePage({username}) {
         }
         // console.log('ingredients: ', ingList)
         return (
-          <ul>
+          <ul id='ingredients'>
             {ingList.map(ingredient => (
               <li key={ingredient.id}>
                 <label>
@@ -282,6 +282,21 @@ function RecipePage({username}) {
             ))}
           </ul>
         )
+      }
+
+      function renderInstructions() {
+        const instructions = recipe[0].strInstructions.split("\n");
+        const steps = instructions.filter((instr) => instr.trim() !== "");
+      
+        return (
+          <ul style={{ listStylePosition: "outside" }}>
+            {steps.map((step, index) => (
+              <li key={index} style={{  marginBottom: "0.5em" }}>
+                <span>{step.trim()}</span>
+              </li>
+            ))}
+          </ul>
+        );
       }
 
 
@@ -297,34 +312,38 @@ function RecipePage({username}) {
         
        {recipeLoaded && recipe.length > 0 &&
         <div className='recipe-container'>
-          <div className='recipe-header'>
-            <img className="recipe-img" src={recipe[0]['strMealThumb']} alt={recipe[0]['strMeal']} />
-          </div>
+         
 
           <div className='recipe-sub-header'>
               <h1 className='rp-recipe-name'> {recipe[0]['strMeal']}</h1>
               {computeTotalTime()}
               <div className="recipe-card-button-container">
                   <Button className="recipe-card-button" onClick={navToWorkingCollections} variant='outline-light'>
-                      <img className="recipe-icon" src={QueueIcon} onClick={navToWorkingCollections}/>
+                      <img className="recipe-icon" src={QueueIcon} onClick={navToWorkingCollections}/> Add to Queue
                   </Button>
                   <Button className="recipe-card-button" onClick={navToSavedCollections} variant='outline-light'>
-                      <img className="recipe-icon" src={CollectionIcon} />
+                      <img className="recipe-icon" src={CollectionIcon}/>   Save to Collection
                   </Button>
                   <Button className="recipe-card-button" onClick={navToLikedRecipes} variant='outline-light'>
-                      <img className="recipe-icon" src={LikeIcon} />
+                      <img className="recipe-icon" src={LikeIcon} /> Like Recipe
                   </Button>
               </div>
           </div>
-  
-          <div className='recipe-ingredients'>
-            <h2 className='page-sub-header'>Ingredients</h2>
-            {renderIngredients()}
+        <div className='recipe-header'>
+            <img className="recipe-img" src={recipe[0]['strMealThumb']} alt={recipe[0]['strMeal']} />
           </div>
-  
-          <div className='recipe-steps'>
+          <div className='section-header' id='recipe-page'>
+            <h2 className='page-sub-header'>Ingredients</h2>
+          </div>
+           <div className='recipe-ingredients'>
+              {renderIngredients()}
+            </div>
+          <div className='section-header' id='recipe-page'>
             <h2 className='page-sub-header'>Instructions</h2>
-            <p> {recipe[0]['strInstructions']}</p>
+          </div>
+          <div className='recipe-steps'>
+            {/* <p> {recipe[0]['strInstructions']}</p> */}
+            {renderInstructions()}
           </div>
         </div>
         }

@@ -35,14 +35,15 @@ function BodyContent (username) {
                     </Col>
 
                     <Col id="icon-card">
-                        <img className="recipe-icon" src={CollectionIcon} alt="Collection Icon" title="Collection Icon"/>
+                        {/* <img className="recipe-icon" src={CollectionIcon} alt="Collection Icon" title="Collection Icon"/> */}
+                            <ion-icon name="bookmark-outline"></ion-icon>
                             <div className="icon-card-container">
                                 <p>Save multiple recipes under a meal name (i.e. 30-Minute Meal, Thanksgiving). <p>Find your Meals under <span className="link-button" id="help-icon-page">My Collections</span>.</p> </p>
                            </div>
                     </Col>
 
                     <Col id="icon-card">
-                        <img className="recipe-icon" src={LikeIcon} alt="Liked Recipes Icon" title="Liked Recipes Icon"/>
+                        <ion-icon name="heart-outline" aria-label="Liked Recipies"></ion-icon>
                             <div className="icon-card-container">
                                 <p>Like individual recipes to easily access them later.<p>Find your liked recipes under <span className="link-button" id="help-icon-page">My Recipes</span>.</p> 
                                 </p>                        

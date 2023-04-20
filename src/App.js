@@ -18,6 +18,7 @@ import HelpPage from './pages/Help'
 function App() {
   const [username, setUsername] = useState('');
   const [name, setName] = useState('');
+  const [helpPressed, setHelpPressed] = useState(false)
 
   useEffect(() => {
     const ioniconsScript = document.createElement('script');
@@ -42,7 +43,15 @@ function App() {
     <div className="App">
       <header className="App-header">      
       </header>
-      <div className='help-page' ><HelpPage username= {username}/></div>
+
+      {helpPressed ?
+         <div className='help-page' ><HelpPage username= {username}/></div>
+         : ''
+      
+    }
+    <div className='help-page' ><HelpPage username= {username}/></div>
+
+     
 
 
         <Router>

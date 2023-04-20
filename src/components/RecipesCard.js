@@ -10,6 +10,8 @@ import Col from 'react-bootstrap/Col';
 import QueueIcon from '../components/queue-svgrepo-com.svg';
 import CollectionIcon from '../components/collection-tag-svgrepo-com.svg';
 import LikeIcon from '../components/like-svgrepo-com.svg';
+import LikeIcon2 from '../components/heart-outline.svg';
+
 
 
 
@@ -123,7 +125,9 @@ function RecipesCard( {title, imgURL, username, mealId}) {
                                     <img className="recipe-icon" src={CollectionIcon} />
                                 </Button>
                                 <Button className="recipe-card-button" onClick={navToLikedRecipes} variant='outline-light'>
-                                    <img className="recipe-icon" src={LikeIcon} />
+                                    <img className="recipe-icon-heart" src={LikeIcon2} />
+                                    
+                                    {/* <ion-icon name="heart-outline" aria-label="Liked Recipies"></ion-icon> */}
                                 </Button>
                             </div>
                         </Row>
