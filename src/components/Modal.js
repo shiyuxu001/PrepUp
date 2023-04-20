@@ -48,8 +48,6 @@ function BodyContent (username) {
                                 </p>                        
                             </div>
                     </Col>
-                    
-
                 </Row>
                 </div>
             </div>

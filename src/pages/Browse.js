@@ -78,7 +78,7 @@ function Browse( {name, username} ) {
             <NavBar username={username} setMyRecipes={false} setMyCollections={false} />
 
             <img src={ChefImg} alt="Chef" className="chef-image" />
-            <p className="greeting-header">What are we cooking up today, Chef {username}?</p>
+            <p className="greeting-header">What are we cooking up today, Chef {name}?</p>
 
 
             <div className="search-box-browse">

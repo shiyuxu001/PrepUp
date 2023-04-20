@@ -18,6 +18,7 @@
 }
 
 .recipe-container {
+    /* position: relative; */
     margin: 0 20px;
     /* width: calc(100% - 40px); */
     align-items: center;
@@ -26,10 +27,10 @@
     border-radius: 20px;
 }
 
-.recipes-container div div{
+/* .recipes-container div div{
     background-color: transparent;
     margin: 30px;
-}
+} */
 
 .recipe-header {
     height: 50%;
@@ -38,6 +39,7 @@
 }
 
 .recipe-sub-header {
+    /* position: absolute; */
     width: 40vw;
     height: 15vw;
     position: absolute;
@@ -54,6 +56,7 @@
 }
 
 .rp-recipe-name {
+    /* position: fixed; */
     font-size: 3vw;
     color: white;
 }
