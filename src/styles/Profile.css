@@ -1,6 +1,37 @@
-.back-button {
-    margin-left: 50px;
-    margin-top: 50px;
+.profile-container {
+    margin: auto 35px;
+
+}
+.back-button#profile {
+    /* margin-left: 50px; */
+    margin-top: 5px;
+    margin-bottom: 30px;
+    margin-right: 0 !important; 
+    border-radius: 10px;
+    width: 30%;
+    height: 10%;
+    background-color: #4fa43af8
+
+
+}
+
+.row {
+    display: flex;
+    flex-wrap: nowrap;
+
+  }
+
+.col-5#user-img {
+    justify-content: center;
+    background-color: #D9D9D9;
+    border-radius: 5px;
+}
+
+.col-7#user-info {
+    justify-content: center;
+    background-color: #ece9e9;
+    border-radius: 5px;
+
 }
 
 .container {
@@ -26,28 +57,61 @@
 .profile-name {
     text-align: center;
     margin-top: 30px;
+
 }
 
+.upload-picture-btn {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 5px;
+}
+.upload-picture{
+    background-color: #c2deb361;
+    margin: 15px 0px;
+}
+
+.file-upload {
+    margin-bottom: 30px;
+}
+
+.exp-lvl-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25%;
+
+}
 .profile-setting {
     display: flex;
     width: 700px;
     height: 75px;
-    background-color: #D9D9D9;
+    background-color: #d9d9d9;
     border-radius: 20px;
 }
 
 .setting-header {
     font-size: 18px;
     font-weight: bold;
-    margin-left: 30px;
+    margin-left: 12px;
     margin-top: 22px;
+    margin-right: 12px;
+    padding: 10px;
 }
 
 .setting {
-    width: 50px;
+    width: auto;
     height: 25px;
     background-color: white;
     border-radius: 20px;
     margin-top: 22px;
-    margin-left: 350px;
+    display: flex;
+    align-items: center;
+    /* justify-content: flex-end; */
+    padding-right: 12px;
+    margin-left: 45%;
+    padding-left: 12px;
+}
+
+.exp-btn{
+    margin: 15%;
 }

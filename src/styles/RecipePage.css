@@ -35,6 +35,12 @@
     position: relative;
     overflow: hidden;
 }
+
+.recipe-sub-header-container {
+    background: #4bc12e2b;
+    border-radius: 20px;
+
+}
  .recipe-sub-header {
     margin-top: 20px;
     padding-bottom: 20px;
@@ -43,8 +49,8 @@
     border: 2px solid #45C126;
     border-bottom: none;
     border-radius: 20px;
-    backdrop-filter: blur(20px);
-    background: #4bc12e2b;
+    backdrop-filter: blur(30px);
+    /* background: #4bc12e2b; */
 
 }
 

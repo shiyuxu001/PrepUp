@@ -313,8 +313,8 @@ function RecipePage({username}) {
        {recipeLoaded && recipe.length > 0 &&
         <div className='recipe-container'>
          
-
-          <div className='recipe-sub-header'>
+        <div className='recipe-sub-header-container'>
+        <div className='recipe-sub-header'>
               <h1 className='rp-recipe-name'> {recipe[0]['strMeal']}</h1>
               {computeTotalTime()}
               <div className="recipe-card-button-container">
@@ -329,6 +329,9 @@ function RecipePage({username}) {
                   </Button>
               </div>
           </div>
+
+        </div>
+         
         <div className='recipe-header'>
             <img className="recipe-img" src={recipe[0]['strMealThumb']} alt={recipe[0]['strMeal']} />
           </div>
