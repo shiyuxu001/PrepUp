@@ -23,19 +23,12 @@
     font-size: 24px !important;
 }
 .recipe-container {
-    /* position: relative; */
     margin: 0 45px;
-    /* width: calc(100% - 40px); */
     align-items: center;
     justify-content: center;
-    /* background-color: #F8F0E3; */
     border-radius: 20px;
 }
 
-/* .recipes-container div div{
-    background-color: transparent;
-    margin: 30px;
-} */
 
 .recipe-header {
     height: 40%;
@@ -43,7 +36,6 @@
     overflow: hidden;
 }
  .recipe-sub-header {
-    /* position: absolute; */
     margin-top: 20px;
     padding-bottom: 20px;
     font-family:  "wild_mango","Baskerville","Hoefler Text",Times,serif;
@@ -55,27 +47,8 @@
     background: #4bc12e2b;
 
 }
-/* .recipe-sub-header {
-    position: absolute;
-    width: 40vw;
-    height: 15vw;
-    position: absolute;
-    top: 25vw;
-    bottom: 0;
-    left: 55vw;
-    right: 0;
-    padding: 1.5vw;
-    background: transparent;
-    backdrop-filter: blur(20px);
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-    border: 2px solid rgba(255, 255, 255, 0.872);
-    border-radius: 20px;
-    font-family:  "wild_mango","Baskerville","Hoefler Text",Times,serif;
-
-} */
 
 .rp-recipe-name {
-    /* position: fixed; */
     display: flex;
     justify-content: center;
     font-size: 40px;
@@ -101,33 +74,20 @@
 
 .recipe-ingredients {
     margin-bottom: 5vw;
-    /* margin-top: 0; */
     text-align: left;
     display: flex;
     flex-direction: column;
-    /* border: 1px solid black; */
     border-radius: 10px;
-    /* width: 30vw; */
     padding: 1vw;
     background-color: #bec6bc51;
 }
 
 .recipe-steps {
-    /* margin: 5vw;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    border: 1px solid black;
-    width: 80vw;
-    padding: 1vw; */
     margin-bottom: 5vw;
     text-align: left;
     display: flex;
     flex-direction: column;
     border-radius: 10px;
-    /* width: 30vw; */
     padding: 1vw;
     background-color: #bec6bc51;
 
@@ -181,9 +141,6 @@ input[type="checkbox"] {
     display: flex;
     flex-wrap: wrap;
 }
-.recipe-card-button-container {
-
-}
 .recipe-card-button-container .recipe-card-button {
     color: black;
     border-color: green;
@@ -194,7 +151,7 @@ input[type="checkbox"] {
 }
 
 .recipe-card-button-container .recipe-card-button:hover {
-    background-color: #45C126; /* Change this to the desired hover color */
-    color: #FFF; /* Change this to the desired hover text color */
-    /* Add any other styles you want to apply when the button is hovered over */
+    background-color: #45C126;
+    color: #FFF; 
+   
   }
