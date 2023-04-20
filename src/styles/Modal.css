@@ -1,0 +1,82 @@
+
+.modal-background {
+    position: absolute !important;
+    width: 100vw ;
+    height: 100vh;
+    z-index: 999;
+    background-color: transparent;
+    backdrop-filter: blur(20px);
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+}
+
+.modal-container{
+    position: relative;
+    width: 75%;
+    border-radius: 12px;
+    background-color: rgb(196, 228, 181, 0.35);
+    box-shadow: (0,0,0, 0.35) 0px 5px 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    overflow-y: auto;
+    overflow: auto; /* Enable vertical scrolling when content overflows */
+    margin-top: 150px;
+
+
+}
+.modal-container .title {
+    display: inline-block;
+    color: #4fa43af8;
+}
+
+.modal-close-button {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.modal-close-button button {
+    background-color: transparent;
+    border: none;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.modal-container .body {
+    flex: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.app-description {
+    text-align: left;
+}
+
+.section-header#help-section {
+    margin-left: 0%;
+}
+
+#help-icon-page{
+    color: #2c5f1ff8;
+    font-style: italic;
+}
+
+#icon-card {
+    border: 0.5px solid rgb(169, 169, 178);
+    border-radius: 5px;
+    margin: 11px;
+
+}
+
+#icon-card img{
+    display: block;
+    margin: 7px auto;
+    width: 25px;
+    height: 25px;
+}
+
+

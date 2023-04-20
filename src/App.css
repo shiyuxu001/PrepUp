@@ -1,6 +1,22 @@
 .App {
+  /* position: relative; */
   text-align: center;
   color: #000;
   background-color: #fff;
   font-family: Agrandir, sans-serif;
 }
+
+.help-page {
+  position: absolute;
+}
+
+
+
+
+
+
+
+
+
+
+

@@ -20,14 +20,13 @@ function CatCards({categoryName, imgURL, username}) {
             <Card className="category-card" onClick = {navToCategoryPage}>                
                 <Row noGutters>
                     <Col sm={4} md={4}>
-                        <img className='recipe-card-img' variant='bottom' src={imgURL} />
+                        <img className='recipe-card-img' variant='bottom' src={imgURL} alt={categoryName} title={categoryName}/>
                     </Col>
                     <Col className="category-title" sm={8} md={8}>
                         <h2>{categoryName}</h2>
                     </Col>
                 </Row>
-            </Card>
-           
+            </Card>     
         </div>
    
     

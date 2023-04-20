@@ -12,6 +12,7 @@ import Profile from './pages/Profile';
 import Success from './pages/Success';
 import Login from './pages/Login';
 import CategoryPage from './pages/CategoryPage';
+import HelpPage from './pages/Help'
 
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
     <div className="App">
       <header className="App-header">      
       </header>
+      <div className='help-page' ><HelpPage username= {username}/></div>
 
 
         <Router>
@@ -57,10 +59,11 @@ function App() {
             <Route path={`/PrepUp/${username}/savedCollections`} element={<SavedCollections username={username} />} />
           </Routes>
         </Router>
-
-
-      {/* </header> */}
+        {/* <HelpPage/> */}
     </div>
+    
+            
+
   );
 }
 

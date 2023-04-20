@@ -111,7 +111,7 @@ function RecipesCard( {title, imgURL, username, mealId}) {
         <>
             <Card className='recipe-card' onClick={navToRecipePage}>
                 <Row>
-                    <img className="new-recipe-card-img" variant='left' src={imgURL}  />
+                    <img className="new-recipe-card-img" variant='left' src={imgURL} alt={title} title={title} />
                     <p className="recipe-card-title">{title}</p>
                     <Col>
                         <Row>

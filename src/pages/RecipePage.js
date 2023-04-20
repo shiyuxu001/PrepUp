@@ -38,6 +38,13 @@ function RecipePage({username}) {
       // navigate(`/PrepUp/${username}/likedRecipes`, {username: username});
   }
 
+  function goBack() {
+    console.log(window.location.href);
+    navigate(-1);
+    console.log(window.location.href);
+
+  }
+
 
   const databaseURL = "https://prepup-41491-default-rtdb.firebaseio.com/";
 
@@ -287,7 +294,7 @@ function RecipePage({username}) {
       <div className="App">
 
         <NavBar username={username} setMyRecipes={false} setMyCollections={false} />
-  
+        
        {recipeLoaded && recipe.length > 0 &&
         <div className='recipe-container'>
           <div className='recipe-header'>

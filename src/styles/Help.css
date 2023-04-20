@@ -1,0 +1,43 @@
+.parent-container {
+  width: 100vw;
+  height: 100vh;
+}
+.help-button-container {
+    position: fixed;
+    width: 60px; 
+    height: 50px;
+    margin: 10px;
+    bottom: 7px;
+    right: 1px;
+    transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition-property: opacity, top, bottom;
+  }
+      /* transition-duration: 250ms; */
+
+.floating-button {
+    position: absolute;
+    right: 0; 
+    bottom: 0; 
+    color: #b3b6b3;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    padding-left: 3px;
+  }
+
+  /* position: absolute; change position to absolute */
+  
+  /* .floating-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 30px;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+  } */

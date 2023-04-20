@@ -144,7 +144,7 @@ function Login( {passUser, passName} ) {
     return (
         <div className="login-body w-full h-full">
            <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script> 
+<script noModule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script> 
             <div className="wrapper">
                 <div className="form-box login-signup">
                     
