@@ -53,19 +53,17 @@
     align-items: center;
     width: 3vw;
     height: 3vw;
-    /* margin-right: 0.5vw;
-    margin-left: 0.5vw; */
-    margin-right: 4px;
-    margin-left: 4px;
     padding: 0% !important;
+    border-color: green !important;
+}
+
+.recipe-card-button:hover {
+    background-color: #4bb72f37;
 }
 .recipe-icon-heart {
     height: 62%;
 }
 .recipe-card-button ion-icon {
-    /* margin: auto;
-    justify-content: center;
-    align-items: center; */
     border: 1px;
     padding-top: 4px !important;
     width: 1.7vw;

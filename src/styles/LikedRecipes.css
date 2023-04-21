@@ -13,7 +13,19 @@
 }
 
 .header-title {
-    font-size: 3vw;
+    font-size: 5vw !important;
+    text-align: center;
+    font-family: "wild_mango","Baskerville","Hoefler Text",Times,serif;
+    padding-bottom: 10px;
+    border-bottom: solid; 
+    border-color: #4bb72f37;
+
+}
+
+.no-recipes {
+    margin-top: 10%;
+    font-family: "wild_mango","Baskerville","Hoefler Text",Times,serif;
+
 }
 
 .app-header button {
@@ -86,4 +98,11 @@
     margin: 2vw;
     margin-top: 3vw;
     /* z-index: 9999; */
+}
+
+.add-button {
+    width: 80%;
+    border-radius: 20px;
+    border-color: green;
+    background-color: #4bb72f37;
 }

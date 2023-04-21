@@ -128,7 +128,10 @@ function LikedRecipes( {username} ) {
 
 
                 {recipesLoaded && liked.length == 0 &&
-                    <h1>No Liked Recipes</h1>
+                    <div className='no-recipes'>
+                        <h1 >No Liked Recipes</h1> 
+                    </div>
+                    
                 }
              {/* <div className='liked-recipe-container'>
             //     <div className='recipe-img-container'>

@@ -14,10 +14,9 @@
 }
 
 .greeting-header {
-    font-size: 2vw;
+    font-size: 4vw;
     margin-top: 50px;
     margin-bottom: 50px;
-    /* margin-left: 10%; */
     text-align: center;
     font-family: "wild_mango","Baskerville","Hoefler Text",Times,serif;
     color: #45C126;
@@ -30,7 +29,7 @@
     margin-bottom: 15px;
     color: #45C126;
     font-family: "wild_mango","Baskerville","Hoefler Text",Times,serif;
-    font-weight: 650;
+    font-weight: 600;
     border-bottom: 1.7px solid #adb1b4;
 }
 

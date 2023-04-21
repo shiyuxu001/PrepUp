@@ -117,19 +117,26 @@ function RecipesCard( {title, imgURL, username, mealId}) {
                     <p className="recipe-card-title">{title}</p>
                     <Col>
                         <Row>
-                            <div className="recipe-card-button-container">
-                                <Button className="recipe-card-button" onClick={navToWorkingCollections} variant='outline-light'>
+                            {/* <div className="recipe-card-button-container"> */}
+                                <Col xs={4}>
+                                    <Button className="recipe-card-button" onClick={navToWorkingCollections} variant='outline-light'>
                                     <img className="recipe-icon" src={QueueIcon} onClick={navToWorkingCollections}/>
-                                </Button>
-                                <Button className="recipe-card-button" onClick={navToSavedCollections} variant='outline-light'>
+                                    </Button>
+                                </Col>
+                                <Col xs={4}>
+                                    <Button className="recipe-card-button" onClick={navToSavedCollections} variant='outline-light'>
                                     <img className="recipe-icon" src={CollectionIcon} />
-                                </Button>
+                                    </Button>
+                                </Col>
+                                <Col xs={4}>
                                 <Button className="recipe-card-button" onClick={navToLikedRecipes} variant='outline-light'>
                                     <img className="recipe-icon-heart" src={LikeIcon2} />
                                     
                                     {/* <ion-icon name="heart-outline" aria-label="Liked Recipies"></ion-icon> */}
                                 </Button>
-                            </div>
+                                </Col>
+                                
+                            {/* </div> */}
                         </Row>
                     </Col>
                 </Row>

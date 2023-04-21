@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import NavBar from "../components/NavBar";
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import '../styles/SavedCollection.css';
 
 function SavedCollections( {username} ) {
@@ -17,7 +19,7 @@ function SavedCollections( {username} ) {
             <NavBar username={username} setMyRecipes={false} setMyCollections={true} />
 
             <div className="sub-header-container">
-                <h2 className="collection-page-title">My Collections</h2>
+                <h2 className="header-title">My Collections</h2>
             </div>
 {/* 
             <div className="input-container">
@@ -28,7 +30,10 @@ function SavedCollections( {username} ) {
                 <div className="collection-container">
                     <div className="collection">
                         <img className="collection-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkMfn_L7UIPDX1rlx_J_f0ypeTtnuZSd73CQ&usqp=CAU" alt="30 minute Dinner"/>
+                        {/* <Col> */}
                         <h2 className="collection-name">30min Dinner</h2>
+                        {/* </Col> */}
+                        
                     </div>    
                 </div>
                 <div className="collection-container">
