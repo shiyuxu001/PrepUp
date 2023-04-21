@@ -2,8 +2,8 @@
     margin: auto 35px;
 
 }
+
 .back-button#profile {
-    /* margin-left: 50px; */
     margin-top: 5px;
     margin-bottom: 30px;
     margin-right: 0 !important; 
@@ -11,8 +11,6 @@
     width: 30%;
     height: 10%;
     background-color: #4fa43af8
-
-
 }
 
 .row {
@@ -24,7 +22,7 @@
 .col-5#user-img {
     justify-content: center;
     background-color: #D9D9D9;
-    border-radius: 5px;
+    border-radius: 5px; 
 }
 
 .col-7#user-info {
@@ -34,6 +32,26 @@
 
 }
 
+.col-9#exp-ttl{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    border-right: solid;
+}
+
+.col-3#exp-lvl {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+
+}
+
+.col-4#exp-btn{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    padding: 0;
+}
 .container {
     display: flex;
     justify-content: center;
@@ -64,6 +82,12 @@
     margin-top: 30px;
     margin-bottom: 30px;
     border-radius: 5px;
+    width: 60%;
+    color: black;
+    border-color: green !important;
+    width: auto;
+    border-radius: 10px;
+    background-color: transparent;
 }
 .upload-picture{
     background-color: #c2deb361;
@@ -99,19 +123,38 @@
 }
 
 .setting {
-    width: auto;
+    /* width: auto;
     height: 25px;
     background-color: white;
     border-radius: 20px;
     margin-top: 22px;
     display: flex;
     align-items: center;
-    /* justify-content: flex-end; */
     padding-right: 12px;
     margin-left: 45%;
-    padding-left: 12px;
+    padding-left: 12px; */
+    display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: auto;
+  height: 25px;
+  background-color: white;
+  border-radius: 20px;
+  margin-top: 22px;
+  padding-right: 12px;
+  margin-left: 45%;
+  padding-left: 12px;
 }
 
 .exp-btn{
-    margin: 15%;
+    display: flex;
+    margin: 3%;
+    color: black;
+    border-color: green;
+    width: auto;
+    padding: 1px 15px !important;
+    border-radius: 10px;
+    background-color: transparent;
+
 }
+

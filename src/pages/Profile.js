@@ -181,19 +181,27 @@ function Profile({username}) {
             <div className='profile-container'>
             <Row>
                 <Col xs={5} id='user-img'>
-                    
-                    <h1 className="profile-name">{name}</h1>
+                    <Row>
+                        <h1 className="profile-name">{name}</h1>
+                    </Row>
+                    <Row>
                     <div className="container">
                         <div className="profile-pic" >
                             <div>
                             <img class="pic-resize" src={image} alt={name} Profile picture/>
                             </div>
                         </div>
-                    </div>
-
-                    <button className='upload-picture-btn' onClick={upload}>
+                    </div> 
+                    </Row>
+                    <Row>
+                        <Col>
+                        <button className='upload-picture-btn' onClick={upload}>
                             Upload Profile Picture
                     </button>
+                        </Col>
+                    </Row>
+
+                    
 
                     {uploadProfileSelected ? 
                         <div className='upload-picture'>
@@ -210,15 +218,21 @@ function Profile({username}) {
                 <Col xs={7} id='user-info'>
                     <div className="exp-lvl-container">
                         <div className="profile-setting">
-                            <p className="setting-header">Experience level</p>
-                            <div className="setting">
+                            <Col xs={9} id="exp-ttl">
+                             <p className="setting-header">Experience level</p>
+                            </Col>
+
+                            <Col xs={3} id="exp-lvl">
                                 {exp}
-                            </div>
+                            </Col>
                         </div>
+
                     </div>
-                    <button type="submit" className='exp-btn' onClick={() => { putExp('Novice') }}>Novice</button>
-                    <button type="submit" className='exp-btn' onClick={() => { putExp('Advanced') }}>Advanced</button>
-                    <button type="submit" className='exp-btn' onClick={() => { putExp('Expert') }}>Expert</button>
+                    <Row>
+                        <Col xs={4} id="exp-btn"><button type="submit" className='exp-btn' onClick={() => { putExp('Novice') }}>Novice</button></Col>
+                        <Col xs={4} id="exp-btn"><button type="submit" className='exp-btn' onClick={() => { putExp('Advanced') }}>Advanced</button></Col>
+                        <Col xs={4} id="exp-btn"><button type="submit" className='exp-btn' onClick={() => { putExp('Expert') }}>Expert</button></Col>
+                    </Row>
                 </Col>          
             </Row>
 
