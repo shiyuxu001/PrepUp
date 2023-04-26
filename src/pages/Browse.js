@@ -108,6 +108,7 @@ function Browse( {name, username} ) {
                                         imgURL = {item['meals'][0]['strMealThumb']}
                                         username= {username} 
                                         mealId = {item['meals'][0]['idMeal']} 
+                                        
                                
                                         />
                                     )) 

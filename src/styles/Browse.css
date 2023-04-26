@@ -37,10 +37,19 @@
     margin-left: 8%;
     margin-right: 8%;
     margin-bottom: 5%;
+    width: 100%;
+    
+    
 }
 
 .new-recipe-cards {
-    display: flex;
+    padding-left: 30%;
+    padding-right: 50;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    justify-items: center;
+    justify-self: center;
     overflow-x: auto;
     overflow-y: hidden;
 }
