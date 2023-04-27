@@ -34,24 +34,20 @@
 }
 
 .new-recipe-cards-container {
+    width:100%;
     margin-left: 8%;
-    margin-right: 8%;
+    margin-right: 10%;
     margin-bottom: 5%;
-    width: 100%;
-    
-    
+    height:auto;
+    overflow-x: scroll;
+    position: relative;
+
 }
 
 .new-recipe-cards {
-    padding-left: 30%;
-    padding-right: 50;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-    justify-items: center;
-    justify-self: center;
-    overflow-x: auto;
-    overflow-y: hidden;
+    width:1800px;
+    height: 100%;
+    display: flex;
 }
 
 
@@ -200,4 +196,8 @@
     text-align: left;
     margin-left: 5%;
     color: #aeaeae;
+}
+
+.outer-class{
+    padding:10px;
 }

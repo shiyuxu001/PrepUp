@@ -6,6 +6,7 @@ import ChefImg from "../components/chef.png";
 import axios from 'axios';
 import RecipesCard from '../components/RecipesCard';
 import CatCards from '../components/catCards';
+import { Row, Col } from 'react-bootstrap';
 
 
 function Browse( {name, username} ) {
@@ -93,10 +94,11 @@ function Browse( {name, username} ) {
                 <div>
                     <h3 className="section-header">Newest Recipes</h3>
                     {console.log('loading recipes in return()')}
-                    {console.log(initRec)}
-                    {console.log(recipesLoaded)}
+                    {/* {console.log(initRec)}
+                    {console.log(recipesLoaded)} */}
 
                     {/* Make this into a carousel */}
+                    <div className="outer-class">
                     <div className="new-recipe-cards-container">
                         <div className="new-recipe-cards">
                             {recipesLoaded ? 
@@ -120,6 +122,9 @@ function Browse( {name, username} ) {
                             }   
                         </div>
                     </div>
+
+                    </div>
+                    
 
                     <h3 className="section-header">Top Categories</h3>
                     {console.log('loading categories')}

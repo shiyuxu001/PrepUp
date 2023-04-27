@@ -1,6 +1,6 @@
 .recipe-card {
-    width: 500px;
-    height: 500px;
+    min-width: 500px;
+    max-height: 600px;
     padding: 1vw;
     margin: 20px;
     backdrop-filter: blur(20px);
@@ -8,6 +8,7 @@
     border: 2px solid rgba(255, 255, 255, 0.872);
     border-radius: 20px;
     background-color: #c9c9c9 !important;
+    
 }
 
 .recipe-card card {
@@ -17,10 +18,9 @@
 
 .recipe-card-title {
     text-align: center;
-    font-size: 1.3vw;
+    font-size: 17px;
     font-weight: 520;
     font-family:  "wild_mango","Baskerville","Hoefler Text",Times,serif;
-
 }
 
 .new-recipe-card-img {
