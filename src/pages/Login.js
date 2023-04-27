@@ -228,6 +228,26 @@ function Login( {passUser, passName} ) {
         })
     }
 
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+          // Perform login action
+          checkLoginData()
+          console.log('Logging in...');
+        } 
+
+        // handleSignUpSubmit()
+      };
+
+      const handleSignUpKeyPress = (event) => {
+        if (event.key === 'Enter') {
+          // Perform sugn up action
+          handleSignUpSubmit()
+          console.log('Logging in...');
+        } 
+
+        // 
+      };
+
     const handleRedirect = () => {
         setSignUp(!signup);
         setNewUser('');
@@ -257,20 +277,20 @@ function Login( {passUser, passName} ) {
                             } 
                             <div className="input-container">
                                 <span className='icon'><ion-icon name="mail-outline"></ion-icon></span>
-                                <input className="input" type="text" placeholder="Email" onChange={handleSignUpEmailChange} value={newUserEmail}/>
+                                <input className="input" type="text" placeholder="Email" onChange={handleSignUpEmailChange} value={newUserEmail} onKeyPress={handleSignUpKeyPress}/>
                             </div>
                             <div className="input-container">
                                 <span className='icon'><ion-icon name="people-outline"></ion-icon></span>
-                                <input className="input" type="text" placeholder="Create username" onChange={handleSignUpUserChange} value={newUser}/>
+                                <input className="input" type="text" placeholder="Create username" onChange={handleSignUpUserChange} value={newUser} onKeyPress={handleSignUpKeyPress}/>
                             </div>
                             <div className="input-container">
                                 <span className='icon'><ion-icon name="person-outline"></ion-icon></span>
-                                <input className="input" type="text" placeholder="Your Name" onChange={handleNameChange} value={name}/>
+                                <input className="input" type="text" placeholder="Your Name" onChange={handleNameChange} value={name} onKeyPress={handleSignUpKeyPress}/>
                             </div>
                            
                             <div className="input-container">
                                 <span className='icon'><ion-icon name="lock-closed-outline"></ion-icon></span>
-                                <input className="input" type="password" placeholder="Create password" onChange={handleSignUpPassChange} value={newPass}/>
+                                <input className="input" type="password" placeholder="Create password" onChange={handleSignUpPassChange} value={newPass} onKeyPress={handleSignUpKeyPress}/>
                             </div>
                             <div className="login-signup">
                                 <p>Already have an Account? <button className="link-button" onClick={handleRedirect}>Log in</button></p>
@@ -289,13 +309,14 @@ function Login( {passUser, passName} ) {
                                     <p className="invalid-login">Username or password is invalid</p>
                                 </div>
                             }
+                          
                             <div className="input-container">
                                 <span className='icon'><ion-icon name="mail-outline"></ion-icon></span>
-                                <input className="input" type="text" placeholder="Username" onChange={handleUserChange}/>
+                                <input className="input" type="text" placeholder="Username" onChange={handleUserChange} onKeyPress={handleKeyPress}/>
                             </div>
                             <div className="input-container">
                                 <span className='icon'><ion-icon name="lock-closed-outline"></ion-icon></span>
-                                <input className="input" type="password" placeholder="Password" onChange={handlePassChange}/>
+                                <input className="input" type="password" placeholder="Password" onChange={handlePassChange} onKeyPress={handleKeyPress}/>
                             </div>
                             <div className="login-signup">
                                 <p>Don't have an Account? <button className="link-button" onClick={handleRedirect}>Sign Up!</button></p>
