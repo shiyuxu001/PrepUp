@@ -113,3 +113,9 @@
     overflow-x: scroll;
     position: relative;
 }
+
+.add-button#cook{
+    background-color: #4AA02C;
+    width: auto !important;
+    border-radius: 10px;
+}

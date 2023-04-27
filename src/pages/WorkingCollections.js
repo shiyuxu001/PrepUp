@@ -121,10 +121,12 @@ function WorkingCollection({username}  ) {
         <div>
             <NavBar username={username} setMyRecipes={false} setMyCollections={false} />
 
+            <div className="sub-header-container">
+                <h2 className="header-title">My Working Collection</h2>
+            </div>
 
-
-            <div className="input-container">
-                <p className="header">My Working Collection</p>
+            <div className="add-button-container">
+                <button className="add-button" onClick={navToBrowse}>Browse more recipes!</button>
             </div>
 
 
@@ -167,11 +169,9 @@ function WorkingCollection({username}  ) {
             
 
             <div className="bottom-buttons">
-                <div className="add-button-container">
-                    <button className="back-to-browse-button" onClick={navToBrowse}>Back to Browse</button>
-                </div>
+                
                 <div className="sub-header-container">
-                    <button className="cook-button" onClick={generateSteps}>Cook</button>
+                     <button className="add-button" id="cook" onClick={generateSteps}>Cook</button>
                 </div>
             </div>
 
