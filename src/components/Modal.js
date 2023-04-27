@@ -4,7 +4,8 @@ import {Row, Col} from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom'
 
 import '../styles/Modal.css'
-import QueueIcon from '../components/queue-svgrepo-com.svg';
+// import QueueIcon from '../components/queue-svgrepo-com.svg';
+import AlbumIcon from '../components/albums-outline.svg'
 import CollectionIcon from '../components/collection-tag-svgrepo-com.svg';
 import LikeIcon from '../components/like-svgrepo-com.svg';
 
@@ -28,7 +29,7 @@ function BodyContent (username) {
                 <div id= 'icon-description'>
                 <Row>
                     <Col id="icon-card">
-                        <img className="recipe-icon" src={QueueIcon} alt="Queue Icon" title="Queue Icon" />
+                        <img className="recipe-icon" src={AlbumIcon} alt="Queue Icon" title="Queue Icon" />
                             <div className="icon-card-container">
                                 <p>The working queus is a collection of recipes you are creating a step-by-step guide for preparing your meal.</p>
                             </div>
