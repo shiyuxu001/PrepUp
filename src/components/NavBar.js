@@ -42,7 +42,7 @@ function NavBar( {username, setMyRecipes, setMyCollections, setUserProfile} ) {
             <Navbar.Brand className='mx-auto' href="#">
               <img
                 src={logo}
-                style={{ 'margin-left' : '50px'}}
+                // style={{ 'margin-left' : '50px'}}
                 height="80"
                 // className="d-inline-block align-top"
                 alt="Logo"

@@ -14,7 +14,7 @@
 }
 
 .greeting-header {
-    font-size: 4vw;
+    font-size: 25px;   
     margin-top: 50px;
     margin-bottom: 50px;
     text-align: center;
@@ -34,17 +34,21 @@
 }
 
 .new-recipe-cards-container {
-    margin-left: 8%;
-    margin-right: 8%;
+    /* margin-left: 8%;
+    margin-right: 8%; */
     margin-bottom: 5%;
     width: 100%;
+    justify-items: center;
     
     
 }
 
 .new-recipe-cards {
-    padding-left: 30%;
-    padding-right: 50;
+    /* padding-left: 30%; */
+    /* padding-right: 50; */
+    margin-right: 7.4%;
+    margin-left: 7.4%;
+    margin-bottom: 7.4%;
     justify-content: center;
     align-content: center;
     align-items: center;
