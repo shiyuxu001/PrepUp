@@ -20,13 +20,23 @@ function Browse( {name, username} ) {
     const [recipesLoaded, setRecipesLoaded] = useState(false)
     let navigate = useNavigate();
 
+    // const searchMeal=(evt)=>{
+    //     if (evt.key == "Enter")
+    //     {
+    //         fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${search}`).then(res=>res.json()).then(data=> {setRecipes(data.meals);console.log(data.meals)})
+    //     }
+
+    //     setIsActivelySearching(true)
+    //     setHasLoaded(true);
+    // }
+
     const searchMeal=(evt)=>{
         if (evt.key == "Enter")
         {
             fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${search}`).then(res=>res.json()).then(data=> {setRecipes(data.meals);console.log(data.meals)})
-        }
+            setIsActivelySearching(true)
 
-        setIsActivelySearching(true)
+        }
         setHasLoaded(true);
     }
     

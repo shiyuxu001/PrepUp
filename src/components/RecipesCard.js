@@ -78,29 +78,63 @@ function RecipesCard( {title, imgURL, username, mealId}) {
 
     const addToLiked = () => {
         const likedRep = liked + ' ' + mealId
-        console.log('adding to liked')
-        const dict = {
-            likedRecipes: likedRep
-        }
-        fetch(`${databaseURL}/${username}/${key}/.json`, {
-            method: "PATCH",
-            body: JSON.stringify(dict)
-        }).then((response) => {
-            if (response) {
-                if (response.status !== 200) {
-                    console.log(' status flop in upload')
+
+        if(liked.includes(mealId.toString())){
+            console.log('id already in working collection')
+          }else{
+      
+            const likedRep = liked + ' ' + mealId
+            console.log('adding new recipe to wc')
+            const dict = {
+                likedRecipes: likedRep
+            }
+            fetch(`${databaseURL}/${username}/${key}/.json`, {
+                method: "PATCH",
+                body: JSON.stringify(dict)
+            }).then((response) => {
+                if (response) {
+                  if (response.status !== 200) {
                     alert("Unable to add recipe to liked reciped!")
+                    console.log(' status flop in upload')
                 } 
                 else {
                     console.log('updated Liked Recipes: ', likedRep)
                     return;
+                  }
+                } else {
+                  alert("Unable to add recipe to liked reciped!")
                 }
-            } else {
-                alert("Unable to add recipe to liked reciped!")
-            }
-
-        })
+      
+            })
+      
+          }
     }
+
+    // const addToLiked = () => {
+    //     const likedRep = liked + ' ' + mealId
+    //     console.log('adding to liked')
+    //     const dict = {
+    //         likedRecipes: likedRep
+    //     }
+    //     fetch(`${databaseURL}/${username}/${key}/.json`, {
+    //         method: "PATCH",
+    //         body: JSON.stringify(dict)
+    //     }).then((response) => {
+    //         if (response) {
+    //             if (response.status !== 200) {
+    //                 console.log(' status flop in upload')
+    //                 alert("Unable to add recipe to liked reciped!")
+    //             } 
+    //             else {
+    //                 console.log('updated Liked Recipes: ', likedRep)
+    //                 return;
+    //             }
+    //         } else {
+    //             alert("Unable to add recipe to liked reciped!")
+    //         }
+
+    //     })
+    // }
 
     // const removeLiked = () => {
 
