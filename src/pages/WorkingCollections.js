@@ -5,6 +5,7 @@ import NavBar from '../components/NavBar';
 
 import RecipesCard from '../components/RecipesCard';
 import axios from 'axios';
+import { Row } from 'react-bootstrap';
 
 
 function WorkingCollection({username}  ) {
