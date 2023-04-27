@@ -154,13 +154,16 @@ function WorkingCollection({username}  ) {
                     }
                 })
             } */}
-
-            <div className="working-collection-recipes">
-                <RecipesCard title={"Minced Beef Pie"} imgURL={"https:\/\/www.themealdb.com\/images\/media\/meals\/xwutvy1511555540.jpg"} username={username} mealId={52876}/> 
-                <RecipesCard title={"French Onion Chicken with Roasted Carrots & Mashed Potatoes"} imgURL={"https:\/\/www.themealdb.com\/images\/media\/meals\/b5ft861583188991.jpg"} username={username} mealId={52996}/> 
-                <RecipesCard title={"Christmas Pudding Trifle"} imgURL={"https:\/\/www.themealdb.com\/images\/media\/meals\/r33cud1576791081.jpg"} username={username} mealId={52989}/> 
-                <RecipesCard title={"Osso Buco alla Milanese"} imgURL={"https:\/\/www.themealdb.com\/images\/media\/meals\/wwuqvt1487345467.jpg"} username={username} mealId={52810}/> 
+            <div className='outerWC'>
+                <div className="working-collection-recipes">
+                    <RecipesCard title={"Minced Beef Pie"} imgURL={"https:\/\/www.themealdb.com\/images\/media\/meals\/xwutvy1511555540.jpg"} username={username} mealId={52876}/> 
+                    <RecipesCard title={"French Onion Chicken with Roasted Carrots & Mashed Potatoes"} imgURL={"https:\/\/www.themealdb.com\/images\/media\/meals\/b5ft861583188991.jpg"} username={username} mealId={52996}/> 
+                    <RecipesCard title={"Christmas Pudding Trifle"} imgURL={"https:\/\/www.themealdb.com\/images\/media\/meals\/r33cud1576791081.jpg"} username={username} mealId={52989}/> 
+                    <RecipesCard title={"Osso Buco alla Milanese"} imgURL={"https:\/\/www.themealdb.com\/images\/media\/meals\/wwuqvt1487345467.jpg"} username={username} mealId={52810}/> 
+                </div>
+                
             </div>
+            
 
             <div className="bottom-buttons">
                 <div className="add-button-container">

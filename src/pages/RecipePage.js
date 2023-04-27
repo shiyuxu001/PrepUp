@@ -322,7 +322,7 @@ function RecipePage({username}) {
                       <img className="recipe-icon" src={QueueIcon} onClick={navToWorkingCollections}/> Add to Queue
                   </Button>
                   <Button className="recipe-card-button" onClick={navToSavedCollections} variant='outline-light'>
-                      <img className="recipe-icon" src={CollectionIcon}/>   Save to Collection
+                      <img className="recipe-icon" src={CollectionIcon}/>Save to Collection
                   </Button>
                   <Button className="recipe-card-button" onClick={navToLikedRecipes} variant='outline-light'>
                       <img className="recipe-icon" src={LikeIcon} /> Like Recipe
