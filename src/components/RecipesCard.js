@@ -117,7 +117,6 @@ function RecipesCard( {title, imgURL, username, mealId}) {
                     <p className="recipe-card-title">{title}</p>
                     <Col>
                         <Row>
-                            {/* <div className="recipe-card-button-container"> */}
                                 <Col xs={4}>
                                     <Button className="recipe-card-button" onClick={navToWorkingCollections} variant='outline-light'>
                                     <img className="recipe-icon" src={QueueIcon} onClick={navToWorkingCollections}/>
@@ -136,7 +135,6 @@ function RecipesCard( {title, imgURL, username, mealId}) {
                                 </Button>
                                 </Col>
                                 
-                            {/* </div> */}
                         </Row>
                     </Col>
                 </Row>
