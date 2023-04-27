@@ -8,6 +8,7 @@ import { faAlignCenter } from "@fortawesome/free-solid-svg-icons";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import QueueIcon from '../components/queue-svgrepo-com.svg';
+// import AlbumIcon from '../components/albums-outline.svg'
 import CollectionIcon from '../components/collection-tag-svgrepo-com.svg';
 import LikeIcon from '../components/like-svgrepo-com.svg';
 import LikeIcon2 from '../components/heart-outline.svg';
@@ -111,35 +112,70 @@ function RecipesCard( {title, imgURL, username, mealId}) {
 
     return(
         <>
-            <Card className='recipe-card' onClick={navToRecipePage}>
+    <Card className='recipe-card text-center'  onClick={navToRecipePage}>
+        <Row noGutters>
+            <Col sm={4} md={4}>
+                <img className='recipe-card-img' variant='left' src={imgURL} alt={title} title={title}/>
+            </Col>
+            <Col className="recipe-card-info" sm={8} md={8}>
                 <Row>
-                    <img className="new-recipe-card-img" variant='left' src={imgURL} alt={title} title={title} />
-                    <p className="recipe-card-title">{title}</p>
-                    <Col>
-                        <Row>
-                                <Col xs={4}>
-                                    <Button className="recipe-card-button" onClick={navToWorkingCollections} variant='outline-light'>
-                                    <img className="recipe-icon" src={QueueIcon} onClick={navToWorkingCollections}/>
-                                    </Button>
-                                </Col>
-                                <Col xs={4}>
-                                    <Button className="recipe-card-button" onClick={navToSavedCollections} variant='outline-light'>
-                                    <img className="recipe-icon" src={CollectionIcon} />
-                                    </Button>
-                                </Col>
-                                <Col xs={4}>
-                                <Button className="recipe-card-button" onClick={navToLikedRecipes} variant='outline-light'>
-                                    <img className="recipe-icon-heart" src={LikeIcon2} />
-                                    
-                                    {/* <ion-icon name="heart-outline" aria-label="Liked Recipies"></ion-icon> */}
-                                </Button>
-                                </Col>
-                                
-                        </Row>
+                    <h2 className="recipe-card-title">{title}</h2>
+                </Row>
+                <Row className="recipe-card-button-container">
+                    <Col xs={4}>
+                        <Button className="recipe-card-button" onClick={navToWorkingCollections} variant='outline-light'>
+                        <img className="recipe-icon" src={QueueIcon} onClick={navToWorkingCollections} style={{ width: '100%' }}/>
+                        </Button>
+                    </Col>
+                    <Col xs={4}>
+                        <Button className="recipe-card-button" onClick={navToSavedCollections} variant='outline-light'>
+                            <img className="recipe-icon" src={CollectionIcon} />
+                        </Button>
+                    </Col>
+                    <Col xs={4}>
+                        <Button className="recipe-card-button" onClick={navToLikedRecipes} variant='outline-light'>
+                            <img className="recipe-icon" src={LikeIcon2} />
+                                                    
+                            {/* <ion-icon name="heart-outline" aria-label="Liked Recipies"></ion-icon> */}
+                        </Button>
                     </Col>
                 </Row>
-            </Card>
-        </>
+            </Col>
+        </Row>
+    </Card>
+</>
+        // <>
+        //     <Card className='recipe-card' onClick={navToRecipePage}>
+        //         <Row>
+        //             <img className="new-recipe-card-img" variant='left' src={imgURL} alt={title} title={title} />
+        //             <p className="recipe-card-title">{title}</p>
+        //             <Col>
+        //                 <Row>
+        //                     {/* <div className="recipe-card-button-container"> */}
+        //                         <Col xs={4}>
+        //                             <Button className="recipe-card-button" onClick={navToWorkingCollections} variant='outline-light'>
+        //                             <img className="recipe-icon" src={QueueIcon} onClick={navToWorkingCollections}/>
+        //                             </Button>
+        //                         </Col>
+        //                         <Col xs={4}>
+        //                             <Button className="recipe-card-button" onClick={navToSavedCollections} variant='outline-light'>
+        //                             <img className="recipe-icon" src={CollectionIcon} />
+        //                             </Button>
+        //                         </Col>
+        //                         <Col xs={4}>
+        //                         <Button className="recipe-card-button" onClick={navToLikedRecipes} variant='outline-light'>
+        //                             <img className="recipe-icon-heart" src={LikeIcon2} />
+                                    
+        //                             {/* <ion-icon name="heart-outline" aria-label="Liked Recipies"></ion-icon> */}
+        //                         </Button>
+        //                         </Col>
+                                
+        //                     {/* </div> */}
+        //                 </Row>
+        //             </Col>
+        //         </Row>
+        //     </Card>
+        // </>
    
     
     );
