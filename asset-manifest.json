@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/PrepUp/static/css/main.15a49f13.css",
-    "main.js": "/PrepUp/static/js/main.da0aa4f9.js",
+    "main.css": "/PrepUp/static/css/main.0734848f.css",
+    "main.js": "/PrepUp/static/js/main.3bbd656d.js",
     "static/js/787.72ec4084.chunk.js": "/PrepUp/static/js/787.72ec4084.chunk.js",
     "static/media/meals.jpeg": "/PrepUp/static/media/meals.71533b90a5bb18008fca.jpeg",
     "static/media/like-svgrepo-com.svg": "/PrepUp/static/media/like-svgrepo-com.77658d56c8f74a75c0592ba30e9a8bd9.svg",
@@ -9,12 +9,12 @@
     "static/media/queue-svgrepo-com.svg": "/PrepUp/static/media/queue-svgrepo-com.1d9c9f53c0b423f9dcf71c42866eb6ee.svg",
     "static/media/collection-tag-svgrepo-com.svg": "/PrepUp/static/media/collection-tag-svgrepo-com.01a419c5bf2d25c626ca08dd4753b515.svg",
     "static/media/heart-outline.svg": "/PrepUp/static/media/heart-outline.1e76b8077c62543b3b0c906bd430460e.svg",
-    "main.15a49f13.css.map": "/PrepUp/static/css/main.15a49f13.css.map",
-    "main.da0aa4f9.js.map": "/PrepUp/static/js/main.da0aa4f9.js.map",
+    "main.0734848f.css.map": "/PrepUp/static/css/main.0734848f.css.map",
+    "main.3bbd656d.js.map": "/PrepUp/static/js/main.3bbd656d.js.map",
     "787.72ec4084.chunk.js.map": "/PrepUp/static/js/787.72ec4084.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.15a49f13.css",
-    "static/js/main.da0aa4f9.js"
+    "static/css/main.0734848f.css",
+    "static/js/main.3bbd656d.js"
   ]
 }
