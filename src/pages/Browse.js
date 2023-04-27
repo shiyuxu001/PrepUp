@@ -85,10 +85,7 @@ function Browse( {name, username} ) {
             <div className="search-box-browse">
                 <input type="search" className="collection-name-input" placeholder="Search for a recipe" onChange={(e)=>setSearch(e.target.value)} value={search} onKeyPress={searchMeal}/>
                 {/* <FontAwesomeIcon icon="fa-solid fa-filter" /> */}
-            </div> 
-            {/* <div className="search-box" style={{width: '80%', backgroundColor: '#f2f2f2'}}>
-                <input type="search" className="collection-name-input" placeholder="Search for a recipe" onChange={(e)=>setSearch(e.target.value)} value={search} onKeyPress={searchMeal}/>
-            </div> */}
+            </div>
 
             {hasLoaded && !isActivelySearching ? (
                 <div>
@@ -106,6 +103,7 @@ function Browse( {name, username} ) {
                                     initRec.map((item) => ( 
                                     <RecipesCard 
                                         className="individual-recipe-card"
+                                        id="carasol-recipe-card"
                                         title = {item['meals'][0]['strMeal']}  
                                         imgURL = {item['meals'][0]['strMealThumb']}
                                         username= {username} 
